@@ -1,9 +1,4 @@
-const COLUMNS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
-const ROWS = ["1", "2", "3", "4", "5", "6"] as const;
-
-type Column = (typeof COLUMNS)[number];
-type Row = (typeof ROWS)[number];
-type Piece = "red" | "yellow";
+import { Column, Row, Piece } from "./types";
 
 const ColumnCoords = new Map<Column, number>([
   ["A", 10],
