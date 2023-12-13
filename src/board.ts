@@ -1,7 +1,5 @@
 const COLUMNS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 const ROWS = ["1", "2", "3", "4", "5", "6"] as const;
-const GRID_SIZE = 100;
-const GRID_PADDING = 10;
 
 type Column = (typeof COLUMNS)[number];
 type Row = (typeof ROWS)[number];
@@ -33,8 +31,27 @@ export const getCoords = (col: Column, row: Row): [number, number] => {
   return [x, y];
 };
 
+export const getColumnFromCoord = (x: number): Column => {
+  let previousCol: Column;
+  for (const [col, coord] of ColumnCoords.entries()) {
+    if (x < coord) {
+      return previousCol;
+    }
+    previousCol = col;
+  }
+
+  return "H";
+};
+
 export const piecePlacer =
   (scene: Phaser.Scene) => (piece: Piece, col: Column, row: Row) => {
     const [x, y] = getCoords(col, row);
-    scene.add.image(x, y, piece).setOrigin(0);
+    const img = scene.add.image(x, -100, piece).setOrigin(0).setDepth(-1);
+    scene.tweens.add({
+      targets: img,
+      y,
+      duration: 500,
+      delay: 0,
+      ease: "Bounce.Out",
+    });
   };
