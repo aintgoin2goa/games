@@ -1,6 +1,9 @@
 import * as Phaser from "phaser";
-import { getColumnFromCoord, getCoords, piecePlacer } from "./board";
-import GameBoard from "./game";
+import * as GameMap from "./map";
+import { getColumnFromCoord, invertPiece } from "./utils";
+import { piecePlacer } from "./board";
+import { Piece } from "./types";
+import { WINNER } from "./search";
 
 export class Scene extends Phaser.Scene {
   constructor() {
@@ -15,18 +18,31 @@ export class Scene extends Phaser.Scene {
 
   create() {
     const board = this.add.image(0, 0, "board").setOrigin(0, 0);
+    let piece: Piece = "red";
+    let ready = true;
     const placePiece = piecePlacer(this);
     this.input.on("pointerdown", (pointer) => {
-      console.log("pointerfown", pointer);
-      const column = getColumnFromCoord(pointer.x);
-      const row = GameBoard.col(column).getNextRow();
-      if (row === null) {
+      if (!ready) {
         return;
       }
-      const piece = GameBoard.nextGo();
-      console.log({ row, column, piece });
-      placePiece(piece, column, row);
-      GameBoard.update(column, row, piece);
+      const column = getColumnFromCoord(pointer.x);
+      const row = GameMap.getNextAvailableRowForColumn(column);
+      if (!row) {
+        console.log("No row found");
+        return;
+      }
+      placePiece(piece, column, row).then(() => {
+        GameMap.update(column, row, piece);
+        const winnerSearch = GameMap.search(WINNER, piece);
+        console.log({ winnerSearch });
+        if (winnerSearch.found) {
+          alert(`${piece} wins!`);
+          location.reload();
+        } else {
+          piece = invertPiece(piece);
+          ready = true;
+        }
+      });
     });
   }
 }
