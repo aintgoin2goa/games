@@ -97,3 +97,9 @@ export const getNextAvailableRowForColumn = (col: Column): Row => {
 
   return null;
 };
+
+export const clear = () => {
+  for (const key of cells.keys()) {
+    cells.set(key, null);
+  }
+};

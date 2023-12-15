@@ -1,9 +1,16 @@
 import * as Phaser from "phaser";
 import * as GameMap from "./map";
 import { getColumnFromCoord, invertPiece } from "./utils";
-import { piecePlacer } from "./board";
+import { clearBoard, flash, piecePlacer } from "./board";
 import { Piece } from "./types";
 import { WINNER } from "./search";
+import {
+  HEIGHT,
+  WIDTH,
+  pieceColors,
+  pieceColorsStr,
+  pieceTextColor,
+} from "./constants";
 
 export class Scene extends Phaser.Scene {
   constructor() {
@@ -25,6 +32,7 @@ export class Scene extends Phaser.Scene {
       if (!ready) {
         return;
       }
+      ready = false;
       const column = getColumnFromCoord(pointer.x);
       const row = GameMap.getNextAvailableRowForColumn(column);
       if (!row) {
@@ -34,10 +42,31 @@ export class Scene extends Phaser.Scene {
       placePiece(piece, column, row).then(() => {
         GameMap.update(column, row, piece);
         const winnerSearch = GameMap.search(WINNER, piece);
-        console.log({ winnerSearch });
         if (winnerSearch.found) {
-          alert(`${piece} wins!`);
-          location.reload();
+          flash(this, winnerSearch.coords);
+          const winText = this.add
+            .text(WIDTH / 2, HEIGHT / 4, `${piece} wins!`, {
+              color: pieceColorsStr[piece],
+              fontFamily: "Arial Black",
+              fontSize: 80,
+            })
+            .setShadow(4, 4, "#000000", 8, true, true)
+            .setOrigin(0.5);
+
+          const button = this.add
+            .text(WIDTH / 2, HEIGHT / 2, "Play Again", {
+              backgroundColor: pieceColorsStr[piece],
+              color: pieceTextColor[piece],
+            })
+            .setPadding({ x: 24, y: 16 })
+            .setOrigin(0.5)
+            .setInteractive()
+            .on("pointerdown", () => {
+              GameMap.clear();
+              clearBoard();
+              winText.destroy();
+              button.destroy();
+            });
         } else {
           piece = invertPiece(piece);
           ready = true;

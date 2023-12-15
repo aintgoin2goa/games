@@ -20,8 +20,8 @@ export const coordToColumnRow = (
 };
 
 export const getCoords = (col: Column, row: Row): [number, number] => {
-  const x = ColumnCoords.get(col);
-  const y = RowCoords.get(row);
+  const x = ColumnCoords.get(col) + 40;
+  const y = RowCoords.get(row) + 140;
   return [x, y];
 };
 

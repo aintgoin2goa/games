@@ -1,4 +1,4 @@
-import type { Column, Coord, Row } from "./types";
+import type { Column, Coord, Piece, Row } from "./types";
 
 export const COLUMNS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 export const ROWS = ["1", "2", "3", "4", "5", "6"] as const;
@@ -78,3 +78,21 @@ export const RowCoords = new Map<Row, number>([
   ["5", 413],
   ["6", 509],
 ]);
+
+export const pieceColors: Record<Piece, number> = {
+  red: 0xd21f32,
+  yellow: 0xffd52f,
+};
+
+export const pieceColorsStr: Record<Piece, string> = {
+  red: "#d21f32",
+  yellow: "#ffd52f",
+};
+
+export const pieceTextColor: Record<Piece, string> = {
+  red: "#ffffff",
+  yellow: "#000000",
+};
+
+export const WIDTH = 800;
+export const HEIGHT = 600;
