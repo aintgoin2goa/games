@@ -60,14 +60,14 @@ export const DIAG_DOWN_MAP: Coord[][] = [
 ];
 
 export const ColumnCoords = new Map<Column, number>([
-  ["A", 10],
-  ["B", 110],
-  ["C", 210],
-  ["D", 310],
-  ["E", 409],
-  ["F", 510],
-  ["G", 609],
-  ["H", 708],
+  ["A", 110],
+  ["B", 210],
+  ["C", 310],
+  ["D", 410],
+  ["E", 509],
+  ["F", 610],
+  ["G", 709],
+  ["H", 808],
 ]);
 
 export const RowCoords = new Map<Row, number>([
@@ -79,14 +79,21 @@ export const RowCoords = new Map<Row, number>([
   ["6", 509],
 ]);
 
+export enum COLORS {
+  black = "#000000",
+  white = "#ffffff",
+  red = "#d21f32",
+  yellow = "#ffd52f",
+}
+
 export const pieceColors: Record<Piece, number> = {
   red: 0xd21f32,
   yellow: 0xffd52f,
 };
 
 export const pieceColorsStr: Record<Piece, string> = {
-  red: "#d21f32",
-  yellow: "#ffd52f",
+  red: COLORS.red,
+  yellow: COLORS.yellow,
 };
 
 export const pieceTextColor: Record<Piece, string> = {
@@ -94,5 +101,13 @@ export const pieceTextColor: Record<Piece, string> = {
   yellow: "#000000",
 };
 
-export const WIDTH = 800;
+export const WIDTH = 1000;
 export const HEIGHT = 600;
+
+export enum FONTS {
+  AvantGardeGothic = "AvantGardeGothic",
+}
+
+export enum FONT_SIZES {
+  Title = 120,
+}
