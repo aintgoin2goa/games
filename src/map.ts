@@ -9,6 +9,12 @@ import {
 import { Column, Coord, MaybePiece, Piece, Row, SearchFunction } from "./types";
 import { columnRow2Coord } from "./utils";
 
+type Pattern = [MaybePiece, MaybePiece, MaybePiece, MaybePiece];
+type Patterns = Map<string, Pattern>;
+type CoordList = [Coord, Coord, Coord, Coord];
+type SearchLineResult = Map<string, CoordList>;
+type SearchCollectionResult = Map<string, CoordList[]>;
+
 const cells = new Map<Coord, MaybePiece>();
 for (const col of COLUMNS) {
   for (const row of ROWS) {
@@ -19,65 +25,87 @@ for (const col of COLUMNS) {
 const getCellCollection = (coords: Coord[]): MaybePiece[] =>
   coords.map((coord) => cells.get(coord));
 
-const searchLine = (line: Coord[], pattern: MaybePiece[]): Coord[] => {
-  const search = JSON.stringify(pattern);
+const searchLine = (line: Coord[], patterns: Patterns): SearchLineResult => {
+  let searches: Map<string, string> = new Map();
+  for (const [name, pattern] of patterns.entries()) {
+    searches.set(name, JSON.stringify(pattern));
+  }
 
   let index = 0;
   let endIndex = 4;
+  const result = new Map();
   while (endIndex <= line.length) {
     const coords = line.slice(index, endIndex);
     const pieces = getCellCollection(coords);
     const searchPieces = JSON.stringify(pieces);
-    if (searchPieces === search) {
-      return coords;
+    for (const [name, pattern] of searches.entries()) {
+      if (pattern === searchPieces) {
+        result.set(name, coords);
+      }
     }
     index++;
     endIndex++;
   }
 
-  return [];
+  return result;
+};
+
+const mergeResults = (
+  ...results: SearchCollectionResult[]
+): SearchCollectionResult => {
+  const merged: SearchCollectionResult = new Map();
+  for (const result of results) {
+    for (const [name, coords] of result.entries()) {
+      if (!merged.has(name)) {
+        merged.set(name, coords);
+      } else {
+        const current = merged.get(name);
+        current.concat(coords);
+        merged.set(name, current);
+      }
+    }
+  }
+
+  return merged;
 };
 
 const searchCollection = (
   collection: Coord[][],
-  pattern: MaybePiece[],
-): Coord[] => {
-  if (pattern.length !== 4) {
-    throw new Error("Pattern must have 4 entries");
-  }
-
-  let found: Coord[] = [];
+  patterns: Patterns,
+): SearchCollectionResult => {
+  let found: SearchCollectionResult = new Map();
   for (const line of collection) {
-    const lineResult = searchLine(line, pattern);
-    found = found.concat(lineResult);
+    const lineResult = searchLine(line, patterns);
+    for (const [name, coords] of lineResult.entries()) {
+      const existing = found.has(name) ? found.get(name) : [];
+      existing.push(coords);
+      found.set(name, existing);
+    }
   }
   return found;
 };
 
-const doSearch = (pattern: MaybePiece[]): Coord[] => {
-  let found = [];
-  found = found.concat(searchCollection(COLUMN_MAP, pattern));
-  found = found.concat(searchCollection(ROW_MAP, pattern));
-  found = found.concat(searchCollection(DIAG_DOWN_MAP, pattern));
-  found = found.concat(searchCollection(DIAG_UP_MAP, pattern));
-
-  return found;
+const doSearch = (patterns: Patterns): SearchCollectionResult => {
+  return mergeResults(
+    searchCollection(COLUMN_MAP, patterns),
+    searchCollection(ROW_MAP, patterns),
+    searchCollection(DIAG_DOWN_MAP, patterns),
+    searchCollection(DIAG_UP_MAP, patterns),
+  );
 };
 
-interface SearchResult {
-  found: boolean;
-  coords: Coord[];
-  name: string;
+export interface SearchResult {
+  results: SearchCollectionResult;
 }
 
-export const search = (func: SearchFunction, piece: Piece): SearchResult => {
-  const { name } = func;
-  const pattern = func.getPattern(piece);
-  const coords = doSearch(pattern);
+export const search = (funcs: SearchFunction[], piece: Piece): SearchResult => {
+  const patterns: Patterns = new Map();
+  for (const func of funcs) {
+    patterns.set(func.name, func.getPattern(piece));
+  }
+  const results = doSearch(patterns);
   return {
-    name,
-    coords,
-    found: coords.length > 0,
+    results,
   };
 };
 
@@ -96,6 +124,13 @@ export const getNextAvailableRowForColumn = (col: Column): Row => {
   }
 
   return null;
+};
+
+export const getAllPossibleMoves = (): Coord[] => {
+  return COLUMNS.map((col) => {
+    const row = getNextAvailableRowForColumn(col);
+    return columnRow2Coord(col, row);
+  });
 };
 
 export const clear = () => {

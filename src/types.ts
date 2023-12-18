@@ -12,7 +12,17 @@ export type Coord = `${Column}${Row}`;
 
 export type MapEntry = [coord: Coord, piece: MaybePiece];
 
+export type MatchedPattern = [Coord, Coord, Coord, Coord];
+
+export type PlayerTypes = "human" | "computer";
+
 export interface SearchFunction {
   name: string;
-  getPattern: (piece: Piece) => MaybePiece[];
+  getPattern: (
+    piece: Piece,
+  ) => [MaybePiece, MaybePiece, MaybePiece, MaybePiece];
+  suggestMove: (
+    matchedPattern: MatchedPattern,
+    possibleMoves?: Coord[],
+  ) => Coord | null;
 }

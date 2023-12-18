@@ -1,14 +1,12 @@
 import {
   COLORS,
-  FONTS,
-  FONT_SIZES,
   HEIGHT,
   WIDTH,
   pieceColors,
   pieceColorsStr,
   pieceTextColor,
 } from "./constants";
-import { Column, Coord, Piece, Row } from "./types";
+import { Column, Coord, Piece, PlayerTypes, Row } from "./types";
 import {
   columnRow2Coord,
   getColumnFromCoord,
@@ -18,6 +16,7 @@ import {
 import * as GameMap from "./map";
 import { Text } from "./text";
 import { WINNER } from "./search";
+import { Player } from "./ai";
 
 type UIObject =
   | Phaser.GameObjects.Text
@@ -70,14 +69,14 @@ export class Game {
 
   private currentTurn: Piece;
 
-  private ready: boolean;
+  private players: Record<Piece, "human" | Player>;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
     this.pieces = new Map();
     this.uiObjects = new UIObjects();
     this.text = new Text(scene);
-    this.ready = true;
+    this.players = { red: "human", yellow: "human" };
   }
 
   drawPiece(color: number, x: number, y: number) {
@@ -170,7 +169,7 @@ export class Game {
           text: "One Player",
         })
         .on("pointerdown", () => {
-          // begin(1)
+          this.begin(1);
         }),
     );
     this.uiObjects.add(
@@ -190,7 +189,13 @@ export class Game {
   }
 
   begin(players: 1 | 2) {
-    let ready = true;
+    if (players === 1) {
+      this.players.red = "human";
+      this.players.yellow = new Player(this, "yellow");
+    } else {
+      this.players.red = "human";
+      this.players.yellow = "human";
+    }
     this.currentTurn = "red";
     this.uiObjects.destroy("title");
     this.uiObjects.destroy("1p-btn");
@@ -254,12 +259,16 @@ export class Game {
         1,
       );
     }
-    this.scene.input.once("pointerdown", (pointer) => {
-      this.takeTurn(pointer);
-    });
+    if (this.players[this.currentTurn] === "human") {
+      this.scene.input.once("pointerdown", (pointer) => {
+        this.takeHumanTurn(pointer);
+      });
+    } else {
+      (this.players[this.currentTurn] as Player).takeTurn();
+    }
   }
 
-  takeTurn(pointer) {
+  takeHumanTurn(pointer) {
     const column = getColumnFromCoord(pointer.x);
     const row = GameMap.getNextAvailableRowForColumn(column);
     const piece = this.currentTurn;
@@ -268,11 +277,18 @@ export class Game {
       console.log("No row found");
       return;
     }
+
+    this.takeTurn(piece, column, row);
+  }
+
+  takeTurn(piece: Piece, column: Column, row: Row) {
     this.placePiece(piece, column, row).then(() => {
       GameMap.update(column, row, piece);
-      const winnerSearch = GameMap.search(WINNER, piece);
-      if (winnerSearch.found) {
-        this.winner(piece, winnerSearch.coords);
+      const searchResults = GameMap.search([WINNER], piece);
+      // console.log("SEARCH RESULTS", searchResults);
+      const winnerCoords = searchResults.results.get(WINNER.name);
+      if (winnerCoords?.length) {
+        this.winner(piece, winnerCoords[0]);
       } else {
         this.nextTurn(invertPiece(piece));
       }
