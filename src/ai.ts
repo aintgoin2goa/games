@@ -7,6 +7,10 @@ import {
   NEXT_MOVE_WIN_X0XX,
   NEXT_MOVE_WIN_XX0X,
   NEXT_MOVE_WIN_XXX0,
+  SINGLE_000X,
+  SINGLE_00X0,
+  SINGLE_0X00,
+  SINGLE_X000,
   SNEAKY_00XX,
   SNEAKY_XX00,
   getSearchByName,
@@ -41,24 +45,6 @@ export class Player {
   }
 
   calculateBestMove(possibleMoves: Coord[]): Coord | null {
-    const theirPossibleWinningMoves = GameMap.search(
-      [
-        NEXT_MOVE_WIN_0XXX,
-        NEXT_MOVE_WIN_X0XX,
-        NEXT_MOVE_WIN_XX0X,
-        NEXT_MOVE_WIN_XXX0,
-      ],
-      invertPiece(this.piece),
-    );
-
-    const movesToStopThemWinning = this.getSuggestedMoves(
-      theirPossibleWinningMoves,
-      possibleMoves,
-    );
-    if (movesToStopThemWinning.length) {
-      return movesToStopThemWinning[0];
-    }
-
     const myPossibleWinningMoves = GameMap.search(
       [
         NEXT_MOVE_WIN_0XXX,
@@ -77,9 +63,36 @@ export class Player {
       return movestoWin[0];
     }
 
+    const theirPossibleWinningMoves = GameMap.search(
+      [
+        NEXT_MOVE_WIN_0XXX,
+        NEXT_MOVE_WIN_X0XX,
+        NEXT_MOVE_WIN_XX0X,
+        NEXT_MOVE_WIN_XXX0,
+      ],
+      invertPiece(this.piece),
+    );
+
+    const movesToStopThemWinning = this.getSuggestedMoves(
+      theirPossibleWinningMoves,
+      possibleMoves,
+    );
+    if (movesToStopThemWinning.length) {
+      return movesToStopThemWinning[0];
+    }
+
     const otherMoves = this.getSuggestedMoves(
       GameMap.search(
-        [SNEAKY_00XX, SNEAKY_XX00, MOVE_00XX, MOVE_XX00],
+        [
+          SNEAKY_00XX,
+          SNEAKY_XX00,
+          MOVE_00XX,
+          MOVE_XX00,
+          SINGLE_000X,
+          SINGLE_00X0,
+          SINGLE_0X00,
+          SINGLE_X000,
+        ],
         this.piece,
       ),
       possibleMoves,

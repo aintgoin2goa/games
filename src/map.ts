@@ -87,10 +87,10 @@ const searchCollection = (
 
 const doSearch = (patterns: Patterns): SearchCollectionResult => {
   return mergeResults(
-    searchCollection(COLUMN_MAP, patterns),
-    searchCollection(ROW_MAP, patterns),
     searchCollection(DIAG_DOWN_MAP, patterns),
     searchCollection(DIAG_UP_MAP, patterns),
+    searchCollection(COLUMN_MAP, patterns),
+    searchCollection(ROW_MAP, patterns),
   );
 };
 

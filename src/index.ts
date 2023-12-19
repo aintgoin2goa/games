@@ -27,4 +27,7 @@ const config: Types.Core.GameConfig = {
   scene: Scene,
 };
 
-const game = new Game(config);
+document.body
+  .requestFullscreen()
+  .then(() => new Game(config))
+  .catch((e) => console.error(e));

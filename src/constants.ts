@@ -25,7 +25,7 @@ export const ROW_MAP: Coord[][] = [
 
 export const DIAG_UP_MAP: Coord[][] = [
   ["A4", "B3", "C2", "D1"],
-  ["A5", "B3", "C3", "D2", "E1"],
+  ["A5", "B4", "C3", "D2", "E1"],
   ["A6", "B5", "C4", "D3", "E2", "F1"],
   ["B4", "C3", "D2", "E1"],
   ["B5", "C4", "D3", "E2", "F1"],

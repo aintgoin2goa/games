@@ -54,6 +54,30 @@ export const SNEAKY_00XX: SearchFunction = {
   suggestMove: (pattern) => pattern[0],
 };
 
+export const SINGLE_X000: SearchFunction = {
+  name: "SINGLE_X000",
+  getPattern: (piece) => [piece, null, null, null],
+  suggestMove: (pattern) => pattern[1],
+};
+
+export const SINGLE_0X00: SearchFunction = {
+  name: "SINGLE_0X00",
+  getPattern: (piece) => [null, piece, null, null],
+  suggestMove: (pattern) => pattern[2],
+};
+
+export const SINGLE_00X0: SearchFunction = {
+  name: "SINGLE_00X0",
+  getPattern: (piece) => [null, null, piece, null],
+  suggestMove: (pattern) => pattern[1],
+};
+
+export const SINGLE_000X: SearchFunction = {
+  name: "SINGLE_000X",
+  getPattern: (piece) => [null, null, null, piece],
+  suggestMove: (pattern) => pattern[2],
+};
+
 const ALLSEARCHES = [
   WINNER,
   NEXT_MOVE_WIN_XXX0,
@@ -64,6 +88,10 @@ const ALLSEARCHES = [
   MOVE_XX00,
   SNEAKY_00XX,
   SNEAKY_XX00,
+  SINGLE_000X,
+  SINGLE_00X0,
+  SINGLE_0X00,
+  SINGLE_X000,
 ];
 
 export const getSearchByName = (name) =>
