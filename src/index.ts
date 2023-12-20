@@ -1,6 +1,6 @@
 import { Scene } from "./scene";
 import type { Types } from "phaser";
-import { Game, AUTO } from "phaser";
+import { Game, AUTO, Scale } from "phaser";
 import { FONTS, HEIGHT, WIDTH } from "./constants";
 
 function loadFont(name, url) {
@@ -24,10 +24,10 @@ const config: Types.Core.GameConfig = {
   //   transparent: true,
   width: WIDTH,
   height: HEIGHT,
+  scale: {
+    mode: Scale.FIT,
+  },
   scene: Scene,
 };
 
-document.body
-  .requestFullscreen()
-  .then(() => new Game(config))
-  .catch((e) => console.error(e));
+new Game(config);

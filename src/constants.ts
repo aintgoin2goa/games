@@ -84,7 +84,10 @@ export enum COLORS {
   white = "#ffffff",
   red = "#d21f32",
   yellow = "#ffd52f",
+  blue = "#1B61F0",
 }
+
+export const boardColor = 0x1b61f0;
 
 export const pieceColors: Record<Piece, number> = {
   red: 0xd21f32,
@@ -103,6 +106,11 @@ export const pieceTextColor: Record<Piece, string> = {
 
 export const WIDTH = 1000;
 export const HEIGHT = 600;
+
+export const BLOCK_SIZE = (WIDTH - 200) / COLUMNS.length;
+export const HOLE_SPACING = BLOCK_SIZE / 10;
+export const GUTTER = 100;
+export const PIECE_RADIUS = (BLOCK_SIZE - HOLE_SPACING * 2) / 2;
 
 export enum FONTS {
   AvantGardeGothic = "AvantGardeGothic",

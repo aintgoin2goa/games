@@ -65,9 +65,8 @@ export class Text {
       .text(x, y, text, {
         fontFamily: FONTS.AvantGardeGothic,
         color,
-        fontSize: 20,
+        fontSize: 18,
       })
-      .setOrigin(0, 0)
-      .setStroke("#000000", 2);
+      .setOrigin(0, 0);
   }
 }

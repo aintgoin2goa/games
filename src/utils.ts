@@ -1,4 +1,13 @@
-import { ColumnCoords, RowCoords } from "./constants";
+import {
+  BLOCK_SIZE,
+  COLUMNS,
+  ColumnCoords,
+  GUTTER,
+  HOLE_SPACING,
+  PIECE_RADIUS,
+  ROWS,
+  RowCoords,
+} from "./constants";
 import { Column, Coord, Row, Piece } from "./types";
 
 export const columnRow2Coord = (col: Column, row: Row): Coord =>
@@ -20,8 +29,9 @@ export const coordToColumnRow = (
 };
 
 export const getCoords = (col: Column, row: Row): [number, number] => {
-  const x = ColumnCoords.get(col) + 40;
-  const y = RowCoords.get(row) + 140;
+  const x =
+    COLUMNS.indexOf(col) * BLOCK_SIZE + GUTTER + PIECE_RADIUS + HOLE_SPACING;
+  const y = (ROWS.indexOf(row) + 1) * BLOCK_SIZE + PIECE_RADIUS + HOLE_SPACING;
   return [x, y];
 };
 

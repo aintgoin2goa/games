@@ -1,5 +1,5 @@
 import { Game } from "./game";
-import * as GameMap from "./map";
+import { Searcher, SearchResult } from "./search";
 import {
   MOVE_00XX,
   MOVE_XX00,
@@ -14,21 +14,23 @@ import {
   SNEAKY_00XX,
   SNEAKY_XX00,
   getSearchByName,
-} from "./search";
+} from "./searches";
 import { Coord, Piece } from "./types";
 import { coordToColumnRow, invertPiece } from "./utils";
 
 export class Player {
   game: Game;
   piece: Piece;
+  searcher: Searcher;
 
   constructor(game: Game, piece: Piece) {
     this.game = game;
     this.piece = piece;
+    this.searcher = new Searcher(this.game.map);
   }
 
   getSuggestedMoves(
-    searchResult: GameMap.SearchResult,
+    searchResult: SearchResult,
     allowedMoves: Coord[],
   ): Coord[] {
     const moves = [];
@@ -45,7 +47,7 @@ export class Player {
   }
 
   calculateBestMove(possibleMoves: Coord[]): Coord | null {
-    const myPossibleWinningMoves = GameMap.search(
+    const myPossibleWinningMoves = this.searcher.search(
       [
         NEXT_MOVE_WIN_0XXX,
         NEXT_MOVE_WIN_X0XX,
@@ -63,7 +65,7 @@ export class Player {
       return movestoWin[0];
     }
 
-    const theirPossibleWinningMoves = GameMap.search(
+    const theirPossibleWinningMoves = this.searcher.search(
       [
         NEXT_MOVE_WIN_0XXX,
         NEXT_MOVE_WIN_X0XX,
@@ -82,7 +84,7 @@ export class Player {
     }
 
     const otherMoves = this.getSuggestedMoves(
-      GameMap.search(
+      this.searcher.search(
         [
           SNEAKY_00XX,
           SNEAKY_XX00,
@@ -110,7 +112,7 @@ export class Player {
   }
 
   takeTurn() {
-    const possibleMoves = GameMap.getAllPossibleMoves();
+    const possibleMoves = this.game.map.getAllPossibleMoves();
     let move = this.calculateBestMove(possibleMoves);
     if (move === null) {
       move = this.randomMove(possibleMoves);

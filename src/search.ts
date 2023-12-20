@@ -1,98 +1,99 @@
-import { SearchFunction } from "./types";
+import { COLUMN_MAP, DIAG_DOWN_MAP, DIAG_UP_MAP, ROW_MAP } from "./constants";
+import { GameMap } from "./map";
+import { Coord, MaybePiece, Piece, SearchFunction } from "./types";
 
-export const WINNER: SearchFunction = {
-  name: "WINNER",
-  getPattern: (piece) => [piece, piece, piece, piece],
-  suggestMove: () => null,
-};
+export interface SearchResult {
+  results: SearchCollectionResult;
+}
 
-export const NEXT_MOVE_WIN_XXX0: SearchFunction = {
-  name: "NEXT_MOVE_WIN__XXX0",
-  getPattern: (piece) => [piece, piece, piece, null],
-  suggestMove: (pattern) => pattern[3],
-};
+type Pattern = [MaybePiece, MaybePiece, MaybePiece, MaybePiece];
+type Patterns = Map<string, Pattern>;
+type CoordList = [Coord, Coord, Coord, Coord];
+type SearchLineResult = Map<string, CoordList>;
+type SearchCollectionResult = Map<string, CoordList[]>;
 
-export const NEXT_MOVE_WIN_0XXX: SearchFunction = {
-  name: "NEXT_MOVE_WIN_0XXX",
-  getPattern: (piece) => [null, piece, piece, piece],
-  suggestMove: (pattern) => pattern[0],
-};
+export class Searcher {
+  private map: GameMap;
 
-export const NEXT_MOVE_WIN_X0XX: SearchFunction = {
-  name: "NEXT_MOVE_WIN_X0XX",
-  getPattern: (piece) => [piece, null, piece, piece],
-  suggestMove: (pattern) => pattern[1],
-};
+  constructor(map: GameMap) {
+    this.map = map;
+  }
 
-export const NEXT_MOVE_WIN_XX0X: SearchFunction = {
-  name: "NEXT_MOVE_WIN_XX0X",
-  getPattern: (piece) => [piece, piece, null, piece],
-  suggestMove: (pattern) => pattern[2],
-};
+  searchLine(line: Coord[], patterns: Patterns): SearchLineResult {
+    let searches: Map<string, string> = new Map();
+    for (const [name, pattern] of patterns.entries()) {
+      searches.set(name, JSON.stringify(pattern));
+    }
 
-export const MOVE_XX00: SearchFunction = {
-  name: "MOVE_XX00",
-  getPattern: (piece) => [piece, piece, null, null],
-  suggestMove: (pattern) => pattern[2],
-};
+    let index = 0;
+    let endIndex = 4;
+    const result = new Map();
+    while (endIndex <= line.length) {
+      const coords = line.slice(index, endIndex);
+      const pieces = this.map.getCellCollection(coords);
+      const searchPieces = JSON.stringify(pieces);
+      for (const [name, pattern] of searches.entries()) {
+        if (pattern === searchPieces) {
+          result.set(name, coords);
+        }
+      }
+      index++;
+      endIndex++;
+    }
 
-export const MOVE_00XX: SearchFunction = {
-  name: "MOVE_00XX",
-  getPattern: (piece) => [null, null, piece, piece],
-  suggestMove: (pattern) => pattern[1],
-};
+    return result;
+  }
 
-export const SNEAKY_XX00: SearchFunction = {
-  name: "SNEAKY_XX00",
-  getPattern: (piece) => [piece, piece, null, null],
-  suggestMove: (pattern) => pattern[3],
-};
+  mergeResults(...results: SearchCollectionResult[]): SearchCollectionResult {
+    const merged: SearchCollectionResult = new Map();
+    for (const result of results) {
+      for (const [name, coords] of result.entries()) {
+        if (!merged.has(name)) {
+          merged.set(name, coords);
+        } else {
+          const current = merged.get(name);
+          current.concat(coords);
+          merged.set(name, current);
+        }
+      }
+    }
 
-export const SNEAKY_00XX: SearchFunction = {
-  name: "SNEAKY_00XX",
-  getPattern: (piece) => [null, null, piece, piece],
-  suggestMove: (pattern) => pattern[0],
-};
+    return merged;
+  }
 
-export const SINGLE_X000: SearchFunction = {
-  name: "SINGLE_X000",
-  getPattern: (piece) => [piece, null, null, null],
-  suggestMove: (pattern) => pattern[1],
-};
+  searchCollection(
+    collection: Coord[][],
+    patterns: Patterns,
+  ): SearchCollectionResult {
+    let found: SearchCollectionResult = new Map();
+    for (const line of collection) {
+      const lineResult = this.searchLine(line, patterns);
+      for (const [name, coords] of lineResult.entries()) {
+        const existing = found.has(name) ? found.get(name) : [];
+        existing.push(coords);
+        found.set(name, existing);
+      }
+    }
+    return found;
+  }
 
-export const SINGLE_0X00: SearchFunction = {
-  name: "SINGLE_0X00",
-  getPattern: (piece) => [null, piece, null, null],
-  suggestMove: (pattern) => pattern[2],
-};
+  doSearch(patterns: Patterns): SearchCollectionResult {
+    return this.mergeResults(
+      this.searchCollection(DIAG_DOWN_MAP, patterns),
+      this.searchCollection(DIAG_UP_MAP, patterns),
+      this.searchCollection(COLUMN_MAP, patterns),
+      this.searchCollection(ROW_MAP, patterns),
+    );
+  }
 
-export const SINGLE_00X0: SearchFunction = {
-  name: "SINGLE_00X0",
-  getPattern: (piece) => [null, null, piece, null],
-  suggestMove: (pattern) => pattern[1],
-};
-
-export const SINGLE_000X: SearchFunction = {
-  name: "SINGLE_000X",
-  getPattern: (piece) => [null, null, null, piece],
-  suggestMove: (pattern) => pattern[2],
-};
-
-const ALLSEARCHES = [
-  WINNER,
-  NEXT_MOVE_WIN_XXX0,
-  NEXT_MOVE_WIN_0XXX,
-  NEXT_MOVE_WIN_X0XX,
-  NEXT_MOVE_WIN_XX0X,
-  MOVE_00XX,
-  MOVE_XX00,
-  SNEAKY_00XX,
-  SNEAKY_XX00,
-  SINGLE_000X,
-  SINGLE_00X0,
-  SINGLE_0X00,
-  SINGLE_X000,
-];
-
-export const getSearchByName = (name) =>
-  ALLSEARCHES.find((s) => s.name === name);
+  search(funcs: SearchFunction[], piece: Piece): SearchResult {
+    const patterns: Patterns = new Map();
+    for (const func of funcs) {
+      patterns.set(func.name, func.getPattern(piece));
+    }
+    const results = this.doSearch(patterns);
+    return {
+      results,
+    };
+  }
+}

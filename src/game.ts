@@ -13,15 +13,17 @@ import {
   getCoords,
   invertPiece,
 } from "./utils";
-import * as GameMap from "./map";
+import { GameMap } from "./map";
 import { Text } from "./text";
-import { WINNER } from "./search";
+import { WINNER } from "./searches";
 import { Player } from "./ai";
+import { Searcher } from "./search";
 
 type UIObject =
   | Phaser.GameObjects.Text
   | Phaser.GameObjects.Graphics
-  | Phaser.GameObjects.Zone;
+  | Phaser.GameObjects.Zone
+  | Phaser.GameObjects.Image;
 type UIObjectKeys =
   | "title"
   | "win-title"
@@ -71,12 +73,18 @@ export class Game {
 
   private players: Record<Piece, "human" | Player>;
 
+  public map: GameMap;
+
+  private searcher: Searcher;
+
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
     this.pieces = new Map();
     this.uiObjects = new UIObjects();
     this.text = new Text(scene);
     this.players = { red: "human", yellow: "human" };
+    this.map = new GameMap();
+    this.searcher = new Searcher(this.map);
   }
 
   drawPiece(color: number, x: number, y: number) {
@@ -147,7 +155,7 @@ export class Game {
           color: pieceTextColor[piece],
         })
         .on("pointerdown", () => {
-          GameMap.clear();
+          this.map.clear();
           this.clearBoard();
           this.uiObjects.destroy("win-title");
           this.uiObjects.destroy("play-again-btn");
@@ -211,7 +219,7 @@ export class Game {
     );
     this.uiObjects.add(
       "p1_marker",
-      this.drawPiece(pieceColors.red, 50, HEIGHT - 70),
+      this.scene.add.image(50, HEIGHT - 70, "human-red").setScale(0.5, 0.5),
     );
     this.uiObjects.add(
       "player2_text",
@@ -219,13 +227,24 @@ export class Game {
         x: WIDTH - 90,
         y: HEIGHT - 25,
         color: pieceColorsStr.yellow,
-        text: players === 2 ? "Player 2" : "Computer",
+        text: "Player 2",
       }),
     );
-    this.uiObjects.add(
-      "p2_marker",
-      this.drawPiece(pieceColors.yellow, WIDTH - 50, HEIGHT - 70),
-    );
+    if (players === 2) {
+      this.uiObjects.add(
+        "p2_marker",
+        this.scene.add
+          .image(WIDTH - 50, HEIGHT - 70, "human-yellow")
+          .setScale(0.5, 0.5),
+      );
+    } else {
+      this.uiObjects.add(
+        "p2_marker",
+        this.scene.add
+          .image(WIDTH - 50, HEIGHT - 70, "robot-yellow")
+          .setScale(0.5, 0.5),
+      );
+    }
     this.nextTurn("red");
   }
 
@@ -270,7 +289,7 @@ export class Game {
 
   takeHumanTurn(pointer) {
     const column = getColumnFromCoord(pointer.x);
-    const row = GameMap.getNextAvailableRowForColumn(column);
+    const row = this.map.getNextAvailableRowForColumn(column);
     const piece = this.currentTurn;
 
     if (!row) {
@@ -283,9 +302,8 @@ export class Game {
 
   takeTurn(piece: Piece, column: Column, row: Row) {
     this.placePiece(piece, column, row).then(() => {
-      GameMap.update(column, row, piece);
-      const searchResults = GameMap.search([WINNER], piece);
-      // console.log("SEARCH RESULTS", searchResults);
+      this.map.update(column, row, piece);
+      const searchResults = this.searcher.search([WINNER], piece);
       const winnerCoords = searchResults.results.get(WINNER.name);
       if (winnerCoords?.length) {
         this.winner(piece, winnerCoords[0]);
