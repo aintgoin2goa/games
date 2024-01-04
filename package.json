@@ -7,7 +7,7 @@
     "dev": "rollup --config rollup.config.dev.mjs",
     "build": "rollup --config rollup.config.dist.mjs",
     "watch": "rollup --watch --config rollup.config.dev.mjs",
-    "deploy": "(npm run build && cd dist && aws s3 sync . s3://aintgoin2goa/games/connect4 --profile games --no-verify-ssl)"
+    "deploy": "(npm run build && cd dist && aws s3 sync . s3://games.aintgoin2goa.com/connect4 --profile games --no-verify-ssl)"
   },
   "repository": {
     "type": "git",

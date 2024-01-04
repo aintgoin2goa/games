@@ -18,6 +18,7 @@ export class Scene extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image("board-hole", "assets/board-hole.png");
     this.load.image("human-yellow", "assets/human-icon-yellow.png");
     this.load.image("robot-yellow", "assets/robot-icon-yellow.png");
     this.load.image("human-red", "assets/human-icon-red.png");
@@ -34,17 +35,7 @@ export class Scene extends Phaser.Scene {
       for (let j = 0; j < ROWS.length; j++) {
         let x = blockSize * i + gutters;
         let y = blockSize * j;
-        let block = this.add
-          .graphics()
-          .fillStyle(boardColor, 1)
-          .fillRect(x, y, blockSize, blockSize);
-        let hole = this.make
-          .graphics()
-          .fillStyle(0xffffff)
-          .fillCircle(x + spacing + radius, y + spacing + radius, radius);
-        let mask = new Phaser.Display.Masks.BitmapMask(this, hole);
-        mask.invertAlpha = true;
-        block.setMask(mask);
+        this.add.image(x, y, "board-hole").setDisplayOrigin(0, 0);
       }
     }
 

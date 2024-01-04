@@ -18,47 +18,8 @@ import { Text } from "./text";
 import { WINNER } from "./searches";
 import { Player } from "./ai";
 import { Searcher } from "./search";
-
-type UIObject =
-  | Phaser.GameObjects.Text
-  | Phaser.GameObjects.Graphics
-  | Phaser.GameObjects.Zone
-  | Phaser.GameObjects.Image;
-type UIObjectKeys =
-  | "title"
-  | "win-title"
-  | "play-again-btn"
-  | "1p-btn"
-  | "2p-btn"
-  | "p1_zone"
-  | "p2_zone"
-  | "player1_text"
-  | "player2_text"
-  | "p1_marker"
-  | "p2_marker";
-class UIObjects {
-  private objects: Map<UIObjectKeys, UIObject>;
-
-  constructor() {
-    this.objects = new Map();
-  }
-
-  add(name: UIObjectKeys, obj: UIObject) {
-    this.objects.set(name, obj);
-  }
-
-  get(name: UIObjectKeys): unknown {
-    return this.objects.get(name);
-  }
-
-  destroy(name: UIObjectKeys) {
-    const obj = this.objects.get(name) as UIObject;
-    if (obj) {
-      obj.destroy();
-      this.objects.delete(name);
-    }
-  }
-}
+import { debug } from "./debug";
+import { UIObjects } from "./objects";
 
 export class Game {
   private scene: Phaser.Scene;
@@ -69,13 +30,17 @@ export class Game {
 
   private text: Text;
 
-  private currentTurn: Piece;
+  private currentPlayer: Piece;
+
+  private currentTurn: number;
 
   private players: Record<Piece, "human" | Player>;
 
   public map: GameMap;
 
   private searcher: Searcher;
+
+  private debug: ReturnType<typeof debug>;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -85,6 +50,7 @@ export class Game {
     this.players = { red: "human", yellow: "human" };
     this.map = new GameMap();
     this.searcher = new Searcher(this.map);
+    this.currentTurn = 0;
   }
 
   drawPiece(color: number, x: number, y: number) {
@@ -197,6 +163,7 @@ export class Game {
   }
 
   begin(players: 1 | 2) {
+    console.clear();
     if (players === 1) {
       this.players.red = "human";
       this.players.yellow = new Player(this, "yellow");
@@ -204,7 +171,7 @@ export class Game {
       this.players.red = "human";
       this.players.yellow = "human";
     }
-    this.currentTurn = "red";
+    this.currentPlayer = "red";
     this.uiObjects.destroy("title");
     this.uiObjects.destroy("1p-btn");
     this.uiObjects.destroy("2p-btn");
@@ -249,7 +216,8 @@ export class Game {
   }
 
   nextTurn(piece: Piece) {
-    this.currentTurn = piece;
+    this.currentPlayer = piece;
+    this.currentTurn++;
     const lowAlpha = 0.3;
     if (piece === "red") {
       (this.uiObjects.get("p1_marker") as Phaser.GameObjects.Graphics).setAlpha(
@@ -278,22 +246,24 @@ export class Game {
         1,
       );
     }
-    if (this.players[this.currentTurn] === "human") {
+    if (this.players[this.currentPlayer] === "human") {
+      this.debug = debug(`Human: ${this.currentTurn}`);
       this.scene.input.once("pointerdown", (pointer) => {
         this.takeHumanTurn(pointer);
       });
     } else {
-      (this.players[this.currentTurn] as Player).takeTurn();
+      (this.players[this.currentPlayer] as Player).takeTurn();
     }
   }
 
   takeHumanTurn(pointer) {
+    this.debug("takeHumanTurn", pointer);
     const column = getColumnFromCoord(pointer.x);
     const row = this.map.getNextAvailableRowForColumn(column);
-    const piece = this.currentTurn;
+    const piece = this.currentPlayer;
 
     if (!row) {
-      console.log("No row found");
+      this.debug("No row found");
       return;
     }
 
@@ -301,10 +271,13 @@ export class Game {
   }
 
   takeTurn(piece: Piece, column: Column, row: Row) {
+    this.debug("takeTurn", { piece, column, row });
     this.placePiece(piece, column, row).then(() => {
       this.map.update(column, row, piece);
       const searchResults = this.searcher.search([WINNER], piece);
+      this.debug("winner search", searchResults);
       const winnerCoords = searchResults.results.get(WINNER.name);
+      this.debug.end();
       if (winnerCoords?.length) {
         this.winner(piece, winnerCoords[0]);
       } else {

@@ -94,5 +94,12 @@ const ALLSEARCHES = [
   SINGLE_X000,
 ];
 
+export const NEXT_MOVE_WINS = [
+  NEXT_MOVE_WIN_0XXX,
+  NEXT_MOVE_WIN_X0XX,
+  NEXT_MOVE_WIN_XX0X,
+  NEXT_MOVE_WIN_XXX0,
+];
+
 export const getSearchByName = (name) =>
   ALLSEARCHES.find((s) => s.name === name);

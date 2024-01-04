@@ -107,8 +107,8 @@ export const pieceTextColor: Record<Piece, string> = {
 export const WIDTH = 1000;
 export const HEIGHT = 600;
 
-export const BLOCK_SIZE = (WIDTH - 200) / COLUMNS.length;
-export const HOLE_SPACING = BLOCK_SIZE / 10;
+export const BLOCK_SIZE = 100;
+export const HOLE_SPACING = 10;
 export const GUTTER = 100;
 export const PIECE_RADIUS = (BLOCK_SIZE - HOLE_SPACING * 2) / 2;
 

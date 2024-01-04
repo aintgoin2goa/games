@@ -3,6 +3,7 @@ import { Searcher, SearchResult } from "./search";
 import {
   MOVE_00XX,
   MOVE_XX00,
+  NEXT_MOVE_WINS,
   NEXT_MOVE_WIN_0XXX,
   NEXT_MOVE_WIN_X0XX,
   NEXT_MOVE_WIN_XX0X,
@@ -16,17 +17,21 @@ import {
   getSearchByName,
 } from "./searches";
 import { Coord, Piece } from "./types";
-import { coordToColumnRow, invertPiece } from "./utils";
+import { coord2Tuple, coordToColumnRow, invertPiece } from "./utils";
+import { debug } from "./debug";
 
 export class Player {
   game: Game;
   piece: Piece;
   searcher: Searcher;
+  currentTurn: number;
+  debugger: ReturnType<typeof debug>;
 
   constructor(game: Game, piece: Piece) {
     this.game = game;
     this.piece = piece;
     this.searcher = new Searcher(this.game.map);
+    this.currentTurn = 0;
   }
 
   getSuggestedMoves(
@@ -46,14 +51,13 @@ export class Player {
     return moves;
   }
 
-  calculateBestMove(possibleMoves: Coord[]): Coord | null {
+  calculateBestMoves(possibleMoves: Coord[]): {
+    moves: Coord[];
+    check: boolean;
+  } {
+    let moves = [];
     const myPossibleWinningMoves = this.searcher.search(
-      [
-        NEXT_MOVE_WIN_0XXX,
-        NEXT_MOVE_WIN_X0XX,
-        NEXT_MOVE_WIN_XX0X,
-        NEXT_MOVE_WIN_XXX0,
-      ],
+      NEXT_MOVE_WINS,
       this.piece,
     );
 
@@ -61,17 +65,14 @@ export class Player {
       myPossibleWinningMoves,
       possibleMoves,
     );
+    this.debugger("movesToWin", movestoWin);
+
     if (movestoWin.length) {
-      return movestoWin[0];
+      return { moves: movestoWin, check: false };
     }
 
     const theirPossibleWinningMoves = this.searcher.search(
-      [
-        NEXT_MOVE_WIN_0XXX,
-        NEXT_MOVE_WIN_X0XX,
-        NEXT_MOVE_WIN_XX0X,
-        NEXT_MOVE_WIN_XXX0,
-      ],
+      NEXT_MOVE_WINS,
       invertPiece(this.piece),
     );
 
@@ -79,8 +80,10 @@ export class Player {
       theirPossibleWinningMoves,
       possibleMoves,
     );
+    this.debugger("movesToStopThemWinning", movesToStopThemWinning);
+
     if (movesToStopThemWinning.length) {
-      return movesToStopThemWinning[0];
+      return { moves: movesToStopThemWinning, check: false };
     }
 
     const otherMoves = this.getSuggestedMoves(
@@ -99,27 +102,79 @@ export class Player {
       ),
       possibleMoves,
     );
+    this.debugger("otherMoves", otherMoves);
 
-    if (otherMoves.length) {
-      return otherMoves[0];
+    moves = moves.concat(otherMoves);
+
+    return { moves, check: true };
+  }
+
+  checkMoves(moves: Coord[]): Coord | null {
+    for (const move of moves) {
+      const { column, row } = coordToColumnRow(move);
+      const map = this.game.map.clone();
+      map.update(column, row, this.piece);
+      const searcher = new Searcher(map);
+      const theirPossibleWinningMoves = searcher.search(
+        NEXT_MOVE_WINS,
+        invertPiece(this.piece),
+      );
+      this.debugger("checkMove", { move, theirPossibleWinningMoves });
+      if (theirPossibleWinningMoves.results.size === 0) {
+        return move;
+      }
     }
 
     return null;
   }
 
   randomMove(possibleMoves: Coord[]): Coord {
-    return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    const preferredColumns = ["D", "E"];
+    const preferredRows = ["6"];
+    possibleMoves.sort((a, b) => {
+      const [aCol, aRow] = coord2Tuple(a);
+      const [bCol, bRow] = coord2Tuple(b);
+      if (preferredColumns.includes(aCol) && preferredRows.includes(aRow)) {
+        return -1;
+      }
+
+      if (preferredColumns.includes(bCol) && preferredRows.includes(bRow)) {
+        return 1;
+      }
+
+      if (preferredColumns.includes(aCol) || preferredRows.includes(aRow)) {
+        return -1;
+      }
+
+      if (preferredColumns.includes(bCol) || preferredRows.includes(bRow)) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    return possibleMoves[0];
   }
 
   takeTurn() {
+    this.currentTurn++;
+    this.debugger = debug(`AI: turn ${this.currentTurn}`);
     const possibleMoves = this.game.map.getAllPossibleMoves();
-    let move = this.calculateBestMove(possibleMoves);
-    if (move === null) {
+    this.debugger("possibleMoves", possibleMoves);
+    const { moves, check } = this.calculateBestMoves(possibleMoves);
+    let move: Coord | null | undefined = check
+      ? this.checkMoves(moves)
+      : moves[0];
+
+    if (move === null || move === undefined) {
       move = this.randomMove(possibleMoves);
     }
+    this.debugger("bestMoves", { moves, move });
 
     const { column, row } = coordToColumnRow(move);
 
+    this.debugger("TakeTurn", { column, row });
+    this.debugger.end();
     this.game.takeTurn(this.piece, column, row);
   }
 }

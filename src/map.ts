@@ -12,13 +12,19 @@ import { columnRow2Coord } from "./utils";
 export class GameMap {
   private cells: Map<Coord, MaybePiece>;
 
-  constructor() {
-    this.cells = new Map();
+  constructor(cells?: Map<Coord, MaybePiece>) {
+    this.cells = cells ?? new Map();
     for (const col of COLUMNS) {
       for (const row of ROWS) {
         this.cells.set(columnRow2Coord(col, row), null);
       }
     }
+  }
+
+  clone() {
+    const cells = Array.from(this.cells.entries());
+    const cellMap = new Map(cells);
+    return new GameMap(cellMap);
   }
 
   getCellCollection(coords: Coord[]) {
