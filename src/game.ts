@@ -20,6 +20,7 @@ import { Player } from "./ai";
 import { Searcher } from "./search";
 import { debug } from "./debug";
 import { UIObjects } from "./objects";
+import { Audio, AudioFiles } from "./audio";
 
 export class Game {
   private scene: Phaser.Scene;
@@ -40,6 +41,8 @@ export class Game {
 
   private searcher: Searcher;
 
+  private audio: Audio;
+
   private debug: ReturnType<typeof debug>;
 
   constructor(scene: Phaser.Scene) {
@@ -50,6 +53,7 @@ export class Game {
     this.players = { red: "human", yellow: "human" };
     this.map = new GameMap();
     this.searcher = new Searcher(this.map);
+    this.audio = new Audio(this.scene);
     this.currentTurn = 0;
   }
 
@@ -61,10 +65,22 @@ export class Game {
       .setDepth(-1);
   }
 
+  getCorrectPieceSound(row: Row): AudioFiles {
+    const rowN = Number(row);
+    if (rowN === 6) {
+      return AudioFiles.PieceDropHigh;
+    }
+    if (rowN > 2) {
+      return AudioFiles.PieceDropClunk;
+    }
+    return AudioFiles.PieceDropSmall;
+  }
+
   placePiece(piece: Piece, col: Column, row: Row) {
     const [x, y] = getCoords(col, row);
     const img = this.drawPiece(pieceColors[piece], x, -100);
     this.pieces.set(columnRow2Coord(col, row), img);
+    this.audio.play(this.getCorrectPieceSound(row));
     return new Promise<void>((resolve) => {
       this.scene.tweens.add({
         targets: img,
@@ -102,6 +118,12 @@ export class Game {
 
   winner(piece: Piece, coords: Coord[]) {
     this.flash(coords);
+    if (this.players[this.currentPlayer] === "human") {
+      this.audio.play(AudioFiles.Cheer);
+    } else {
+      this.audio.play(AudioFiles.Boo);
+    }
+
     this.uiObjects.add(
       "win-title",
       this.text.title(`${piece} wins!`, pieceColorsStr[piece]),

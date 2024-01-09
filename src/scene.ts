@@ -11,6 +11,7 @@ import {
   WIDTH,
   boardColor,
 } from "./constants";
+import { Audio } from "./audio";
 
 export class Scene extends Phaser.Scene {
   constructor() {
@@ -22,15 +23,14 @@ export class Scene extends Phaser.Scene {
     this.load.image("human-yellow", "assets/human-icon-yellow.png");
     this.load.image("robot-yellow", "assets/robot-icon-yellow.png");
     this.load.image("human-red", "assets/human-icon-red.png");
+    Audio.preload(this);
   }
 
   create() {
     this.scale.displaySize.setAspectRatio(WIDTH / HEIGHT);
     this.scale.refresh();
     const blockSize = BLOCK_SIZE;
-    const spacing = HOLE_SPACING;
     const gutters = GUTTER;
-    const radius = PIECE_RADIUS;
     for (let i = 0; i < COLUMNS.length; i++) {
       for (let j = 0; j < ROWS.length; j++) {
         let x = blockSize * i + gutters;
