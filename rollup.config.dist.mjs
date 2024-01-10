@@ -3,6 +3,8 @@ import commonjs from "@rollup/plugin-commonjs";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
+import htmlTemplate from "rollup-plugin-generate-html-template";
+import copy from "rollup-plugin-copy";
 
 export default {
   //  Our games entry point (edit as required)
@@ -13,10 +15,11 @@ export default {
   //  You can also use 'umd' if you need to ingest your game into another system.
   //  If using Phaser 3.21 or **below**, add: `intro: 'var global = window;'` to the output object.
   output: {
-    file: "./dist/game.js",
+    dir: "dist",
     name: "Connect4",
     format: "iife",
     sourcemap: false,
+    entryFileNames: "[name].[hash].js",
   },
 
   plugins: [
@@ -46,6 +49,15 @@ export default {
       ],
       sourceMap: false,
       ignoreGlobal: true,
+    }),
+
+    copy({
+      targets: [{ src: "assets/**/*", dest: "dist/assets/" }],
+    }),
+
+    htmlTemplate({
+      template: "src/template.html",
+      target: "index.html",
     }),
 
     //  See https://github.com/rollup/plugins/tree/master/packages/typescript for config options
