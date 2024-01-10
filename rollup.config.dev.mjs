@@ -3,6 +3,8 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import serve from "rollup-plugin-serve";
 import typescript from "@rollup/plugin-typescript";
+import htmlTemplate from "rollup-plugin-generate-html-template";
+import copy from "rollup-plugin-copy";
 
 export default {
   //  Our game entry point (edit as required)
@@ -46,6 +48,15 @@ export default {
       ],
       sourceMap: true,
       ignoreGlobal: true,
+    }),
+
+    copy({
+      targets: [{ src: "assets/**/*", dest: "dist/assets/" }],
+    }),
+
+    htmlTemplate({
+      template: "src/template.html",
+      target: "index.html",
     }),
 
     //  See https://github.com/rollup/plugins/tree/master/packages/typescript for config options
