@@ -1,4 +1,5 @@
 import { COLUMN_MAP, DIAG_DOWN_MAP, DIAG_UP_MAP, ROW_MAP } from "./constants";
+import { Debugger, debug } from "./debug";
 import { GameMap } from "./map";
 import { Coord, MaybePiece, Piece, SearchFunction } from "./types";
 
@@ -14,9 +15,11 @@ type SearchCollectionResult = Map<string, CoordList[]>;
 
 export class Searcher {
   private map: GameMap;
+  private debug: Debugger;
 
   constructor(map: GameMap) {
     this.map = map;
+    this.debug = debug("Searcher");
   }
 
   searchLine(line: Coord[], patterns: Patterns): SearchLineResult {
@@ -78,6 +81,7 @@ export class Searcher {
   }
 
   doSearch(patterns: Patterns): SearchCollectionResult {
+    this.debug("doSearch", patterns, this.map.rawData());
     return this.mergeResults(
       this.searchCollection(DIAG_DOWN_MAP, patterns),
       this.searchCollection(DIAG_UP_MAP, patterns),

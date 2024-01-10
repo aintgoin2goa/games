@@ -239,7 +239,9 @@ export class Game {
 
   nextTurn(piece: Piece) {
     this.currentPlayer = piece;
-    this.currentTurn++;
+    if (piece === "red") {
+      this.currentTurn++;
+    }
     const lowAlpha = 0.3;
     if (piece === "red") {
       (this.uiObjects.get("p1_marker") as Phaser.GameObjects.Graphics).setAlpha(
@@ -269,7 +271,7 @@ export class Game {
       );
     }
     if (this.players[this.currentPlayer] === "human") {
-      this.debug = debug(`Human: ${this.currentTurn}`);
+      this.debug = debug(`Human: turn ${this.currentTurn}`);
       this.scene.input.once("pointerdown", (pointer) => {
         this.takeHumanTurn(pointer);
       });

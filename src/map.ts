@@ -13,10 +13,14 @@ export class GameMap {
   private cells: Map<Coord, MaybePiece>;
 
   constructor(cells?: Map<Coord, MaybePiece>) {
-    this.cells = cells ?? new Map();
-    for (const col of COLUMNS) {
-      for (const row of ROWS) {
-        this.cells.set(columnRow2Coord(col, row), null);
+    if (cells) {
+      this.cells = cells;
+    } else {
+      this.cells = new Map();
+      for (const col of COLUMNS) {
+        for (const row of ROWS) {
+          this.cells.set(columnRow2Coord(col, row), null);
+        }
       }
     }
   }
@@ -29,6 +33,13 @@ export class GameMap {
 
   getCellCollection(coords: Coord[]) {
     return coords.map((coord) => this.cells.get(coord));
+  }
+
+  rawData() {
+    return Array.from(this.cells.entries()).reduce((data, entry) => {
+      data[entry[0]] = entry[1];
+      return data;
+    }, {});
   }
 
   update(col: Column, row: Row, piece: Piece) {
@@ -49,10 +60,15 @@ export class GameMap {
   }
 
   getAllPossibleMoves(): Coord[] {
-    return COLUMNS.map((col) => {
+    const moves = [];
+    for (const col of COLUMNS) {
       const row = this.getNextAvailableRowForColumn(col);
-      return columnRow2Coord(col, row);
-    });
+      if (row) {
+        moves.push(columnRow2Coord(col, row));
+      }
+    }
+
+    return moves;
   }
 
   clear() {

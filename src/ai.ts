@@ -109,18 +109,17 @@ export class Player {
     return { moves, check: true };
   }
 
-  checkMoves(moves: Coord[]): Coord | null {
+  checkMoves(moves: Coord[], possibleMoves: Coord[]): Coord | null {
     for (const move of moves) {
       const { column, row } = coordToColumnRow(move);
       const map = this.game.map.clone();
       map.update(column, row, this.piece);
       const searcher = new Searcher(map);
-      const theirPossibleWinningMoves = searcher.search(
-        NEXT_MOVE_WINS,
-        invertPiece(this.piece),
+      const theirPossibleWinningMoves = this.getSuggestedMoves(
+        searcher.search(NEXT_MOVE_WINS, invertPiece(this.piece)),
+        possibleMoves,
       );
-      this.debugger("checkMove", { move, theirPossibleWinningMoves });
-      if (theirPossibleWinningMoves.results.size === 0) {
+      if (!theirPossibleWinningMoves.length) {
         return move;
       }
     }
@@ -131,7 +130,8 @@ export class Player {
   randomMove(possibleMoves: Coord[]): Coord {
     const preferredColumns = ["D", "E"];
     const preferredRows = ["6"];
-    possibleMoves.sort((a, b) => {
+    const sortedPossible = [...possibleMoves];
+    sortedPossible.sort((a, b) => {
       const [aCol, aRow] = coord2Tuple(a);
       const [bCol, bRow] = coord2Tuple(b);
       if (preferredColumns.includes(aCol) && preferredRows.includes(aRow)) {
@@ -153,7 +153,13 @@ export class Player {
       return 0;
     });
 
-    return possibleMoves[0];
+    const safeMove = this.checkMoves(sortedPossible, possibleMoves);
+    this.debugger("safeRandomMove", safeMove, sortedPossible);
+    if (safeMove === null) {
+      return sortedPossible[0];
+    } else {
+      return safeMove;
+    }
   }
 
   takeTurn() {
@@ -162,14 +168,15 @@ export class Player {
     const possibleMoves = this.game.map.getAllPossibleMoves();
     this.debugger("possibleMoves", possibleMoves);
     const { moves, check } = this.calculateBestMoves(possibleMoves);
+    this.debugger("bestMoves", { moves, check });
     let move: Coord | null | undefined = check
-      ? this.checkMoves(moves)
+      ? this.checkMoves(moves, possibleMoves)
       : moves[0];
 
     if (move === null || move === undefined) {
       move = this.randomMove(possibleMoves);
     }
-    this.debugger("bestMoves", { moves, move });
+    this.debugger("finalMove", { moves, move });
 
     const { column, row } = coordToColumnRow(move);
 

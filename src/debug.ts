@@ -7,3 +7,5 @@ export const debug = (
   log.end = () => console.groupEnd();
   return log;
 };
+
+export type Debugger = ReturnType<typeof debug>;
