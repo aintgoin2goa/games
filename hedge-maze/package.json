@@ -1,0 +1,23 @@
+{
+  "name": "hedge-maze",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "phaser": "^3.70.0"
+  },
+  "devDependencies": {
+    "@rtpa/phaser-bitmapfont-generator": "^1.2.2",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "phaser3spectorjs": "^0.0.8",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  }
+}
