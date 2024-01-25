@@ -1,8 +1,7 @@
 import Phaser from "phaser";
-import { HEIGHT, WIDTH } from "./constants";
-import { FONTS } from "./typography";
-import { COLORS } from "../../connect4/src/constants";
-import { COLOR_USE_CASES, colorFor } from "./palette";
+import { HEIGHT, WIDTH } from "../constants";
+import { FONTS } from "../typography";
+import { COLOR_USE_CASES, colorFor } from "../palette";
 
 export default class WelcomeScene extends Phaser.Scene {
   constructor() {
@@ -18,8 +17,8 @@ export default class WelcomeScene extends Phaser.Scene {
     this.add.text(150, HEIGHT / 4, "HEDGE\n MAZE", {
       fontFamily: FONTS.HachicroUndertaleBattle,
       fontSize: "128px",
-      color: colorFor(COLOR_USE_CASES.TITLE),
-      stroke: colorFor(COLOR_USE_CASES.TITLE_OUTLINE),
+      color: colorFor(COLOR_USE_CASES.TITLE).toString(),
+      stroke: colorFor(COLOR_USE_CASES.TITLE_OUTLINE).toString(),
       strokeThickness: 1,
       align: "centre",
     });
@@ -27,14 +26,14 @@ export default class WelcomeScene extends Phaser.Scene {
       .text(WIDTH / 2, HEIGHT - 100, " PLAY ", {
         fontFamily: FONTS.HachicroUndertaleBattle,
         fontSize: "48px",
-        color: colorFor(COLOR_USE_CASES.TITLE),
-        backgroundColor: colorFor(COLOR_USE_CASES.TITLE_OUTLINE),
+        color: colorFor(COLOR_USE_CASES.TITLE).toString(),
+        backgroundColor: colorFor(COLOR_USE_CASES.TITLE_OUTLINE).toString(),
       })
       .setPadding({ x: 24, y: 16 })
       .setOrigin(0.5)
       .setInteractive()
       .on("pointerdown", () => {
-        alert("START GAME");
+        this.scene.start("maze");
       });
   }
 }
