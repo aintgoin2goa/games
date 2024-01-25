@@ -1,7 +1,7 @@
 import Phaser from "phaser";
-import { HEIGHT, WIDTH } from "../constants";
-import { FONTS } from "../typography";
-import { COLOR_USE_CASES, colorFor } from "../palette";
+import { HEIGHT, WIDTH } from "../lib/constants";
+import { FONTS } from "../lib/typography";
+import { COLOR_USE_CASES, colorFor } from "../lib/palette";
 
 export default class WelcomeScene extends Phaser.Scene {
   constructor() {
@@ -14,7 +14,7 @@ export default class WelcomeScene extends Phaser.Scene {
 
   create() {
     this.add.image(WIDTH / 2, HEIGHT / 2, "hedge");
-    this.add.text(150, HEIGHT / 4, "HEDGE\n MAZE", {
+    this.add.text(50, HEIGHT / 4, "HEDGE\n MAZE", {
       fontFamily: FONTS.HachicroUndertaleBattle,
       fontSize: "128px",
       color: colorFor(COLOR_USE_CASES.TITLE).toString(),

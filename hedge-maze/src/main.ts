@@ -1,8 +1,8 @@
 import Phaser from "phaser";
-import { loadFonts } from "./typography";
+import { loadFonts } from "./lib/typography";
 
 import WelcomeScene from "./scenes/WelcomeScene";
-import { HEIGHT, WIDTH } from "./constants";
+import { HEIGHT, WIDTH } from "./lib/constants";
 import MazeScene from "./scenes/MazeScene";
 
 const preload = async () => {
@@ -17,11 +17,8 @@ const config: Phaser.Types.Core.GameConfig = {
   backgroundColor: "#FFFFFF",
   physics: {
     default: "arcade",
-    // arcade: {
-    //   gravity: { y: 200 },
-    // },
   },
-  scene: [MazeScene],
+  scene: [WelcomeScene, MazeScene],
 };
 
 preload().then(() => new Phaser.Game(config));

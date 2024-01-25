@@ -1,11 +1,13 @@
 import { Scene } from "phaser";
 import { Maze, MazeOptions, Point } from "../maze";
-import { SIZE_X, SIZE_Y } from "../constants";
+import { SIZE_X, SIZE_Y } from "../lib/constants";
 import { Hero } from "../hero";
 import { TileMap } from "../tilemap";
+import { Target } from "../target";
 
 export default class MazeScene extends Scene {
   private hero: Hero;
+  private target: Target;
   controls: Phaser.Cameras.Controls.FixedKeyControl;
 
   constructor() {
@@ -15,7 +17,7 @@ export default class MazeScene extends Scene {
   preload() {
     Hero.load(this);
     Maze.load(this);
-    this.load.image("trophy", "img/trophy.png");
+    Target.load(this);
   }
 
   create() {
@@ -29,15 +31,14 @@ export default class MazeScene extends Scene {
     const maze = new Maze(this, options);
     maze.generate();
     const map = new TileMap(this, maze);
-    console.log(map.data);
 
     const start: Point = {
       row: 0,
       column: 0,
     };
     const end: Point = {
-      row: 5,
-      column: 5,
+      row: 0,
+      column: 1,
     };
 
     const startCoords = maze.getTileCoords(start.column, start.row);
@@ -45,21 +46,22 @@ export default class MazeScene extends Scene {
 
     // solution
     maze.solve(start, end);
-    // const firstPoint = pathPoints.shift()!;
-    // const path = new Phaser.Curves.Path(firstPoint.x.mid, firstPoint.y.mid);
-    // for (const point of pathPoints) {
-    //   path.lineTo(point.x.mid, point.y.mid);
-    // }
-    // const graphics = this.add
-    //   .graphics()
-    //   .lineStyle(5, colorFor(COLOR_USE_CASES.PATH).toNumber(), 1);
-    // path.draw(graphics);
 
     // goal
-    this.add.image(endCoords.x.mid, endCoords.y.mid, "trophy");
+    this.target = new Target(this, endCoords.x.mid, endCoords.y.mid);
 
-    this.hero = new Hero(this, startCoords.x.mid, startCoords.y.mid);
+    this.hero = new Hero(
+      this,
+      startCoords.x.mid,
+      startCoords.y.mid,
+      this.target
+    );
     this.physics.add.collider(map.layer, this.hero);
+    this.physics.add.overlap(this.hero, this.target);
+    this.physics.world.once("overlap", (hero: Hero, target: Target) => {
+      hero.hasReachedTarget();
+      target.reached();
+    });
     const camera = this.cameras.main;
     camera.setBounds(0, 0, map.map.widthInPixels, map.map.heightInPixels);
     camera.startFollow(this.hero);

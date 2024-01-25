@@ -5,7 +5,7 @@ import {
   SIZE_X,
   SIZE_Y,
   TILEMAP_SIZE,
-} from "./constants";
+} from "./lib/constants";
 
 export type TileCoord = {
   xStart: number;
@@ -94,7 +94,6 @@ export class TileMap {
   }
 
   getTileMapData(): Tiles[][] {
-    console.log("getTileMapData", this.data);
     const tileMapData: Tiles[][] = [];
     const xMax = SIZE_X * MAP_TILES_IN_MAZE_TILE;
     const yMax = SIZE_Y * MAP_TILES_IN_MAZE_TILE;
@@ -110,7 +109,6 @@ export class TileMap {
         tileMapData[y][x] = tile;
       }
     }
-    console.log({ tileMapData });
     return tileMapData;
   }
 

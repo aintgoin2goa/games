@@ -1,6 +1,10 @@
 import mazeGenerator from "./lib/maze/index";
 import type { Scene } from "phaser";
-import { MAP_TILES_IN_MAZE_TILE, TILEMAP_SIZE, TILE_SIZE } from "./constants";
+import {
+  MAP_TILES_IN_MAZE_TILE,
+  TILEMAP_SIZE,
+  TILE_SIZE,
+} from "./lib/constants";
 
 export type Point = {
   row: number;
