@@ -13,4 +13,5 @@ export type Level = {
   name: string;
   size: Size;
   target: Point;
+  cats: number;
 };

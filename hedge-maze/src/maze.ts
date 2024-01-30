@@ -6,6 +6,7 @@ import {
   TILE_SIZE,
 } from "./lib/constants";
 import { Point } from "./types";
+import { randomArrayIndex } from "./utils";
 
 export type TileCoord = {
   start: number;
@@ -102,6 +103,12 @@ export class Maze {
     });
   }
 
+  getRandomTile(): Point {
+    const row = randomArrayIndex(this.mazeData.rows);
+    const column = randomArrayIndex(this.mazeData.rows[row]);
+    return { row, column };
+  }
+
   getTileCoords(col: number, row: number): Coords {
     const tileSize = TILE_SIZE;
     const x = col * tileSize;
@@ -142,22 +149,18 @@ export class Maze {
     });
 
     if (cell.left && xPosInCell === 0) {
-      console.log("LEFT");
       return true;
     }
 
     if (cell.up && yPosInCell === 0) {
-      console.log("UP");
       return true;
     }
 
     if (cell.right && yPosInCell === MAP_TILES_IN_MAZE_TILE - 1) {
-      console.log("RIGHT");
       return true;
     }
 
     if (cell.down && xPosInCell === MAP_TILES_IN_MAZE_TILE - 1) {
-      console.log("DOWN");
       return true;
     }
 
@@ -170,13 +173,11 @@ export class Maze {
     const mapTilesInMazeTile = TILE_SIZE / TILEMAP_SIZE;
     const mapTilesX = mapTilesInMazeTile * this.options.maze.width;
     const mapTilesY = mapTilesInMazeTile * this.options.maze.height;
-    console.log({ mapTilesX, mapTilesY });
     const map: number[][] = [];
     for (let iX = 0; iX < mapTilesX; iX++) {
       map[iX] = [];
       for (let iY = 0; iY < mapTilesY; iY++) {
         const tileIsHedge = this.isHedge(iX, iY);
-        console.log("is hedge result", tileIsHedge);
         map[iX][iY] = tileIsHedge ? HEDGE : FLOOR;
       }
     }

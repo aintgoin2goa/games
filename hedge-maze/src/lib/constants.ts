@@ -19,6 +19,7 @@ export const Levels: Level[] = [
       row: 2,
       column: 2,
     },
+    cats: 1,
   },
   {
     id: 1,
@@ -31,6 +32,7 @@ export const Levels: Level[] = [
       row: 4,
       column: 4,
     },
+    cats: 1,
   },
   {
     id: 1,
@@ -43,6 +45,7 @@ export const Levels: Level[] = [
       row: 8,
       column: 8,
     },
+    cats: 1,
   },
   {
     id: 1,
@@ -55,6 +58,7 @@ export const Levels: Level[] = [
       row: 16,
       column: 16,
     },
+    cats: 1,
   },
   {
     id: 1,
@@ -67,5 +71,6 @@ export const Levels: Level[] = [
       row: 32,
       column: 32,
     },
+    cats: 1,
   },
 ];

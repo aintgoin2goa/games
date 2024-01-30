@@ -6,6 +6,7 @@ import { Target } from "../target";
 import { Level, Point } from "../types";
 import { Levels } from "../lib/constants";
 import * as state from "../state";
+import { Cat } from "../cat";
 
 export type SceneData = {
   level: number;
@@ -15,11 +16,13 @@ export default class MazeScene extends Scene {
   private hero: Hero;
   private target: Target;
   controls: Phaser.Cameras.Controls.FixedKeyControl;
+  cats: Cat[];
 
   level: Level;
 
   constructor() {
     super("maze");
+    this.cats = [];
   }
 
   get size() {
@@ -30,6 +33,7 @@ export default class MazeScene extends Scene {
     Hero.load(this);
     Maze.load(this);
     Target.load(this);
+    Cat.load(this);
   }
 
   init() {
@@ -49,7 +53,7 @@ export default class MazeScene extends Scene {
       row: 0,
     };
 
-    const { target } = this.level;
+    const { target, cats } = this.level;
     const maze = new Maze(this, options);
     maze.generate();
     const map = new TileMap(this, maze, this.size);
@@ -60,7 +64,6 @@ export default class MazeScene extends Scene {
     // solution
     maze.solve(start, target);
 
-    // goal
     this.target = new Target(this, endCoords.x.mid, endCoords.y.mid);
 
     this.hero = new Hero(
@@ -77,6 +80,13 @@ export default class MazeScene extends Scene {
       target.reached();
       map.revealExit();
     });
+
+    for (let i = 0; i < cats; i++) {
+      const cat = new Cat(this, maze);
+      this.physics.add.collider(map.layer, cat);
+      this.cats.push(cat);
+    }
+
     const camera = this.cameras.main;
     camera.setBounds(0, 0, map.map.widthInPixels, map.map.heightInPixels);
     camera.startFollow(this.hero);
