@@ -9,31 +9,30 @@ export default class WelcomeScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("hedge", "img/hedge-maze.webp");
+    this.load.image("title", "img/maze.png");
   }
 
   create() {
-    this.add.image(WIDTH / 2, HEIGHT / 2, "hedge");
-    this.add.text(50, HEIGHT / 4, "HEDGE\n MAZE", {
-      fontFamily: FONTS.HachicroUndertaleBattle,
-      fontSize: "128px",
+    this.add.image(WIDTH / 2, HEIGHT / 2, "title");
+    this.add.text(50, 20, "RAT MAZE", {
+      fontFamily: FONTS.Underline,
+      fontSize: 128,
       color: colorFor(COLOR_USE_CASES.TITLE).toString(),
-      stroke: colorFor(COLOR_USE_CASES.TITLE_OUTLINE).toString(),
       strokeThickness: 1,
       align: "centre",
     });
     this.add
-      .text(WIDTH / 2, HEIGHT - 100, " PLAY ", {
-        fontFamily: FONTS.HachicroUndertaleBattle,
+      .text(WIDTH / 2, HEIGHT - 100, " START ", {
+        fontFamily: FONTS.Underline,
         fontSize: "48px",
-        color: colorFor(COLOR_USE_CASES.TITLE).toString(),
-        backgroundColor: colorFor(COLOR_USE_CASES.TITLE_OUTLINE).toString(),
+        color: colorFor(COLOR_USE_CASES.BUTTON_TEXT).toString(),
+        backgroundColor: colorFor(COLOR_USE_CASES.BUTTON_BG).toString(),
       })
       .setPadding({ x: 24, y: 16 })
       .setOrigin(0.5)
       .setInteractive()
       .on("pointerdown", () => {
-        this.scene.start("maze");
+        this.scene.start("level");
       });
   }
 }

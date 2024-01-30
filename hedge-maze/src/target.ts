@@ -1,9 +1,9 @@
 import { Physics, Scene } from "phaser";
 
 const TEXTURE = "target";
-const FILE = "img/trophy.png";
-const FRAME_WIDTH = 305;
-const FRAME_HEIGHT = 400;
+const FILE = "img/cheese.png";
+const FRAME_WIDTH = 54;
+const FRAME_HEIGHT = 40;
 
 export class Target extends Physics.Arcade.Sprite {
   scene: Scene;

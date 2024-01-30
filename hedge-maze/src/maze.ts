@@ -5,11 +5,7 @@ import {
   TILEMAP_SIZE,
   TILE_SIZE,
 } from "./lib/constants";
-
-export type Point = {
-  row: number;
-  column: number;
-};
+import { Point } from "./types";
 
 export type TileCoord = {
   start: number;

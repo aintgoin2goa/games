@@ -1,11 +1,6 @@
 import { Scene } from "phaser";
 import { Maze, MazeCell } from "./maze";
-import {
-  MAP_TILES_IN_MAZE_TILE,
-  SIZE_X,
-  SIZE_Y,
-  TILEMAP_SIZE,
-} from "./lib/constants";
+import { MAP_TILES_IN_MAZE_TILE, TILEMAP_SIZE } from "./lib/constants";
 
 export type TileCoord = {
   xStart: number;
@@ -15,24 +10,33 @@ export type TileCoord = {
 };
 
 export enum Tiles {
-  FLOOR = 0,
-  HEDGE = 1,
+  FLOOR = 1,
+  HEDGE = 0,
 }
 
 const KEY = "maze";
 const FILE = '"img/tilemap_2.png';
+
+type Size = {
+  w: number;
+  h: number;
+};
 
 export class TileMap {
   scene: Scene;
   maze: Maze;
   map: Phaser.Tilemaps.Tilemap;
   layer: Phaser.Tilemaps.TilemapLayer;
+  tiles: Phaser.Tilemaps.Tileset;
 
   data: Map<string, Tiles>;
 
-  constructor(scene: Scene, maze: Maze) {
+  size: Size;
+
+  constructor(scene: Scene, maze: Maze, size: Size) {
     this.scene = scene;
     this.maze = maze;
+    this.size = size;
     this.data = new Map();
     this.buildData();
     const tileMapData = this.getTileMapData();
@@ -41,9 +45,13 @@ export class TileMap {
       tileWidth: TILEMAP_SIZE,
       tileHeight: TILEMAP_SIZE,
     });
-    const tiles = this.map.addTilesetImage(KEY);
-    this.layer = this.map.createLayer(0, tiles!, 0, 0)!;
-    this.map.setCollision(1);
+    this.tiles = this.map.addTilesetImage(KEY)!;
+    this.layer = this.map.createLayer(0, this.tiles, 0, 0)!;
+    this.map.setCollision(Tiles.HEDGE);
+  }
+
+  static load(scene: Scene) {
+    scene.load.image(KEY, FILE);
   }
 
   getCoordsForTile(rowIndex: number, colIndex: number): TileCoord {
@@ -95,9 +103,8 @@ export class TileMap {
 
   getTileMapData(): Tiles[][] {
     const tileMapData: Tiles[][] = [];
-    const xMax = SIZE_X * MAP_TILES_IN_MAZE_TILE;
-    const yMax = SIZE_Y * MAP_TILES_IN_MAZE_TILE;
-    console.log({ xMax, yMax });
+    const xMax = this.size.w * MAP_TILES_IN_MAZE_TILE;
+    const yMax = this.size.h * MAP_TILES_IN_MAZE_TILE;
 
     for (let y = 0; y < yMax; y++) {
       tileMapData[y] = [];
@@ -112,7 +119,12 @@ export class TileMap {
     return tileMapData;
   }
 
-  static load(scene: Scene) {
-    scene.load.image(KEY, FILE);
+  revealExit() {
+    const tiles: Phaser.Tilemaps.Tile[] = [];
+    for (let i = 1; i < MAP_TILES_IN_MAZE_TILE; i++) {
+      tiles.push(this.map.getTileAt(0, i, true)!);
+    }
+    this.map.removeTile(tiles, Tiles.FLOOR, true);
+    this.map.setCollision(Tiles.HEDGE);
   }
 }

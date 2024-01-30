@@ -2,11 +2,11 @@ import { Physics, Scene, Types } from "phaser";
 import { Target } from "./target";
 
 const TEXTURE = "hero";
-const FILE = "sprites/astronaut.png";
-const FRAME_SIZE = 320;
+const FILE = "sprites/rat.png";
+const FRAME_SIZE = 100;
 const SPRITE_SIZE = {
-  x: 220,
-  y: 270,
+  x: 100,
+  y: 60,
 };
 const SPEED = 400;
 
@@ -19,6 +19,7 @@ export class Hero extends Physics.Arcade.Sprite {
   scene: Scene;
   keys: Types.Input.Keyboard.CursorKeys;
   target: Target;
+  hasTarget: boolean;
 
   constructor(scene: Scene, x: number, y: number, target: Target) {
     super(scene, x, y, TEXTURE, 0);
@@ -26,7 +27,6 @@ export class Hero extends Physics.Arcade.Sprite {
     this.scene = scene;
     scene.add.existing(this);
     scene.physics.add.existing(this);
-    // this.getBody().setCollideWorldBounds(true);
     this.getBody().setSize(SPRITE_SIZE.x, SPRITE_SIZE.y);
     this.setupKeys();
     this.setupAnimations();
@@ -44,23 +44,25 @@ export class Hero extends Physics.Arcade.Sprite {
   }
 
   setupAnimations() {
-    this.scene.anims.create({
-      key: Animations.WALK,
-      frameRate: 8,
-      frames: this.scene.anims.generateFrameNumbers(TEXTURE, {
-        start: 0,
-        end: 7,
-      }),
-      repeat: -1,
-    });
-    this.scene.anims.create({
-      key: Animations.JUMP,
-      frameRate: 8,
-      frames: this.scene.anims.generateFrameNumbers(TEXTURE, {
-        start: 8,
-        end: 12,
-      }),
-    });
+    if (!this.scene.anims.exists(Animations.WALK)) {
+      this.scene.anims.create({
+        key: Animations.WALK,
+        frameRate: 8,
+        frames: this.scene.anims.generateFrameNumbers(TEXTURE, {
+          start: 0,
+          end: 3,
+        }),
+        repeat: -1,
+      });
+    }
+    // this.scene.anims.create({
+    //   key: Animations.JUMP,
+    //   frameRate: 8,
+    //   frames: this.scene.anims.generateFrameNumbers(TEXTURE, {
+    //     start: 8,
+    //     end: 12,
+    //   }),
+    // });
   }
 
   updateRotation() {
@@ -100,8 +102,7 @@ export class Hero extends Physics.Arcade.Sprite {
   }
 
   hasReachedTarget() {
-    this.stop();
-    this.play(Animations.JUMP);
+    this.hasTarget = true;
   }
 
   protected getBody(): Physics.Arcade.Body {
