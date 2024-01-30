@@ -34,9 +34,6 @@ export class Cat extends Physics.Arcade.Sprite {
   }
 
   static load(scene: Scene) {
-    scene.load.spritesheet(TEXTURE, FILE, {
-      frameWidth: FRAME_SIZE,
-      frameHeight: FRAME_SIZE,
-    });
+    scene.load.atlas({});
   }
 }

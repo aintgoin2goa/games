@@ -17,6 +17,9 @@ const config: Phaser.Types.Core.GameConfig = {
   height: HEIGHT,
   physics: {
     default: "arcade",
+    arcade: {
+      gravity: { y: 0 },
+    },
   },
   scene: [WelcomeScene, MazeScene, LevelIntroScene],
   transparent: true,
