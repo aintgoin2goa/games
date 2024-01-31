@@ -4,30 +4,51 @@
 			"image": "cat-0.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 2003,
-				"h": 1641
+				"w": 1016,
+				"h": 1571
 			},
 			"scale": 1,
 			"frames": [
+				{
+					"filename": "run/__black_cat_run_004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 45,
+						"w": 166,
+						"h": 94
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 166,
+						"h": 94
+					}
+				},
 				{
 					"filename": "run/__black_cat_run_000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 6,
-						"y": 92,
-						"w": 370,
-						"h": 185
+						"x": 2,
+						"y": 45,
+						"w": 187,
+						"h": 95
 					},
 					"frame": {
-						"x": 1,
+						"x": 169,
 						"y": 1,
-						"w": 370,
-						"h": 185
+						"w": 187,
+						"h": 95
 					}
 				},
 				{
@@ -35,62 +56,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 11,
-						"y": 92,
-						"w": 361,
-						"h": 185
+						"x": 5,
+						"y": 45,
+						"w": 182,
+						"h": 95
 					},
 					"frame": {
-						"x": 373,
+						"x": 358,
 						"y": 1,
-						"w": 361,
-						"h": 185
-					}
-				},
-				{
-					"filename": "run/__black_cat_run_004.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 28,
-						"y": 91,
-						"w": 329,
-						"h": 185
-					},
-					"frame": {
-						"x": 736,
-						"y": 1,
-						"w": 329,
-						"h": 185
-					}
-				},
-				{
-					"filename": "run/__black_cat_run_007.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 11,
-						"y": 92,
-						"w": 361,
-						"h": 185
-					},
-					"frame": {
-						"x": 1067,
-						"y": 1,
-						"w": 361,
-						"h": 185
+						"w": 182,
+						"h": 95
 					}
 				},
 				{
@@ -98,524 +77,41 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 91,
-						"w": 350,
-						"h": 186
+						"x": 8,
+						"y": 45,
+						"w": 176,
+						"h": 95
 					},
 					"frame": {
-						"x": 1430,
+						"x": 542,
 						"y": 1,
-						"w": 350,
-						"h": 186
+						"w": 176,
+						"h": 95
 					}
 				},
 				{
-					"filename": "sleep/__black_cat_sleep_003.png",
+					"filename": "run/__black_cat_run_003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 73,
-						"y": 130,
-						"w": 211,
-						"h": 206
+						"x": 10,
+						"y": 45,
+						"w": 172,
+						"h": 95
 					},
 					"frame": {
-						"x": 1782,
+						"x": 720,
 						"y": 1,
-						"w": 211,
-						"h": 206
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 92,
-						"w": 359,
-						"h": 188
-					},
-					"frame": {
-						"x": 1,
-						"y": 188,
-						"w": 359,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 92,
-						"w": 360,
-						"h": 188
-					},
-					"frame": {
-						"x": 362,
-						"y": 188,
-						"w": 360,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_004.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 92,
-						"w": 362,
-						"h": 188
-					},
-					"frame": {
-						"x": 724,
-						"y": 188,
-						"w": 362,
-						"h": 188
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_000.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 35,
-						"y": 92,
-						"w": 333,
-						"h": 188
-					},
-					"frame": {
-						"x": 1088,
-						"y": 188,
-						"w": 333,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_019.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 92,
-						"w": 356,
-						"h": 188
-					},
-					"frame": {
-						"x": 1423,
-						"y": 189,
-						"w": 356,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sleep/__black_cat_sleep_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 71,
-						"y": 130,
-						"w": 221,
-						"h": 206
-					},
-					"frame": {
-						"x": 1781,
-						"y": 209,
-						"w": 221,
-						"h": 206
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_009.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 92,
-						"w": 370,
-						"h": 188
-					},
-					"frame": {
-						"x": 1,
-						"y": 378,
-						"w": 370,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_010.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 92,
-						"w": 372,
-						"h": 188
-					},
-					"frame": {
-						"x": 373,
-						"y": 378,
-						"w": 372,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_011.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 92,
-						"w": 370,
-						"h": 188
-					},
-					"frame": {
-						"x": 747,
-						"y": 378,
-						"w": 370,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_005.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 246,
-						"h": 189
-					},
-					"frame": {
-						"x": 1119,
-						"y": 378,
-						"w": 246,
-						"h": 189
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_012.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 92,
-						"w": 369,
-						"h": 188
-					},
-					"frame": {
-						"x": 1367,
-						"y": 379,
-						"w": 369,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_008.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 248,
-						"h": 189
-					},
-					"frame": {
-						"x": 1738,
-						"y": 417,
-						"w": 248,
-						"h": 189
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_018.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 92,
-						"w": 359,
-						"h": 188
-					},
-					"frame": {
-						"x": 1,
-						"y": 568,
-						"w": 359,
-						"h": 188
-					}
-				},
-				{
-					"filename": "look_left/__black_cat_look_left_000.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 92,
-						"w": 355,
-						"h": 188
-					},
-					"frame": {
-						"x": 362,
-						"y": 568,
-						"w": 355,
-						"h": 188
-					}
-				},
-				{
-					"filename": "look_right/__black_cat_look_right_000.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 92,
-						"w": 355,
-						"h": 188
-					},
-					"frame": {
-						"x": 719,
-						"y": 568,
-						"w": 355,
-						"h": 188
-					}
-				},
-				{
-					"filename": "scratch/__black_cat_scratch_000.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 92,
-						"w": 355,
-						"h": 188
-					},
-					"frame": {
-						"x": 1076,
-						"y": 569,
-						"w": 355,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_009.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 249,
-						"h": 189
-					},
-					"frame": {
-						"x": 1433,
-						"y": 569,
-						"w": 249,
-						"h": 189
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_010.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 60,
-						"y": 90,
-						"w": 250,
-						"h": 189
-					},
-					"frame": {
-						"x": 1684,
-						"y": 608,
-						"w": 250,
-						"h": 189
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_011.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 248,
-						"h": 189
-					},
-					"frame": {
-						"x": 1,
-						"y": 758,
-						"w": 248,
-						"h": 189
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_014.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 246,
-						"h": 189
-					},
-					"frame": {
-						"x": 251,
-						"y": 758,
-						"w": 246,
-						"h": 189
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_015.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 246,
-						"h": 189
-					},
-					"frame": {
-						"x": 499,
-						"y": 758,
-						"w": 246,
-						"h": 189
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 35,
-						"y": 90,
-						"w": 323,
-						"h": 189
-					},
-					"frame": {
-						"x": 747,
-						"y": 758,
-						"w": 323,
-						"h": 189
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_005.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 35,
-						"y": 90,
-						"w": 324,
-						"h": 189
-					},
-					"frame": {
-						"x": 1072,
-						"y": 759,
-						"w": 324,
-						"h": 189
+						"w": 172,
+						"h": 95
 					}
 				},
 				{
@@ -623,409 +119,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 63,
-						"y": 89,
-						"w": 240,
-						"h": 190
+						"x": 31,
+						"y": 44,
+						"w": 121,
+						"h": 97
 					},
 					"frame": {
-						"x": 1398,
-						"y": 760,
-						"w": 240,
-						"h": 190
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 63,
-						"y": 89,
-						"w": 241,
-						"h": 190
-					},
-					"frame": {
-						"x": 1640,
-						"y": 799,
-						"w": 241,
-						"h": 190
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_004.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 62,
-						"y": 89,
-						"w": 244,
-						"h": 190
-					},
-					"frame": {
-						"x": 1,
-						"y": 949,
-						"w": 244,
-						"h": 190
-					}
-				},
-				{
-					"filename": "look_left/__black_cat_look_left_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 45,
-						"w": 359,
-						"h": 191
-					},
-					"frame": {
-						"x": 247,
-						"y": 949,
-						"w": 359,
-						"h": 191
-					}
-				},
-				{
-					"filename": "look_left/__black_cat_look_left_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 46,
-						"w": 359,
-						"h": 191
-					},
-					"frame": {
-						"x": 608,
-						"y": 949,
-						"w": 359,
-						"h": 191
-					}
-				},
-				{
-					"filename": "look_right/__black_cat_look_right_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 7,
-						"y": 136,
-						"w": 363,
-						"h": 192
-					},
-					"frame": {
-						"x": 969,
-						"y": 950,
-						"w": 363,
-						"h": 192
-					}
-				},
-				{
-					"filename": "sleep/__black_cat_sleep_011.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 72,
-						"y": 130,
-						"w": 231,
-						"h": 206
-					},
-					"frame": {
-						"x": 1334,
-						"y": 952,
-						"w": 231,
-						"h": 206
-					}
-				},
-				{
-					"filename": "look_right/__black_cat_look_right_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 7,
-						"y": 135,
-						"w": 364,
-						"h": 192
-					},
-					"frame": {
-						"x": 1567,
-						"y": 991,
-						"w": 364,
-						"h": 192
-					}
-				},
-				{
-					"filename": "sleep/__black_cat_sleep_012.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 73,
-						"y": 130,
-						"w": 232,
-						"h": 206
-					},
-					"frame": {
-						"x": 1,
-						"y": 1141,
-						"w": 232,
-						"h": 206
-					}
-				},
-				{
-					"filename": "sleep/__black_cat_sleep_015.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 74,
-						"y": 130,
-						"w": 238,
-						"h": 206
-					},
-					"frame": {
-						"x": 235,
-						"y": 1142,
-						"w": 238,
-						"h": 206
-					}
-				},
-				{
-					"filename": "scratch/__black_cat_scratch_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 46,
-						"y": 23,
-						"w": 317,
-						"h": 207
-					},
-					"frame": {
-						"x": 475,
-						"y": 1142,
-						"w": 317,
-						"h": 207
-					}
-				},
-				{
-					"filename": "look_left/__black_cat_look_left_005.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 19,
-						"w": 343,
-						"h": 213
-					},
-					"frame": {
-						"x": 794,
-						"y": 1144,
-						"w": 343,
-						"h": 213
-					}
-				},
-				{
-					"filename": "look_left/__black_cat_look_left_002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 18,
-						"w": 342,
-						"h": 214
-					},
-					"frame": {
-						"x": 1139,
-						"y": 1160,
-						"w": 342,
-						"h": 214
-					}
-				},
-				{
-					"filename": "scratch/__black_cat_scratch_007.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 57,
-						"y": 139,
-						"w": 311,
-						"h": 226
-					},
-					"frame": {
-						"x": 1483,
-						"y": 1185,
-						"w": 311,
-						"h": 226
-					}
-				},
-				{
-					"filename": "look_right/__black_cat_look_right_003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 130,
-						"w": 292,
-						"h": 229
-					},
-					"frame": {
-						"x": 1,
-						"y": 1350,
-						"w": 292,
-						"h": 229
-					}
-				},
-				{
-					"filename": "scratch/__black_cat_scratch_003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 45,
-						"y": 145,
-						"w": 286,
-						"h": 260
-					},
-					"frame": {
-						"x": 295,
-						"y": 1351,
-						"w": 286,
-						"h": 260
-					}
-				},
-				{
-					"filename": "scratch/__black_cat_scratch_005.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 68,
-						"y": 131,
-						"w": 263,
-						"h": 274
-					},
-					"frame": {
-						"x": 583,
-						"y": 1359,
-						"w": 263,
-						"h": 274
-					}
-				},
-				{
-					"filename": "scratch/__black_cat_scratch_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 86,
-						"y": 124,
-						"w": 233,
-						"h": 281
-					},
-					"frame": {
-						"x": 848,
-						"y": 1359,
-						"w": 233,
-						"h": 281
-					}
-				}
-			]
-		},
-		{
-			"image": "cat-1.png",
-			"format": "RGBA8888",
-			"size": {
-				"w": 2045,
-				"h": 1445
-			},
-			"scale": 1,
-			"frames": [
-				{
-					"filename": "run/__black_cat_run_003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 22,
-						"y": 91,
-						"w": 340,
-						"h": 186
-					},
-					"frame": {
-						"x": 1,
+						"x": 894,
 						"y": 1,
-						"w": 340,
-						"h": 186
+						"w": 121,
+						"h": 97
 					}
 				},
 				{
@@ -1033,20 +140,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 22,
-						"y": 91,
-						"w": 340,
-						"h": 186
+						"x": 10,
+						"y": 45,
+						"w": 172,
+						"h": 95
 					},
 					"frame": {
-						"x": 343,
-						"y": 1,
-						"w": 340,
-						"h": 186
+						"x": 1,
+						"y": 98,
+						"w": 172,
+						"h": 95
 					}
 				},
 				{
@@ -1054,20 +161,41 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 91,
-						"w": 350,
-						"h": 186
+						"x": 8,
+						"y": 45,
+						"w": 176,
+						"h": 95
 					},
 					"frame": {
-						"x": 685,
-						"y": 1,
-						"w": 350,
-						"h": 186
+						"x": 175,
+						"y": 98,
+						"w": 176,
+						"h": 95
+					}
+				},
+				{
+					"filename": "run/__black_cat_run_007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 45,
+						"w": 182,
+						"h": 95
+					},
+					"frame": {
+						"x": 353,
+						"y": 98,
+						"w": 182,
+						"h": 95
 					}
 				},
 				{
@@ -1075,335 +203,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 92,
-						"w": 355,
-						"h": 188
-					},
-					"frame": {
-						"x": 1037,
-						"y": 1,
-						"w": 355,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 92,
-						"w": 356,
-						"h": 188
-					},
-					"frame": {
-						"x": 1394,
-						"y": 1,
-						"w": 356,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 246,
-						"h": 189
-					},
-					"frame": {
-						"x": 1752,
-						"y": 1,
-						"w": 246,
-						"h": 189
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_005.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
 						"x": 2,
-						"y": 92,
-						"w": 364,
-						"h": 188
+						"y": 45,
+						"w": 179,
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 189,
-						"w": 364,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 92,
-						"w": 366,
-						"h": 188
-					},
-					"frame": {
-						"x": 367,
-						"y": 189,
-						"w": 366,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_007.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 247,
-						"h": 189
-					},
-					"frame": {
-						"x": 735,
-						"y": 189,
-						"w": 247,
-						"h": 189
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_007.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 92,
-						"w": 367,
-						"h": 188
-					},
-					"frame": {
-						"x": 984,
-						"y": 191,
-						"w": 367,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_008.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 92,
-						"w": 370,
-						"h": 188
-					},
-					"frame": {
-						"x": 1353,
-						"y": 191,
-						"w": 370,
-						"h": 188
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_004.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 36,
-						"y": 90,
-						"w": 319,
-						"h": 188
-					},
-					"frame": {
-						"x": 1725,
-						"y": 192,
-						"w": 319,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_013.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 92,
-						"w": 367,
-						"h": 188
-					},
-					"frame": {
-						"x": 1,
-						"y": 379,
-						"w": 367,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_016.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 92,
-						"w": 362,
-						"h": 188
-					},
-					"frame": {
-						"x": 370,
-						"y": 379,
-						"w": 362,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_014.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 92,
-						"w": 366,
-						"h": 188
-					},
-					"frame": {
-						"x": 734,
-						"y": 381,
-						"w": 366,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_015.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 92,
-						"w": 364,
-						"h": 188
-					},
-					"frame": {
-						"x": 1102,
-						"y": 381,
-						"w": 364,
-						"h": 188
-					}
-				},
-				{
-					"filename": "idle/__black_cat_idle_017.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 92,
-						"w": 360,
-						"h": 188
-					},
-					"frame": {
-						"x": 1468,
-						"y": 382,
-						"w": 360,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sleep/__black_cat_sleep_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 74,
-						"y": 130,
-						"w": 206,
-						"h": 206
-					},
-					"frame": {
-						"x": 1830,
-						"y": 382,
-						"w": 206,
-						"h": 206
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 34,
-						"y": 91,
-						"w": 331,
-						"h": 188
-					},
-					"frame": {
-						"x": 1,
-						"y": 569,
-						"w": 331,
-						"h": 188
+						"x": 537,
+						"y": 98,
+						"w": 179,
+						"h": 96
 					}
 				},
 				{
@@ -1411,125 +224,146 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 34,
-						"y": 91,
-						"w": 328,
-						"h": 188
-					},
-					"frame": {
-						"x": 334,
-						"y": 569,
-						"w": 328,
-						"h": 188
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_006.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 34,
-						"y": 91,
-						"w": 328,
-						"h": 188
-					},
-					"frame": {
-						"x": 664,
-						"y": 571,
-						"w": 328,
-						"h": 188
-					}
-				},
-				{
-					"filename": "walk/__black_cat_walk_007.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 34,
-						"y": 91,
-						"w": 331,
-						"h": 188
-					},
-					"frame": {
-						"x": 994,
-						"y": 571,
-						"w": 331,
-						"h": 188
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_012.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 248,
-						"h": 189
-					},
-					"frame": {
-						"x": 1327,
-						"y": 572,
-						"w": 248,
-						"h": 189
-					}
-				},
-				{
-					"filename": "sit/__black_cat_sitting_idle_013.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 61,
-						"y": 90,
-						"w": 247,
-						"h": 189
-					},
-					"frame": {
-						"x": 1577,
-						"y": 572,
-						"w": 247,
-						"h": 189
-					}
-				},
-				{
-					"filename": "sleep/__black_cat_sleep_002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 416,
-						"h": 409
-					},
-					"spriteSourceSize": {
-						"x": 74,
-						"y": 130,
 						"w": 208,
-						"h": 206
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 45,
+						"w": 166,
+						"h": 96
 					},
 					"frame": {
-						"x": 1826,
-						"y": 590,
+						"x": 718,
+						"y": 98,
+						"w": 166,
+						"h": 96
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
 						"w": 208,
-						"h": 206
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 31,
+						"y": 44,
+						"w": 122,
+						"h": 97
+					},
+					"frame": {
+						"x": 886,
+						"y": 100,
+						"w": 122,
+						"h": 97
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 45,
+						"w": 179,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 195,
+						"w": 179,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 45,
+						"w": 181,
+						"h": 96
+					},
+					"frame": {
+						"x": 182,
+						"y": 195,
+						"w": 181,
+						"h": 96
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 44,
+						"w": 163,
+						"h": 96
+					},
+					"frame": {
+						"x": 365,
+						"y": 195,
+						"w": 163,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 45,
+						"w": 182,
+						"h": 96
+					},
+					"frame": {
+						"x": 530,
+						"y": 196,
+						"w": 182,
+						"h": 96
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 44,
+						"w": 161,
+						"h": 96
+					},
+					"frame": {
+						"x": 714,
+						"y": 196,
+						"w": 161,
+						"h": 96
 					}
 				},
 				{
@@ -1537,20 +371,104 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 62,
-						"y": 89,
-						"w": 242,
-						"h": 190
+						"x": 30,
+						"y": 44,
+						"w": 123,
+						"h": 97
+					},
+					"frame": {
+						"x": 877,
+						"y": 199,
+						"w": 123,
+						"h": 97
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 45,
+						"w": 182,
+						"h": 96
 					},
 					"frame": {
 						"x": 1,
-						"y": 759,
-						"w": 242,
-						"h": 190
+						"y": 293,
+						"w": 182,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 184,
+						"h": 96
+					},
+					"frame": {
+						"x": 185,
+						"y": 293,
+						"w": 184,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 184,
+						"h": 96
+					},
+					"frame": {
+						"x": 371,
+						"y": 294,
+						"w": 184,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 185,
+						"h": 96
+					},
+					"frame": {
+						"x": 557,
+						"y": 294,
+						"w": 185,
+						"h": 96
 					}
 				},
 				{
@@ -1558,41 +476,125 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 62,
-						"y": 89,
-						"w": 243,
-						"h": 190
+						"x": 30,
+						"y": 44,
+						"w": 123,
+						"h": 97
 					},
 					"frame": {
-						"x": 245,
-						"y": 759,
-						"w": 243,
-						"h": 190
+						"x": 744,
+						"y": 294,
+						"w": 123,
+						"h": 97
 					}
 				},
 				{
-					"filename": "sit/__black_cat_sitting_idle_016.png",
+					"filename": "sit/__black_cat_sitting_idle_004.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 62,
-						"y": 89,
-						"w": 244,
-						"h": 190
+						"x": 30,
+						"y": 44,
+						"w": 124,
+						"h": 97
 					},
 					"frame": {
-						"x": 490,
-						"y": 761,
-						"w": 244,
-						"h": 190
+						"x": 869,
+						"y": 298,
+						"w": 124,
+						"h": 97
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_008.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 186,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 391,
+						"w": 186,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_019.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 45,
+						"w": 179,
+						"h": 96
+					},
+					"frame": {
+						"x": 189,
+						"y": 391,
+						"w": 179,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_009.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 186,
+						"h": 96
+					},
+					"frame": {
+						"x": 370,
+						"y": 392,
+						"w": 186,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_014.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 184,
+						"h": 96
+					},
+					"frame": {
+						"x": 558,
+						"y": 392,
+						"w": 184,
+						"h": 96
 					}
 				},
 				{
@@ -1600,20 +602,125 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 62,
-						"y": 89,
-						"w": 243,
-						"h": 190
+						"x": 30,
+						"y": 44,
+						"w": 123,
+						"h": 97
 					},
 					"frame": {
-						"x": 736,
-						"y": 761,
-						"w": 243,
-						"h": 190
+						"x": 744,
+						"y": 393,
+						"w": 123,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 124,
+						"h": 97
+					},
+					"frame": {
+						"x": 869,
+						"y": 397,
+						"w": 124,
+						"h": 97
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_010.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 186,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 489,
+						"w": 186,
+						"h": 96
+					}
+				},
+				{
+					"filename": "look_left/__black_cat_look_left_000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 45,
+						"w": 179,
+						"h": 96
+					},
+					"frame": {
+						"x": 189,
+						"y": 489,
+						"w": 179,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_011.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 186,
+						"h": 96
+					},
+					"frame": {
+						"x": 370,
+						"y": 490,
+						"w": 186,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_015.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 184,
+						"h": 96
+					},
+					"frame": {
+						"x": 558,
+						"y": 490,
+						"w": 184,
+						"h": 96
 					}
 				},
 				{
@@ -1621,20 +728,524 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 62,
-						"y": 89,
-						"w": 242,
-						"h": 190
+						"x": 30,
+						"y": 44,
+						"w": 123,
+						"h": 97
 					},
 					"frame": {
-						"x": 981,
-						"y": 761,
-						"w": 242,
-						"h": 190
+						"x": 744,
+						"y": 492,
+						"w": 123,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 124,
+						"h": 97
+					},
+					"frame": {
+						"x": 869,
+						"y": 496,
+						"w": 124,
+						"h": 97
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_012.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 185,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 587,
+						"w": 185,
+						"h": 96
+					}
+				},
+				{
+					"filename": "look_right/__black_cat_look_right_000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 45,
+						"w": 179,
+						"h": 96
+					},
+					"frame": {
+						"x": 188,
+						"y": 587,
+						"w": 179,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_013.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 45,
+						"w": 185,
+						"h": 96
+					},
+					"frame": {
+						"x": 369,
+						"y": 588,
+						"w": 185,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_016.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 45,
+						"w": 182,
+						"h": 96
+					},
+					"frame": {
+						"x": 556,
+						"y": 588,
+						"w": 182,
+						"h": 96
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 125,
+						"h": 97
+					},
+					"frame": {
+						"x": 740,
+						"y": 591,
+						"w": 125,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_008.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 125,
+						"h": 97
+					},
+					"frame": {
+						"x": 867,
+						"y": 595,
+						"w": 125,
+						"h": 97
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_017.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 45,
+						"w": 182,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 685,
+						"w": 182,
+						"h": 96
+					}
+				},
+				{
+					"filename": "idle/__black_cat_idle_018.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 45,
+						"w": 181,
+						"h": 96
+					},
+					"frame": {
+						"x": 185,
+						"y": 685,
+						"w": 181,
+						"h": 96
+					}
+				},
+				{
+					"filename": "scratch/__black_cat_scratch_000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 45,
+						"w": 179,
+						"h": 96
+					},
+					"frame": {
+						"x": 368,
+						"y": 686,
+						"w": 179,
+						"h": 96
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 45,
+						"w": 168,
+						"h": 96
+					},
+					"frame": {
+						"x": 549,
+						"y": 686,
+						"w": 168,
+						"h": 96
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_009.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 125,
+						"h": 97
+					},
+					"frame": {
+						"x": 719,
+						"y": 690,
+						"w": 125,
+						"h": 97
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 45,
+						"w": 167,
+						"h": 96
+					},
+					"frame": {
+						"x": 846,
+						"y": 694,
+						"w": 167,
+						"h": 96
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 45,
+						"w": 166,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 783,
+						"w": 166,
+						"h": 96
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 45,
+						"w": 167,
+						"h": 96
+					},
+					"frame": {
+						"x": 169,
+						"y": 783,
+						"w": 167,
+						"h": 96
+					}
+				},
+				{
+					"filename": "look_left/__black_cat_look_left_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 22,
+						"w": 181,
+						"h": 97
+					},
+					"frame": {
+						"x": 338,
+						"y": 784,
+						"w": 181,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_010.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 29,
+						"y": 44,
+						"w": 127,
+						"h": 97
+					},
+					"frame": {
+						"x": 521,
+						"y": 784,
+						"w": 127,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_011.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 125,
+						"h": 97
+					},
+					"frame": {
+						"x": 650,
+						"y": 789,
+						"w": 125,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_012.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 125,
+						"h": 97
+					},
+					"frame": {
+						"x": 777,
+						"y": 792,
+						"w": 125,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 64,
+						"w": 104,
+						"h": 105
+					},
+					"frame": {
+						"x": 904,
+						"y": 792,
+						"w": 104,
+						"h": 105
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_013.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 125,
+						"h": 97
+					},
+					"frame": {
+						"x": 1,
+						"y": 881,
+						"w": 125,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_014.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 124,
+						"h": 97
+					},
+					"frame": {
+						"x": 128,
+						"y": 881,
+						"w": 124,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_015.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 124,
+						"h": 97
+					},
+					"frame": {
+						"x": 254,
+						"y": 883,
+						"w": 124,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sit/__black_cat_sitting_idle_016.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 44,
+						"w": 124,
+						"h": 97
+					},
+					"frame": {
+						"x": 380,
+						"y": 883,
+						"w": 124,
+						"h": 97
 					}
 				},
 				{
@@ -1642,20 +1253,146 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 63,
-						"y": 89,
-						"w": 241,
-						"h": 190
+						"x": 31,
+						"y": 44,
+						"w": 122,
+						"h": 97
 					},
 					"frame": {
-						"x": 1225,
-						"y": 763,
-						"w": 241,
-						"h": 190
+						"x": 506,
+						"y": 883,
+						"w": 122,
+						"h": 97
+					}
+				},
+				{
+					"filename": "walk/__black_cat_walk_005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 44,
+						"w": 163,
+						"h": 97
+					},
+					"frame": {
+						"x": 630,
+						"y": 891,
+						"w": 163,
+						"h": 97
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 64,
+						"w": 106,
+						"h": 105
+					},
+					"frame": {
+						"x": 795,
+						"y": 891,
+						"w": 106,
+						"h": 105
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 64,
+						"w": 107,
+						"h": 105
+					},
+					"frame": {
+						"x": 903,
+						"y": 899,
+						"w": 107,
+						"h": 105
+					}
+				},
+				{
+					"filename": "look_left/__black_cat_look_left_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 22,
+						"w": 181,
+						"h": 98
+					},
+					"frame": {
+						"x": 1,
+						"y": 980,
+						"w": 181,
+						"h": 98
+					}
+				},
+				{
+					"filename": "look_right/__black_cat_look_right_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 67,
+						"w": 183,
+						"h": 98
+					},
+					"frame": {
+						"x": 184,
+						"y": 982,
+						"w": 183,
+						"h": 98
+					}
+				},
+				{
+					"filename": "look_right/__black_cat_look_right_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 67,
+						"w": 183,
+						"h": 98
+					},
+					"frame": {
+						"x": 369,
+						"y": 982,
+						"w": 183,
+						"h": 98
 					}
 				},
 				{
@@ -1663,20 +1400,41 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 46,
-						"y": 34,
-						"w": 318,
-						"h": 197
+						"x": 22,
+						"y": 16,
+						"w": 161,
+						"h": 101
 					},
 					"frame": {
-						"x": 1468,
-						"y": 763,
-						"w": 318,
-						"h": 197
+						"x": 554,
+						"y": 990,
+						"w": 161,
+						"h": 101
+					}
+				},
+				{
+					"filename": "scratch/__black_cat_scratch_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 22,
+						"y": 11,
+						"w": 160,
+						"h": 105
+					},
+					"frame": {
+						"x": 717,
+						"y": 998,
+						"w": 160,
+						"h": 105
 					}
 				},
 				{
@@ -1684,20 +1442,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 75,
-						"y": 130,
-						"w": 237,
-						"h": 206
+						"x": 37,
+						"y": 64,
+						"w": 120,
+						"h": 105
 					},
 					"frame": {
-						"x": 1788,
-						"y": 798,
-						"w": 237,
-						"h": 206
+						"x": 879,
+						"y": 1006,
+						"w": 120,
+						"h": 105
 					}
 				},
 				{
@@ -1705,20 +1463,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 73,
-						"y": 130,
-						"w": 214,
-						"h": 206
+						"x": 36,
+						"y": 64,
+						"w": 108,
+						"h": 105
 					},
 					"frame": {
 						"x": 1,
-						"y": 951,
-						"w": 214,
-						"h": 206
+						"y": 1080,
+						"w": 108,
+						"h": 105
 					}
 				},
 				{
@@ -1726,20 +1484,41 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 72,
-						"y": 130,
-						"w": 217,
-						"h": 206
+						"x": 35,
+						"y": 64,
+						"w": 110,
+						"h": 105
 					},
 					"frame": {
-						"x": 217,
-						"y": 951,
-						"w": 217,
-						"h": 206
+						"x": 111,
+						"y": 1082,
+						"w": 110,
+						"h": 105
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 35,
+						"y": 64,
+						"w": 112,
+						"h": 105
+					},
+					"frame": {
+						"x": 223,
+						"y": 1082,
+						"w": 112,
+						"h": 105
 					}
 				},
 				{
@@ -1747,20 +1526,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 70,
-						"y": 130,
-						"w": 224,
-						"h": 206
+						"x": 34,
+						"y": 64,
+						"w": 114,
+						"h": 105
 					},
 					"frame": {
-						"x": 436,
-						"y": 953,
-						"w": 224,
-						"h": 206
+						"x": 337,
+						"y": 1082,
+						"w": 114,
+						"h": 105
 					}
 				},
 				{
@@ -1768,20 +1547,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 70,
-						"y": 130,
-						"w": 226,
-						"h": 206
+						"x": 34,
+						"y": 64,
+						"w": 115,
+						"h": 105
 					},
 					"frame": {
-						"x": 662,
-						"y": 953,
-						"w": 226,
-						"h": 206
+						"x": 453,
+						"y": 1093,
+						"w": 115,
+						"h": 105
 					}
 				},
 				{
@@ -1789,20 +1568,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 70,
-						"y": 130,
-						"w": 228,
-						"h": 206
+						"x": 34,
+						"y": 64,
+						"w": 116,
+						"h": 105
 					},
 					"frame": {
-						"x": 890,
-						"y": 953,
-						"w": 228,
-						"h": 206
+						"x": 570,
+						"y": 1093,
+						"w": 116,
+						"h": 105
 					}
 				},
 				{
@@ -1810,20 +1589,62 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 71,
-						"y": 130,
-						"w": 230,
-						"h": 206
+						"x": 35,
+						"y": 64,
+						"w": 116,
+						"h": 105
 					},
 					"frame": {
-						"x": 1120,
-						"y": 955,
-						"w": 230,
-						"h": 206
+						"x": 688,
+						"y": 1105,
+						"w": 116,
+						"h": 105
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_011.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 35,
+						"y": 64,
+						"w": 117,
+						"h": 105
+					},
+					"frame": {
+						"x": 806,
+						"y": 1113,
+						"w": 117,
+						"h": 105
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_012.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 64,
+						"w": 117,
+						"h": 105
+					},
+					"frame": {
+						"x": 1,
+						"y": 1189,
+						"w": 117,
+						"h": 105
 					}
 				},
 				{
@@ -1831,20 +1652,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 73,
-						"y": 130,
-						"w": 234,
-						"h": 206
+						"x": 36,
+						"y": 64,
+						"w": 118,
+						"h": 105
 					},
 					"frame": {
-						"x": 1352,
-						"y": 962,
-						"w": 234,
-						"h": 206
+						"x": 120,
+						"y": 1189,
+						"w": 118,
+						"h": 105
 					}
 				},
 				{
@@ -1852,20 +1673,83 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 74,
-						"y": 130,
-						"w": 236,
-						"h": 206
+						"x": 36,
+						"y": 64,
+						"w": 120,
+						"h": 105
 					},
 					"frame": {
-						"x": 1588,
-						"y": 1006,
-						"w": 236,
-						"h": 206
+						"x": 240,
+						"y": 1189,
+						"w": 120,
+						"h": 105
+					}
+				},
+				{
+					"filename": "sleep/__black_cat_sleep_015.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 64,
+						"w": 121,
+						"h": 105
+					},
+					"frame": {
+						"x": 362,
+						"y": 1200,
+						"w": 121,
+						"h": 105
+					}
+				},
+				{
+					"filename": "look_left/__black_cat_look_left_005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 9,
+						"w": 173,
+						"h": 108
+					},
+					"frame": {
+						"x": 485,
+						"y": 1200,
+						"w": 173,
+						"h": 108
+					}
+				},
+				{
+					"filename": "look_left/__black_cat_look_left_002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 8,
+						"w": 173,
+						"h": 109
+					},
+					"frame": {
+						"x": 660,
+						"y": 1220,
+						"w": 173,
+						"h": 109
 					}
 				},
 				{
@@ -1873,20 +1757,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 11,
-						"y": 137,
-						"w": 341,
-						"h": 214
+						"x": 5,
+						"y": 68,
+						"w": 172,
+						"h": 109
 					},
 					"frame": {
-						"x": 1,
-						"y": 1159,
-						"w": 341,
-						"h": 214
+						"x": 835,
+						"y": 1220,
+						"w": 172,
+						"h": 109
 					}
 				},
 				{
@@ -1894,20 +1778,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 11,
-						"y": 137,
-						"w": 339,
-						"h": 216
+						"x": 5,
+						"y": 68,
+						"w": 171,
+						"h": 110
 					},
 					"frame": {
-						"x": 344,
-						"y": 1161,
-						"w": 339,
-						"h": 216
+						"x": 1,
+						"y": 1296,
+						"w": 171,
+						"h": 110
 					}
 				},
 				{
@@ -1915,20 +1799,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 6,
-						"y": 12,
-						"w": 308,
-						"h": 220
+						"x": 2,
+						"y": 5,
+						"w": 156,
+						"h": 112
 					},
 					"frame": {
-						"x": 685,
-						"y": 1161,
-						"w": 308,
-						"h": 220
+						"x": 174,
+						"y": 1296,
+						"w": 156,
+						"h": 112
 					}
 				},
 				{
@@ -1936,41 +1820,62 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 6,
-						"y": 11,
-						"w": 310,
-						"h": 221
+						"x": 2,
+						"y": 5,
+						"w": 157,
+						"h": 112
 					},
 					"frame": {
-						"x": 995,
-						"y": 1163,
-						"w": 310,
-						"h": 221
+						"x": 332,
+						"y": 1310,
+						"w": 157,
+						"h": 112
 					}
 				},
 				{
-					"filename": "scratch/__black_cat_scratch_004.png",
+					"filename": "scratch/__black_cat_scratch_007.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 52,
-						"y": 145,
-						"w": 279,
-						"h": 260
+						"x": 28,
+						"y": 69,
+						"w": 157,
+						"h": 115
 					},
 					"frame": {
-						"x": 1307,
-						"y": 1170,
-						"w": 279,
-						"h": 260
+						"x": 491,
+						"y": 1310,
+						"w": 157,
+						"h": 115
+					}
+				},
+				{
+					"filename": "look_right/__black_cat_look_right_003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 64,
+						"w": 148,
+						"h": 117
+					},
+					"frame": {
+						"x": 650,
+						"y": 1331,
+						"w": 148,
+						"h": 117
 					}
 				},
 				{
@@ -1978,20 +1883,104 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 416,
-						"h": 409
+						"w": 208,
+						"h": 205
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 130,
-						"w": 295,
-						"h": 230
+						"x": 8,
+						"y": 64,
+						"w": 149,
+						"h": 117
 					},
 					"frame": {
-						"x": 1588,
-						"y": 1214,
-						"w": 295,
-						"h": 230
+						"x": 800,
+						"y": 1331,
+						"w": 149,
+						"h": 117
+					}
+				},
+				{
+					"filename": "scratch/__black_cat_scratch_003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 22,
+						"y": 72,
+						"w": 144,
+						"h": 132
+					},
+					"frame": {
+						"x": 1,
+						"y": 1408,
+						"w": 144,
+						"h": 132
+					}
+				},
+				{
+					"filename": "scratch/__black_cat_scratch_004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 72,
+						"w": 140,
+						"h": 132
+					},
+					"frame": {
+						"x": 147,
+						"y": 1410,
+						"w": 140,
+						"h": 132
+					}
+				},
+				{
+					"filename": "scratch/__black_cat_scratch_005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 33,
+						"y": 65,
+						"w": 133,
+						"h": 139
+					},
+					"frame": {
+						"x": 289,
+						"y": 1424,
+						"w": 133,
+						"h": 139
+					}
+				},
+				{
+					"filename": "scratch/__black_cat_scratch_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 208,
+						"h": 205
+					},
+					"spriteSourceSize": {
+						"x": 42,
+						"y": 61,
+						"w": 118,
+						"h": 143
+					},
+					"frame": {
+						"x": 424,
+						"y": 1427,
+						"w": 118,
+						"h": 143
 					}
 				}
 			]
@@ -2000,6 +1989,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:1696173e1f3f0972d84f73a55d429950:bcc46bf0004b8812ef39a90fcb5adf1d:67547b9bff169455ad9c69d742773881$"
+		"smartupdate": "$TexturePacker:SmartUpdate:7f969efa15e2d6a52c429f6de2b0885d:3d3090891ef295ddf547a4a65cf30efd:a9ab7f510a4115778daae16c2eba49b8$"
 	}
 }

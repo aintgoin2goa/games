@@ -95,6 +95,7 @@ export default class MazeScene extends Scene {
 
   update(): void {
     this.hero.update();
+    this.cats.forEach((c) => c.update());
     if (this.hero.x < 0) {
       if (this.hero.hasTarget) {
         state.incrementLevel();

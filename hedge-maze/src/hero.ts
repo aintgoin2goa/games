@@ -8,11 +8,11 @@ const SPRITE_SIZE = {
   x: 100,
   y: 60,
 };
-const SPEED = 400;
+const SPEED = 500;
 
 enum Animations {
-  WALK = "walk",
-  JUMP = "jump",
+  WALK = "hero_walk",
+  JUMP = "hero_jump",
 }
 
 export class Hero extends Physics.Arcade.Sprite {

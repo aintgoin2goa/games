@@ -15,3 +15,18 @@ export type Level = {
   target: Point;
   cats: number;
 };
+
+export type MazeCell = {
+  left: boolean;
+  right: boolean;
+  up: boolean;
+  down: boolean;
+  visited: boolean;
+};
+
+export type MazeTile = {
+  point: Point;
+  cell: MazeCell;
+};
+
+export type Directions = "up" | "down" | "left" | "right";

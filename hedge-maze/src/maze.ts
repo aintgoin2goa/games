@@ -5,8 +5,8 @@ import {
   TILEMAP_SIZE,
   TILE_SIZE,
 } from "./lib/constants";
-import { Point } from "./types";
-import { randomArrayIndex } from "./utils";
+import { Directions, MazeCell, MazeTile, Point } from "./types";
+import { clone, randomArrayIndex } from "./utils";
 
 export type TileCoord = {
   start: number;
@@ -28,14 +28,6 @@ export type MazeGeneratorOptions = {
 
 export type MazeOptions = {
   maze: MazeGeneratorOptions;
-};
-
-export type MazeCell = {
-  left: boolean;
-  right: boolean;
-  up: boolean;
-  down: boolean;
-  visited: boolean;
 };
 
 export type GeneratedMazeData = {
@@ -103,10 +95,78 @@ export class Maze {
     });
   }
 
-  getRandomTile(): Point {
+  getRandomTile(): MazeTile {
     const row = randomArrayIndex(this.mazeData.rows);
     const column = randomArrayIndex(this.mazeData.rows[row]);
-    return { row, column };
+    const cell = this.mazeData.rows[row][column];
+    return { point: { row, column }, cell };
+  }
+
+  getNeighbouringTile(tile: MazeTile, dir: Directions): MazeTile | null {
+    // cell in this direction not connected
+    if (tile.cell[dir] === true) {
+      return null;
+    }
+
+    // check if we're at the edge of the board
+    if (
+      (dir === "left" && tile.point.column === 0) ||
+      (dir === "up" && tile.point.row === 0)
+    ) {
+      return null;
+    }
+
+    if (
+      (dir === "right" &&
+        tile.point.column + 1 === this.mazeData.rows[tile.point.row].length) ||
+      (dir === "down" && tile.point.row + 1 === this.mazeData.rows.length)
+    ) {
+      return null;
+    }
+
+    let newColIndex = tile.point.column;
+    let newRowIndex = tile.point.row;
+
+    switch (dir) {
+      case "left":
+        newColIndex--;
+        break;
+      case "right":
+        newColIndex++;
+        break;
+      case "up":
+        newRowIndex--;
+        break;
+      case "down":
+        newRowIndex++;
+        break;
+    }
+
+    const cell = this.mazeData.rows[newRowIndex][newColIndex];
+
+    return {
+      point: { column: newColIndex, row: newRowIndex },
+      cell,
+    };
+  }
+
+  getVisibleTiles(start: MazeTile, dir: Directions): MazeTile[] {
+    let current = clone(start);
+    const visible = [current];
+    let neighbour = this.getNeighbouringTile(current, dir);
+    while (neighbour !== null) {
+      current = clone(neighbour);
+      visible.push(current);
+      neighbour = this.getNeighbouringTile(current, dir);
+    }
+
+    console.log("getVisibleTiles", { start, visible, dir });
+    return visible;
+  }
+
+  getLastVisibleTile(start: MazeTile, dir: Directions): MazeTile {
+    const visible = this.getVisibleTiles(start, dir);
+    return visible[visible.length - 1];
   }
 
   getTileCoords(col: number, row: number): Coords {
@@ -129,6 +189,17 @@ export class Maze {
         mid: midY,
         end: yEnd,
       },
+    };
+  }
+
+  getTileForCoords(x: number, y: number): MazeTile {
+    const rowIndex = Math.floor(x / TILE_SIZE);
+    const colIndex = Math.floor(y / TILE_SIZE);
+    const cell = this.mazeData.rows[rowIndex][colIndex];
+    console.log("getTileForCoords", { x, y, rowIndex, colIndex, cell });
+    return {
+      point: { row: rowIndex, column: colIndex },
+      cell,
     };
   }
 
