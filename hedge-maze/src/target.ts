@@ -11,6 +11,7 @@ export class Target extends Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, TEXTURE, 0);
     this.scene = scene;
+    this.name = "target";
     scene.add.existing(this);
     scene.physics.add.existing(this, true);
     this.getBody().onOverlap = true;

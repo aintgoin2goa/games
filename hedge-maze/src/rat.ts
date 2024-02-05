@@ -1,5 +1,8 @@
 import { Physics, Scene, Types } from "phaser";
 import { Target } from "./target";
+import { MazeTile } from "./types";
+import { Maze } from "./maze";
+import debug from "debug";
 
 const TEXTURE = "hero";
 const FILE = "sprites/rat.png";
@@ -8,23 +11,29 @@ const SPRITE_SIZE = {
   x: 100,
   y: 60,
 };
-const SPEED = 500;
+const SPEED = 600;
 
 enum Animations {
   WALK = "hero_walk",
   JUMP = "hero_jump",
 }
 
-export class Hero extends Physics.Arcade.Sprite {
+export class Rat extends Physics.Arcade.Sprite {
   scene: Scene;
   keys: Types.Input.Keyboard.CursorKeys;
   target: Target;
   hasTarget: boolean;
+  currentTile: MazeTile;
+  maze: Maze;
+  debug: ReturnType<typeof debug>;
 
-  constructor(scene: Scene, x: number, y: number, target: Target) {
+  constructor(scene: Scene, x: number, y: number, target: Target, maze: Maze) {
     super(scene, x, y, TEXTURE, 0);
+    this.debug = debug("rat");
     this.target = target;
     this.scene = scene;
+    this.maze = maze;
+    this.name = "rat";
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.getBody().setSize(SPRITE_SIZE.x, SPRITE_SIZE.y);
@@ -55,14 +64,6 @@ export class Hero extends Physics.Arcade.Sprite {
         repeat: -1,
       });
     }
-    // this.scene.anims.create({
-    //   key: Animations.JUMP,
-    //   frameRate: 8,
-    //   frames: this.scene.anims.generateFrameNumbers(TEXTURE, {
-    //     start: 8,
-    //     end: 12,
-    //   }),
-    // });
   }
 
   updateRotation() {
@@ -70,6 +71,11 @@ export class Hero extends Physics.Arcade.Sprite {
   }
 
   update() {
+    const currentTile = this.maze.getTileForCoords(this.x, this.y);
+    if (currentTile.id !== this.currentTile?.id) {
+      this.currentTile = currentTile;
+      this.debug("current tile", this.currentTile.id);
+    }
     let isWalking = false;
     this.getBody().setVelocity(0);
 

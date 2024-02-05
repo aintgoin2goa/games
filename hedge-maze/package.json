@@ -5,7 +5,9 @@
   "license": "MIT",
   "dependencies": {
     "@mitchallen/maze-generator": "^0.1.28",
+    "debug": "^4.3.4",
     "maze-generation": "^3.1.2",
+    "mrpas": "^2.0.0",
     "phaser": "^3.70.0",
     "prando": "^6.0.1"
   },

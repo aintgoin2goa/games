@@ -1,4 +1,8 @@
+import { Physics } from "phaser";
+import { Rat } from "./rat";
 import { Directions } from "./types";
+import { Cat } from "./cat";
+import { Target } from "./target";
 
 export const randomArrayElement = <T>(arr: T[]): T =>
   arr[randomArrayIndex(arr)];
@@ -52,3 +56,18 @@ export const turn180Degrees = (dir: Directions): Directions => {
       return "down";
   }
 };
+
+export const isRat = (obj: Physics.Arcade.Sprite): obj is Rat =>
+  obj.name === "rat";
+export const isCat = (obj: Physics.Arcade.Sprite): obj is Cat =>
+  obj.name === "cat";
+export const isTarget = (obj: Physics.Arcade.Sprite): obj is Target =>
+  obj.name === "target";
+
+//   export const animation = (obj: Physics.Arcade.Sprite, {name: string, textureprefix) => {
+//   if(obj.scene.anims.exists(name)){
+//     return;
+//   }
+
+//   const frames = obj.anims.generateFrameNames({})
+// }

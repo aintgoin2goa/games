@@ -1,28 +1,33 @@
-import { Scene } from "phaser";
+import { Physics, Scene } from "phaser";
 import { Maze, MazeOptions } from "../maze";
-import { Hero } from "../hero";
+import { Rat } from "../rat";
 import { TileMap } from "../tilemap";
 import { Target } from "../target";
-import { Level, Point } from "../types";
+import { Directions, Level, MazeTile, Point } from "../types";
 import { Levels } from "../lib/constants";
 import * as state from "../state";
 import { Cat } from "../cat";
+import debug from "debug";
+import { isCat, isRat, isTarget } from "../utils";
 
 export type SceneData = {
   level: number;
 };
 
 export default class MazeScene extends Scene {
-  private hero: Hero;
-  private target: Target;
+  rat: Rat;
+  target: Target;
   controls: Phaser.Cameras.Controls.FixedKeyControl;
   cats: Cat[];
+  maze: Maze;
+  debugPhysics: ReturnType<debug>;
 
   level: Level;
 
   constructor() {
     super("maze");
     this.cats = [];
+    this.debugPhysics = debug("physics");
   }
 
   get size() {
@@ -30,7 +35,7 @@ export default class MazeScene extends Scene {
   }
 
   preload() {
-    Hero.load(this);
+    Rat.load(this);
     Maze.load(this);
     Target.load(this);
     Cat.load(this);
@@ -40,7 +45,27 @@ export default class MazeScene extends Scene {
     this.level = Levels[state.get("level")];
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getVisibleTiles(start: MazeTile, dir: Directions): MazeTile[] {
+    const tiles = this.maze.getVisibleTiles(start, dir);
+    const ratTile = this.rat.currentTile;
+    return tiles.map((t) => {
+      t.hasRat = ratTile?.id === t.id;
+      return t;
+    });
+  }
+
   create() {
+    this.input.keyboard?.on("keydown-P", () => {
+      if (this.scene.isPaused("maze")) {
+        this.scene.resume("maze");
+        console.log("resumed");
+      } else {
+        this.scene.pause("maze");
+        console.log("paused");
+      }
+    });
+
     const options: MazeOptions = {
       maze: {
         width: this.size.w,
@@ -54,50 +79,67 @@ export default class MazeScene extends Scene {
     };
 
     const { target, cats } = this.level;
-    const maze = new Maze(this, options);
-    maze.generate();
-    const map = new TileMap(this, maze, this.size);
+    this.maze = new Maze(this, options);
+    this.maze.generate();
+    const map = new TileMap(this, this.maze, this.size);
 
-    const startCoords = maze.getTileCoords(start.column, start.row);
-    const endCoords = maze.getTileCoords(target.column, target.row);
+    const startCoords = this.maze.getTileCoords(start.column, start.row);
+    const endCoords = this.maze.getTileCoords(target.column, target.row);
 
     // solution
-    maze.solve(start, target);
+    this.maze.solve(start, target);
 
     this.target = new Target(this, endCoords.x.mid, endCoords.y.mid);
 
-    this.hero = new Hero(
+    this.rat = new Rat(
       this,
       startCoords.x.mid,
       startCoords.y.mid,
-      this.target
+      this.target,
+      this.maze
     );
 
-    this.physics.add.collider(map.layer, this.hero);
-    this.physics.add.overlap(this.hero, this.target);
-    this.physics.world.once("overlap", (hero: Hero, target: Target) => {
-      hero.hasReachedTarget();
-      target.reached();
-      map.revealExit();
+    this.physics.add.collider(map.layer, this.rat);
+    this.physics.add.overlap(this.rat, this.target);
+    this.physics.world.on("overlap", (obj1: Rat | Cat, obj2: Target | Rat) => {
+      this.debugPhysics("OVERLAP", { obj1, obj2 });
+      if (isRat(obj1) && isTarget(obj2)) {
+        obj1.hasReachedTarget();
+        obj2.reached();
+        map.revealExit();
+        return;
+      }
+
+      if (isCat(obj1) && isRat(obj2)) {
+        alert("CAUGHT!!");
+        this.scene.start("welcome");
+      }
+    });
+    this.physics.world.on("tilecollide", (obj: Physics.Arcade.Sprite) => {
+      if (isCat(obj)) {
+        this.debugPhysics("CAT COLLISON");
+        obj.onCollision();
+      }
     });
 
     for (let i = 0; i < cats; i++) {
-      const cat = new Cat(this, maze);
+      const cat = new Cat(this, this.maze, this.rat);
       this.physics.add.collider(map.layer, cat);
+      this.physics.add.overlap(cat, this.rat);
       this.cats.push(cat);
     }
 
     const camera = this.cameras.main;
     camera.setBounds(0, 0, map.map.widthInPixels, map.map.heightInPixels);
-    camera.startFollow(this.hero);
+    camera.startFollow(this.rat);
     camera.setZoom(0.5, 0.5);
   }
 
   update(): void {
-    this.hero.update();
+    this.rat.update();
     this.cats.forEach((c) => c.update());
-    if (this.hero.x < 0) {
-      if (this.hero.hasTarget) {
+    if (this.rat.x < 0) {
+      if (this.rat.hasTarget) {
         state.incrementLevel();
         if (state.get("level") >= Levels.length) {
           alert("Game complete!");

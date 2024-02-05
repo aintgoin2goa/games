@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
-import { Maze, MazeCell } from "./maze";
+import { Maze } from "./maze";
 import { MAP_TILES_IN_MAZE_TILE, TILEMAP_SIZE } from "./lib/constants";
+import { MazeCell } from "./types";
 
 export type TileCoord = {
   xStart: number;

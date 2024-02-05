@@ -7,6 +7,7 @@ import {
 } from "./lib/constants";
 import { Directions, MazeCell, MazeTile, Point } from "./types";
 import { clone, randomArrayIndex } from "./utils";
+import debug from "debug";
 
 export type TileCoord = {
   start: number;
@@ -48,36 +49,18 @@ export type GeneratedMaze = {
 export class Maze {
   private scene: Scene;
   private options: MazeOptions;
-  private debugActive: boolean = true;
   mazeData: GeneratedMazeData;
   private maze: GeneratedMaze;
+  debug: ReturnType<typeof debug>;
 
   constructor(scene: Scene, options: MazeOptions) {
+    this.debug = debug("maze");
     this.scene = scene;
     this.options = options;
   }
 
   static load(scene: Scene) {
     scene.load.image("maze", "img/tilemap_2.png");
-  }
-
-  debug(...args) {
-    this.debugActive && console.log(...args);
-  }
-
-  debugGroup(name: string, collapsed: boolean = true) {
-    if (!this.debugActive) {
-      return {
-        log: () => {},
-        end: () => {},
-      };
-    }
-
-    collapsed ? console.groupCollapsed(name) : console.group(name);
-    return {
-      log: (...args) => console.log(...args),
-      end: () => console.groupEnd(),
-    };
   }
 
   generate() {
@@ -95,11 +78,15 @@ export class Maze {
     });
   }
 
+  tileId(row: number, col: number): string {
+    return `${row}:${col}`;
+  }
+
   getRandomTile(): MazeTile {
     const row = randomArrayIndex(this.mazeData.rows);
     const column = randomArrayIndex(this.mazeData.rows[row]);
     const cell = this.mazeData.rows[row][column];
-    return { point: { row, column }, cell };
+    return { id: this.tileId(row, column), point: { row, column }, cell };
   }
 
   getNeighbouringTile(tile: MazeTile, dir: Directions): MazeTile | null {
@@ -145,6 +132,7 @@ export class Maze {
     const cell = this.mazeData.rows[newRowIndex][newColIndex];
 
     return {
+      id: this.tileId(newRowIndex, newColIndex),
       point: { column: newColIndex, row: newRowIndex },
       cell,
     };
@@ -160,7 +148,7 @@ export class Maze {
       neighbour = this.getNeighbouringTile(current, dir);
     }
 
-    console.log("getVisibleTiles", { start, visible, dir });
+    this.debug("getVisibleTiles", { start, visible, dir });
     return visible;
   }
 
@@ -193,11 +181,12 @@ export class Maze {
   }
 
   getTileForCoords(x: number, y: number): MazeTile {
-    const rowIndex = Math.floor(x / TILE_SIZE);
-    const colIndex = Math.floor(y / TILE_SIZE);
+    const rowIndex = Math.floor(y / TILE_SIZE);
+    const colIndex = Math.floor(x / TILE_SIZE);
     const cell = this.mazeData.rows[rowIndex][colIndex];
-    console.log("getTileForCoords", { x, y, rowIndex, colIndex, cell });
+    this.debug("getTileForCoords", { x, y, rowIndex, colIndex, cell });
     return {
+      id: this.tileId(rowIndex, colIndex),
       point: { row: rowIndex, column: colIndex },
       cell,
     };
@@ -209,7 +198,7 @@ export class Maze {
     const xPosInCell = tileX % MAP_TILES_IN_MAZE_TILE;
     const yPosInCell = tileY % MAP_TILES_IN_MAZE_TILE;
     const cell = this.mazeData.rows[mazeRow][mazeCol];
-    console.log("isHedge", {
+    this.debug("isHedge", {
       tileX,
       tileY,
       mazeCol,
@@ -253,7 +242,7 @@ export class Maze {
       }
     }
 
-    console.log(map);
+    this.debug(map);
     return map;
   }
 }

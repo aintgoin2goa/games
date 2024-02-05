@@ -1,3 +1,5 @@
+import debug from "debug";
+
 export type Point = {
   row: number;
   column: number;
@@ -25,8 +27,13 @@ export type MazeCell = {
 };
 
 export type MazeTile = {
+  id: string;
   point: Point;
   cell: MazeCell;
+  hasRat?: boolean;
 };
 
 export type Directions = "up" | "down" | "left" | "right";
+
+export type Debugger = ReturnType<typeof debug>;
+export type DebuggerCollection<T extends string> = Record<T, Debugger>;

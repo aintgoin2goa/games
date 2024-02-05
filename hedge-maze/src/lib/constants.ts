@@ -12,8 +12,8 @@ export const Levels: Level[] = [
     id: 0,
     name: "Level One",
     size: {
-      w: 4,
-      h: 4,
+      w: 8,
+      h: 8,
     },
     target: {
       row: 2,
@@ -45,7 +45,7 @@ export const Levels: Level[] = [
       row: 8,
       column: 8,
     },
-    cats: 1,
+    cats: 2,
   },
   {
     id: 1,
@@ -58,7 +58,7 @@ export const Levels: Level[] = [
       row: 16,
       column: 16,
     },
-    cats: 1,
+    cats: 4,
   },
   {
     id: 1,
@@ -71,6 +71,6 @@ export const Levels: Level[] = [
       row: 32,
       column: 32,
     },
-    cats: 1,
+    cats: 4,
   },
 ];
