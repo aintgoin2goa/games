@@ -5,7 +5,13 @@ import {
   TILEMAP_SIZE,
   TILE_SIZE,
 } from "./lib/constants";
-import { Directions, MazeCell, MazeTile, Point } from "./types";
+import {
+  DebuggerCollection,
+  Directions,
+  MazeCell,
+  MazeTile,
+  Point,
+} from "./types";
 import { clone, randomArrayIndex } from "./utils";
 import debug from "debug";
 
@@ -51,10 +57,14 @@ export class Maze {
   private options: MazeOptions;
   mazeData: GeneratedMazeData;
   private maze: GeneratedMaze;
-  debug: ReturnType<typeof debug>;
+  debug: DebuggerCollection<"solution" | "map" | "internals">;
 
   constructor(scene: Scene, options: MazeOptions) {
-    this.debug = debug("maze");
+    this.debug = {
+      solution: debug("maze:solution"),
+      map: debug("maze:map"),
+      internals: debug("maze:internals"),
+    };
     this.scene = scene;
     this.options = options;
   }
@@ -65,13 +75,13 @@ export class Maze {
 
   generate() {
     this.maze = mazeGenerator(this.options.maze) as GeneratedMaze;
-    this.debug(this.maze.toString());
+    this.debug.map(this.maze.toString());
     this.mazeData = this.maze.toJSON();
   }
 
   solve(start: Point, end: Point) {
     const solution = this.maze.generateSolution(start, end);
-    this.debug(solution.toString());
+    this.debug.solution(solution.toString());
     // this.debug(solution.toJSON());
     return solution.toJSON().map((point) => {
       return this.getTileCoords(point.column, point.row);
@@ -148,7 +158,7 @@ export class Maze {
       neighbour = this.getNeighbouringTile(current, dir);
     }
 
-    this.debug("getVisibleTiles", { start, visible, dir });
+    this.debug.internals("getVisibleTiles", { start, visible, dir });
     return visible;
   }
 
@@ -184,7 +194,13 @@ export class Maze {
     const rowIndex = Math.floor(y / TILE_SIZE);
     const colIndex = Math.floor(x / TILE_SIZE);
     const cell = this.mazeData.rows[rowIndex][colIndex];
-    this.debug("getTileForCoords", { x, y, rowIndex, colIndex, cell });
+    this.debug.internals("getTileForCoords", {
+      x,
+      y,
+      rowIndex,
+      colIndex,
+      cell,
+    });
     return {
       id: this.tileId(rowIndex, colIndex),
       point: { row: rowIndex, column: colIndex },
@@ -198,7 +214,7 @@ export class Maze {
     const xPosInCell = tileX % MAP_TILES_IN_MAZE_TILE;
     const yPosInCell = tileY % MAP_TILES_IN_MAZE_TILE;
     const cell = this.mazeData.rows[mazeRow][mazeCol];
-    this.debug("isHedge", {
+    this.debug.internals("isHedge", {
       tileX,
       tileY,
       mazeCol,
@@ -242,7 +258,7 @@ export class Maze {
       }
     }
 
-    this.debug(map);
+    this.debug.internals("toTileMap", map);
     return map;
   }
 }

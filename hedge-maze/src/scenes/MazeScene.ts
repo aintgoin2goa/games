@@ -3,8 +3,14 @@ import { Maze, MazeOptions } from "../maze";
 import { Rat } from "../rat";
 import { TileMap } from "../tilemap";
 import { Target } from "../target";
-import { Directions, Level, MazeTile, Point } from "../types";
-import { Levels } from "../lib/constants";
+import {
+  DebuggerCollection,
+  Directions,
+  Level,
+  MazeTile,
+  Point,
+} from "../types";
+import { Levels } from "../lib/levels";
 import * as state from "../state";
 import { Cat } from "../cat";
 import debug from "debug";
@@ -20,14 +26,19 @@ export default class MazeScene extends Scene {
   controls: Phaser.Cameras.Controls.FixedKeyControl;
   cats: Cat[];
   maze: Maze;
-  debugPhysics: ReturnType<debug>;
+  debug: DebuggerCollection<"physics" | "zoom">;
+  zoom: number;
 
   level: Level;
 
   constructor() {
     super("maze");
     this.cats = [];
-    this.debugPhysics = debug("physics");
+    this.debug = {
+      physics: debug("maze:physics"),
+      zoom: debug("maze:zoom"),
+    };
+    this.zoom = 5;
   }
 
   get size() {
@@ -102,7 +113,7 @@ export default class MazeScene extends Scene {
     this.physics.add.collider(map.layer, this.rat);
     this.physics.add.overlap(this.rat, this.target);
     this.physics.world.on("overlap", (obj1: Rat | Cat, obj2: Target | Rat) => {
-      this.debugPhysics("OVERLAP", { obj1, obj2 });
+      this.debug.physics("OVERLAP", { obj1, obj2 });
       if (isRat(obj1) && isTarget(obj2)) {
         obj1.hasReachedTarget();
         obj2.reached();
@@ -111,13 +122,12 @@ export default class MazeScene extends Scene {
       }
 
       if (isCat(obj1) && isRat(obj2)) {
-        alert("CAUGHT!!");
-        this.scene.start("welcome");
+        this.scene.start("level", { text: "Caught!", buttonText: "TRY AGAIN" });
       }
     });
     this.physics.world.on("tilecollide", (obj: Physics.Arcade.Sprite) => {
       if (isCat(obj)) {
-        this.debugPhysics("CAT COLLISON");
+        this.debug.physics("CAT COLLISON");
         obj.onCollision();
       }
     });
@@ -131,8 +141,19 @@ export default class MazeScene extends Scene {
 
     const camera = this.cameras.main;
     camera.setBounds(0, 0, map.map.widthInPixels, map.map.heightInPixels);
-    camera.startFollow(this.rat);
-    camera.setZoom(0.5, 0.5);
+    camera.startFollow(this.cats[0]);
+    camera.setZoom(this.zoom / 10);
+
+    this.input.keyboard!.on("keydown", (e) => {
+      if (e.key === "-" && this.zoom > 1) {
+        this.zoom--;
+      } else if (e.key === "+" && this.zoom < 10) {
+        this.zoom++;
+      }
+
+      this.debug.zoom(this.zoom);
+      camera.zoomTo(this.zoom / 10, 100);
+    });
   }
 
   update(): void {

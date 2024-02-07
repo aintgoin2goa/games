@@ -8,7 +8,8 @@ import MazeScene from "./scenes/MazeScene";
 import { Animation, createAnimations } from "./lib/animations";
 
 const TEXTURE = "cat";
-const FILE = ["sprites/cat-0.png"];
+const FILE = ["sprites/black-cat-0.png"];
+const ATLAS = "sprites/black-cat.json";
 
 const WALKING_SPEED = 200;
 const RUNNING_SPEED = 600;
@@ -22,6 +23,7 @@ enum Animations {
   LOOK_LEFT = "cat_look_left",
   LOOK_RIGHT = "cat_look_right",
   RUN = "cat_run",
+  DAZED = "cat_dazed",
 }
 
 const AnimationDefinitions: Record<Animations, Animation> = {
@@ -79,6 +81,15 @@ const AnimationDefinitions: Record<Animations, Animation> = {
     frameRate: 8,
     repeat: 0,
   },
+  [Animations.DAZED]: {
+    key: Animations.DAZED,
+    texture: TEXTURE,
+    prefix: "dazed/__black_cat_whacked_",
+    start: 0,
+    end: 15,
+    frameRate: 16,
+    repeat: 0,
+  },
 };
 
 const Angles: Record<Directions, number> = {
@@ -106,8 +117,6 @@ export class Cat extends Physics.Arcade.Sprite {
   scene: MazeScene;
   timer: Phaser.Time.TimerEvent;
   debug: DebuggerCollection<"vision" | "decisions" | "movement" | "fov">;
-
-  readonly visionRadius = 400;
 
   constructor(scene: MazeScene, maze: Maze, rat: Rat) {
     const tile = maze.getRandomTile();
@@ -138,7 +147,7 @@ export class Cat extends Physics.Arcade.Sprite {
   }
 
   static load(scene: Scene) {
-    scene.load.atlas("cat", FILE, "sprites/cat.json");
+    scene.load.atlas("cat", FILE, ATLAS);
   }
 
   updateRotation() {}
@@ -251,27 +260,10 @@ export class Cat extends Physics.Arcade.Sprite {
   }
 
   async look(where: "left" | "right"): Promise<MazeTile[]> {
-    let animation: string | undefined;
-    let fn: (dir: Directions) => Directions;
-    if (where === "left") {
-      animation = Animations.LOOK_LEFT;
-      fn = turn90DegreesLeft;
-    } else if (where === "right") {
-      animation = Animations.LOOK_RIGHT;
-      fn = turn90DegreesRight;
-    } else {
-      fn = turn180Degrees;
-    }
-
-    if (animation) {
-      this.play(animation);
-    }
-
-    const dir = fn(this.currentlyFacing);
-    const tiles = this.scene.getVisibleTiles(this.currentTile, dir);
-    return new Promise((resolve) =>
-      this.once("animationcomplete", () => resolve(tiles))
-    );
+    const animation =
+      where === "left" ? Animations.LOOK_LEFT : Animations.LOOK_RIGHT;
+    this.play(animation);
+    return new Promise((resolve) => this.once("animationcomplete", resolve));
   }
 
   lookBehind() {
@@ -292,42 +284,83 @@ export class Cat extends Physics.Arcade.Sprite {
   }
 
   async decideWhatToDo() {
-    this.debug.decisions("decide what to do");
-    const tilesAhead = this.currentView;
-    this.debug.decisions("look ahead", tilesAhead);
-    if (tilesAhead.length > 1) {
-      const targetTile = tilesAhead[tilesAhead.length - 1];
-      this.debug.decisions("walk ahead", targetTile.point);
-      return this.move("walk", targetTile);
-    }
+    const tilesAhead = this.maze.getVisibleTiles(
+      this.currentTile,
+      this.currentlyFacing
+    );
+    const tilesToLeft = this.maze.getVisibleTiles(
+      this.currentTile,
+      turn90DegreesLeft(this.currentlyFacing)
+    );
+    const tilesToRight = this.maze.getVisibleTiles(
+      this.currentTile,
+      turn90DegreesRight(this.currentlyFacing)
+    );
+    const tilesBehind = this.maze.getVisibleTiles(
+      this.currentTile,
+      turn180Degrees(this.currentlyFacing)
+    );
 
-    const tilesToLeft = await this.look("left");
-    this.debug.decisions("look left", tilesToLeft);
-    if (tilesToLeft.length > 1) {
-      const targetTile = tilesToLeft[tilesToLeft.length - 1];
-      this.debug.decisions("turn left and walk", targetTile.point);
-      this.turnLeft();
-      return this.move("walk", targetTile);
-    }
+    this.debug.decisions("decide what to do", {
+      tilesAhead,
+      tilesBehind,
+      tilesToLeft,
+      tilesToRight,
+    });
 
-    const tilesToRight = await this.look("right");
-    this.debug.decisions("look right", tilesToRight);
-    if (tilesToRight.length > 1) {
-      const targetTile = tilesToRight[tilesToRight.length - 1];
-      this.debug.decisions("turn right and walk", targetTile.point);
-      this.turnRight();
-      return this.move("walk", targetTile);
-    }
-
-    const tilesBehind = await this.lookBehind();
-    this.debug.decisions("look behind", tilesBehind);
-    if (tilesBehind.length > 1) {
-      const targetTile = tilesBehind[tilesBehind.length - 1];
+    if (
+      tilesAhead.length < 2 &&
+      tilesToLeft.length < 2 &&
+      tilesToRight.length < 2
+    ) {
+      this.debug.decisions("No tiles ahead, left or right");
+      if (tilesBehind.length < 2) {
+        this.debug.decisions("No tiles behind as well, something went wrong!", {
+          currentTile: this.currentTile,
+          tilesToLeft,
+          tilesToRight,
+          tilesBehind,
+          tilesAhead,
+        });
+        throw new Error("No way for cat to go!");
+      }
+      const targetTile = tilesBehind[1];
       this.debug.decisions("turn around and walk", targetTile.point);
       this.turnAround();
-      await this.sit(5000);
+      await this.sit(1000);
       return this.move("walk", targetTile);
     }
+
+    if (tilesToLeft.length > 1) {
+      await this.look("left");
+    }
+
+    if (tilesToRight.length > 1) {
+      await this.look("right");
+    }
+
+    if (
+      tilesToRight.length > tilesToLeft.length &&
+      tilesToRight.length > tilesAhead.length
+    ) {
+      const target = tilesToRight[1];
+      this.debug.decisions("turn right and walk", target.point);
+      this.turnRight();
+      this.move("walk", target);
+      return;
+    }
+
+    if (tilesToLeft.length > tilesAhead.length) {
+      const target = tilesToLeft[1];
+      this.debug.decisions("turn left and walk", target.point);
+      this.turnLeft();
+      this.move("walk", target);
+      return;
+    }
+
+    this.debug.decisions("walk ahead");
+    const target = tilesAhead[1];
+    this.move("walk", target);
   }
 
   update() {
