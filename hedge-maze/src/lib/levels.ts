@@ -5,14 +5,15 @@ export const Levels: Level[] = [
     id: 0,
     name: "Level One",
     size: {
-      w: 8,
-      h: 8,
+      w: 4,
+      h: 4,
     },
     target: {
       row: 2,
       column: 2,
     },
     cats: 1,
+    mapZoomLevel: 0.2,
   },
   {
     id: 1,
@@ -26,9 +27,10 @@ export const Levels: Level[] = [
       column: 4,
     },
     cats: 1,
+    mapZoomLevel: 0.1,
   },
   {
-    id: 1,
+    id: 2,
     name: "Level Three",
     size: {
       w: 16,
@@ -39,9 +41,10 @@ export const Levels: Level[] = [
       column: 8,
     },
     cats: 2,
+    mapZoomLevel: 0.1,
   },
   {
-    id: 1,
+    id: 3,
     name: "Level Four",
     size: {
       w: 16,
@@ -52,18 +55,20 @@ export const Levels: Level[] = [
       column: 8,
     },
     cats: 4,
+    mapZoomLevel: 0.1,
   },
   {
-    id: 1,
+    id: 4,
     name: "Level Five",
     size: {
-      w: 32,
-      h: 32,
+      w: 16,
+      h: 16,
     },
     target: {
-      row: 16,
-      column: 16,
+      row: 8,
+      column: 8,
     },
     cats: 8,
+    mapZoomLevel: 0.1,
   },
 ];

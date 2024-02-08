@@ -15,6 +15,7 @@ import * as state from "../state";
 import { Cat } from "../cat";
 import debug from "debug";
 import { isCat, isRat, isTarget } from "../utils";
+import { INITIAL_ZOOM } from "../lib/constants";
 
 export type SceneData = {
   level: number;
@@ -27,7 +28,7 @@ export default class MazeScene extends Scene {
   cats: Cat[];
   maze: Maze;
   debug: DebuggerCollection<"physics" | "zoom">;
-  zoom: number;
+  M: Phaser.Input.Keyboard.Key | undefined;
 
   level: Level;
 
@@ -38,7 +39,6 @@ export default class MazeScene extends Scene {
       physics: debug("maze:physics"),
       zoom: debug("maze:zoom"),
     };
-    this.zoom = 5;
   }
 
   get size() {
@@ -57,8 +57,12 @@ export default class MazeScene extends Scene {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getVisibleTiles(start: MazeTile, dir: Directions): MazeTile[] {
-    const tiles = this.maze.getVisibleTiles(start, dir);
+  getVisibleTilesWithRat(
+    start: MazeTile,
+    dir: Directions,
+    maxTiles: number
+  ): MazeTile[] {
+    const tiles = this.maze.getVisibleTiles(start, dir, maxTiles);
     const ratTile = this.rat.currentTile;
     return tiles.map((t) => {
       t.hasRat = ratTile?.id === t.id;
@@ -67,16 +71,6 @@ export default class MazeScene extends Scene {
   }
 
   create() {
-    this.input.keyboard?.on("keydown-P", () => {
-      if (this.scene.isPaused("maze")) {
-        this.scene.resume("maze");
-        console.log("resumed");
-      } else {
-        this.scene.pause("maze");
-        console.log("paused");
-      }
-    });
-
     const options: MazeOptions = {
       maze: {
         width: this.size.w,
@@ -141,33 +135,33 @@ export default class MazeScene extends Scene {
 
     const camera = this.cameras.main;
     camera.setBounds(0, 0, map.map.widthInPixels, map.map.heightInPixels);
-    camera.startFollow(this.cats[0]);
-    camera.setZoom(this.zoom / 10);
-
-    this.input.keyboard!.on("keydown", (e) => {
-      if (e.key === "-" && this.zoom > 1) {
-        this.zoom--;
-      } else if (e.key === "+" && this.zoom < 10) {
-        this.zoom++;
-      }
-
-      this.debug.zoom(this.zoom);
-      camera.zoomTo(this.zoom / 10, 100);
-    });
+    camera.startFollow(this.rat);
+    camera.setZoom(INITIAL_ZOOM);
+    this.M = this.input.keyboard?.addKey("M");
   }
 
   update(): void {
     this.rat.update();
     this.cats.forEach((c) => c.update());
+    if (this.M?.isDown) {
+      this.cameras.main.zoom = this.level.mapZoomLevel;
+      this.target.setScale(this.level.id + 1 * 2);
+    } else {
+      this.cameras.main.zoom = INITIAL_ZOOM;
+      this.target.setScale(1);
+    }
     if (this.rat.x < 0) {
       if (this.rat.hasTarget) {
         state.incrementLevel();
         if (state.get("level") >= Levels.length) {
-          alert("Game complete!");
-          this.scene.start("welcome");
+          state.resetLevel();
+          this.scene.start("level", {
+            title: "You win!",
+            buttonText: "Play Again",
+          });
+        } else {
+          this.scene.start("level", {});
         }
-
-        this.scene.start("level");
       }
     }
   }

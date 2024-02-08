@@ -138,6 +138,7 @@ export class Cat extends Physics.Arcade.Sprite {
     this.getBody().onCollide = true;
     this.setupAnimations();
     this.currentTile = tile;
+    this.isChasing = false;
     this.setStartingPosition(tile.cell);
     this.sit(5000).then(() => this.decideWhatToDo());
   }
@@ -178,19 +179,22 @@ export class Cat extends Physics.Arcade.Sprite {
     this.setX(coords.x.mid);
     this.setY(coords.y.mid);
     this.isChasing = false;
-    this.sit(1000).then(() => this.decideWhatToDo());
+    this.stop();
+    this.setVelocity(0);
+    this.play(Animations.DAZED);
+    this.setStartingPosition(this.currentTile.cell);
+    this.once("animationcomplete", () => this.decideWhatToDo());
   }
 
   updateCurrentView() {
-    if (!this.scene?.getVisibleTiles) {
+    if (!this.scene?.getVisibleTilesWithRat) {
       return;
     }
-    this.currentView = this.scene
-      .getVisibleTiles(
-        this.maze.getTileForCoords(this.x, this.y),
-        this.currentlyFacing
-      )
-      .slice(0, MAX_TILES_IN_VIEW - 1);
+    this.currentView = this.scene.getVisibleTilesWithRat(
+      this.maze.getTileForCoords(this.x, this.y),
+      this.currentlyFacing,
+      MAX_TILES_IN_VIEW
+    );
     this.debug.vision(
       "currentView",
       this.currentView,
@@ -200,14 +204,7 @@ export class Cat extends Physics.Arcade.Sprite {
     if (tileWithRat) {
       if (!this.isChasing) {
         this.debug.fov("SPOTTED RAT");
-        this.isChasing = true;
-        this.move("run", tileWithRat);
-      }
-    } else {
-      if (this.isChasing) {
-        this.debug.fov("LOST RAT");
-        this.isChasing = false;
-        this.hasArrived();
+        this.chase();
       }
     }
   }
@@ -230,20 +227,22 @@ export class Cat extends Physics.Arcade.Sprite {
     );
   }
 
-  move(speed: "walk" | "run", targetTile: MazeTile) {
-    this.debug.movement(speed, { targetTile });
+  walk(targetTile: MazeTile) {
+    this.debug.movement("walk", { targetTile });
     const coords = this.maze.getTileCoords(
       targetTile.point.column,
       targetTile.point.row
     );
     this.target = { x: coords.x.mid, y: coords.y.mid, tile: targetTile };
     this.stop();
-    this.play(speed === "run" ? Animations.RUN : Animations.WALK);
-    this.scene.physics.moveToObject(
-      this,
-      this.target,
-      speed === "run" ? RUNNING_SPEED : WALKING_SPEED
-    );
+    this.play(Animations.WALK);
+    this.scene.physics.moveToObject(this, this.target, WALKING_SPEED);
+  }
+
+  chase() {
+    this.isChasing = true;
+    this.stop();
+    this.play(Animations.RUN);
   }
 
   hasArrived() {
@@ -266,11 +265,6 @@ export class Cat extends Physics.Arcade.Sprite {
     return new Promise((resolve) => this.once("animationcomplete", resolve));
   }
 
-  lookBehind() {
-    const dir = turn180Degrees(this.currentlyFacing);
-    return this.scene.getVisibleTiles(this.currentTile, dir);
-  }
-
   turnLeft() {
     this.turnToFace(turn90DegreesLeft(this.currentlyFacing));
   }
@@ -286,19 +280,23 @@ export class Cat extends Physics.Arcade.Sprite {
   async decideWhatToDo() {
     const tilesAhead = this.maze.getVisibleTiles(
       this.currentTile,
-      this.currentlyFacing
+      this.currentlyFacing,
+      MAX_TILES_IN_VIEW
     );
     const tilesToLeft = this.maze.getVisibleTiles(
       this.currentTile,
-      turn90DegreesLeft(this.currentlyFacing)
+      turn90DegreesLeft(this.currentlyFacing),
+      MAX_TILES_IN_VIEW
     );
     const tilesToRight = this.maze.getVisibleTiles(
       this.currentTile,
-      turn90DegreesRight(this.currentlyFacing)
+      turn90DegreesRight(this.currentlyFacing),
+      MAX_TILES_IN_VIEW
     );
     const tilesBehind = this.maze.getVisibleTiles(
       this.currentTile,
-      turn180Degrees(this.currentlyFacing)
+      turn180Degrees(this.currentlyFacing),
+      MAX_TILES_IN_VIEW
     );
 
     this.debug.decisions("decide what to do", {
@@ -328,7 +326,7 @@ export class Cat extends Physics.Arcade.Sprite {
       this.debug.decisions("turn around and walk", targetTile.point);
       this.turnAround();
       await this.sit(1000);
-      return this.move("walk", targetTile);
+      return this.walk(targetTile);
     }
 
     if (tilesToLeft.length > 1) {
@@ -346,7 +344,7 @@ export class Cat extends Physics.Arcade.Sprite {
       const target = tilesToRight[1];
       this.debug.decisions("turn right and walk", target.point);
       this.turnRight();
-      this.move("walk", target);
+      this.walk(target);
       return;
     }
 
@@ -354,17 +352,22 @@ export class Cat extends Physics.Arcade.Sprite {
       const target = tilesToLeft[1];
       this.debug.decisions("turn left and walk", target.point);
       this.turnLeft();
-      this.move("walk", target);
+      this.walk(target);
       return;
     }
 
     this.debug.decisions("walk ahead");
     const target = tilesAhead[1];
-    this.move("walk", target);
+    this.walk(target);
   }
 
   update() {
+    if (!this.scene) {
+      return;
+    }
+
     if (this.isChasing) {
+      this.scene.physics?.moveToObject(this, this.scene.rat, RUNNING_SPEED);
       this.rotation = this.getBody()?.angle;
     }
     this.updateCurrentView();

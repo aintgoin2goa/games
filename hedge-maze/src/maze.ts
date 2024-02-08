@@ -148,11 +148,15 @@ export class Maze {
     };
   }
 
-  getVisibleTiles(start: MazeTile, dir: Directions): MazeTile[] {
+  getVisibleTiles(
+    start: MazeTile,
+    dir: Directions,
+    maxTiles: number = 5
+  ): MazeTile[] {
     let current = clone(start);
     const visible = [current];
     let neighbour = this.getNeighbouringTile(current, dir);
-    while (neighbour !== null) {
+    while (neighbour !== null && visible.length < maxTiles) {
       current = clone(neighbour);
       visible.push(current);
       neighbour = this.getNeighbouringTile(current, dir);

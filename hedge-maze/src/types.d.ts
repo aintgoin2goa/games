@@ -16,6 +16,7 @@ export type Level = {
   size: Size;
   target: Point;
   cats: number;
+  mapZoomLevel: number;
 };
 
 export type MazeCell = {

@@ -26,4 +26,10 @@ const config: Phaser.Types.Core.GameConfig = {
   transparent: true,
 };
 
+// @ts-expect-error - adding stuff to window
+window.debug = (name: string) => {
+  localStorage.setItem("debug", name);
+  location.reload();
+};
+
 preload().then(() => new Phaser.Game(config));

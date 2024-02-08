@@ -11,7 +11,7 @@ const SPRITE_SIZE = {
   x: 100,
   y: 60,
 };
-const SPEED = 600;
+const SPEED = 800;
 
 enum Animations {
   WALK = "hero_walk",

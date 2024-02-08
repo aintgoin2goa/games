@@ -31,7 +31,7 @@ export class Target extends Physics.Arcade.Sprite {
   reached() {
     this.scene.tweens.add({
       targets: this,
-      scale: 0,
+      alpha: 0,
       ease: "sine.out",
       duration: 500,
     });

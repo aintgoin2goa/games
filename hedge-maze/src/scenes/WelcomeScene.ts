@@ -1,7 +1,8 @@
 import Phaser from "phaser";
 import { HEIGHT, WIDTH } from "../lib/constants";
-import { FONTS } from "../lib/typography";
+import { FONTS, button } from "../lib/typography";
 import { COLOR_USE_CASES, colorFor } from "../lib/palette";
+import * as state from "../state";
 
 export default class WelcomeScene extends Phaser.Scene {
   constructor() {
@@ -13,6 +14,7 @@ export default class WelcomeScene extends Phaser.Scene {
   }
 
   create() {
+    const currentLevel = state.get("level");
     this.add.image(WIDTH / 2, HEIGHT / 2, "title");
     this.add.text(50, 20, "RAT MAZE", {
       fontFamily: FONTS.Underline,
@@ -21,18 +23,27 @@ export default class WelcomeScene extends Phaser.Scene {
       strokeThickness: 1,
       align: "centre",
     });
-    this.add
-      .text(WIDTH / 2, HEIGHT - 100, " START ", {
-        fontFamily: FONTS.Underline,
-        fontSize: "48px",
-        color: colorFor(COLOR_USE_CASES.BUTTON_TEXT).toString(),
-        backgroundColor: colorFor(COLOR_USE_CASES.BUTTON_BG).toString(),
-      })
-      .setPadding({ x: 24, y: 16 })
-      .setOrigin(0.5)
-      .setInteractive()
-      .on("pointerdown", () => {
-        this.scene.start("level");
-      });
+    if (currentLevel > 0) {
+      button(this, { x: 180, y: HEIGHT - 100, text: "CONTINUE" }).on(
+        "pointerdown",
+        () => {
+          this.scene.start("level");
+        }
+      );
+      button(this, { x: WIDTH - 170, y: HEIGHT - 100, text: "RESTART" }).on(
+        "pointerdown",
+        () => {
+          state.resetLevel();
+          this.scene.start("level");
+        }
+      );
+    } else {
+      button(this, { x: WIDTH / 2, y: HEIGHT - 100, text: "START" }).on(
+        "pointerdown",
+        () => {
+          this.scene.start("level");
+        }
+      );
+    }
   }
 }

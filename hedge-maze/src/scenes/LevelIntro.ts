@@ -23,11 +23,13 @@ export default class LevelIntroScene extends Phaser.Scene {
   }
 
   init(props: LevelIntroProps = {}) {
+    console.log("LevelIntro", "init", props, this.title);
     this.title = props.text ?? Levels[state.get("level")].name;
     this.buttonText = props.buttonText ?? "PLAY";
   }
 
   create() {
+    console.log("LevelInto", "create", { title: this.title });
     this.add.image(WIDTH / 2, HEIGHT / 2, "title");
     this.add.text(50, 20, this.title, {
       fontFamily: FONTS.Underline,
