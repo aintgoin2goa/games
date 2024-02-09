@@ -14,6 +14,8 @@ const ATLAS = "sprites/black-cat.json";
 const WALKING_SPEED = 200;
 const RUNNING_SPEED = 600;
 
+const DAZED_TIME = 2000;
+
 const MAX_TILES_IN_VIEW = 5;
 
 enum Animations {
@@ -88,7 +90,7 @@ const AnimationDefinitions: Record<Animations, Animation> = {
     start: 0,
     end: 15,
     frameRate: 16,
-    repeat: 0,
+    repeat: -1,
   },
 };
 
@@ -109,6 +111,7 @@ export class Cat extends Physics.Arcade.Sprite {
   currentAction: Animations;
   currentlyFacing: Directions;
   isChasing: boolean;
+  isDazed: boolean;
   target: TargetTile | null;
   currentTile: MazeTile;
   currentView: MazeTile[];
@@ -148,7 +151,7 @@ export class Cat extends Physics.Arcade.Sprite {
   }
 
   static load(scene: Scene) {
-    scene.load.atlas("cat", FILE, ATLAS);
+    scene.load.atlas(TEXTURE, FILE, ATLAS);
   }
 
   updateRotation() {}
@@ -182,8 +185,18 @@ export class Cat extends Physics.Arcade.Sprite {
     this.stop();
     this.setVelocity(0);
     this.play(Animations.DAZED);
+    this.isDazed = true;
     this.setStartingPosition(this.currentTile.cell);
-    this.once("animationcomplete", () => this.decideWhatToDo());
+    this.scene.time.delayedCall(
+      DAZED_TIME,
+      () => {
+        this.stop();
+        this.isDazed = false;
+        this.sit(1000).then(() => this.decideWhatToDo());
+      },
+      undefined,
+      this
+    );
   }
 
   updateCurrentView() {

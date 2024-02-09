@@ -3,6 +3,7 @@ import { Target } from "./target";
 import { MazeTile } from "./types";
 import { Maze } from "./maze";
 import debug from "debug";
+import { Joystick } from "./joystick";
 
 const TEXTURE = "hero";
 const FILE = "sprites/rat.png";
@@ -21,18 +22,28 @@ enum Animations {
 export class Rat extends Physics.Arcade.Sprite {
   scene: Scene;
   keys: Types.Input.Keyboard.CursorKeys;
+  joystickKeys: Types.Input.Keyboard.CursorKeys;
   target: Target;
   hasTarget: boolean;
   currentTile: MazeTile;
   maze: Maze;
+  joystick: Joystick;
   debug: ReturnType<typeof debug>;
 
-  constructor(scene: Scene, x: number, y: number, target: Target, maze: Maze) {
+  constructor(
+    scene: Scene,
+    x: number,
+    y: number,
+    target: Target,
+    maze: Maze,
+    joystick: Joystick
+  ) {
     super(scene, x, y, TEXTURE, 0);
     this.debug = debug("rat");
     this.target = target;
     this.scene = scene;
     this.maze = maze;
+    this.joystick = joystick;
     this.name = "rat";
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -50,6 +61,8 @@ export class Rat extends Physics.Arcade.Sprite {
 
   setupKeys() {
     this.keys = this.scene.input.keyboard!.createCursorKeys()!;
+    this.joystickKeys =
+      this.joystick.cursorKeys() as Types.Input.Keyboard.CursorKeys;
   }
 
   setupAnimations() {
@@ -79,22 +92,22 @@ export class Rat extends Physics.Arcade.Sprite {
     let isWalking = false;
     this.getBody().setVelocity(0);
 
-    if (this.keys.up.isDown) {
+    if (this.keys.up.isDown || this.joystickKeys.up.isDown) {
       this.getBody().velocity.y = -SPEED;
       this.updateRotation();
       isWalking = true;
     }
-    if (this.keys.down.isDown) {
+    if (this.keys.down.isDown || this.joystickKeys.down.isDown) {
       this.getBody().velocity.y = SPEED;
       this.updateRotation();
       isWalking = true;
     }
-    if (this.keys.right.isDown) {
+    if (this.keys.right.isDown || this.joystickKeys.right.isDown) {
       this.getBody().velocity.x = SPEED;
       this.updateRotation();
       isWalking = true;
     }
-    if (this.keys.left.isDown) {
+    if (this.keys.left.isDown || this.joystickKeys.left.isDown) {
       this.getBody().velocity.x = -SPEED;
       this.updateRotation();
       isWalking = true;

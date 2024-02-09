@@ -16,6 +16,7 @@ import { Cat } from "../cat";
 import debug from "debug";
 import { isCat, isRat, isTarget } from "../utils";
 import { INITIAL_ZOOM } from "../lib/constants";
+import { Joystick } from "../joystick";
 
 export type SceneData = {
   level: number;
@@ -29,6 +30,7 @@ export default class MazeScene extends Scene {
   maze: Maze;
   debug: DebuggerCollection<"physics" | "zoom">;
   M: Phaser.Input.Keyboard.Key | undefined;
+  joystick: Joystick;
 
   level: Level;
 
@@ -50,6 +52,7 @@ export default class MazeScene extends Scene {
     Maze.load(this);
     Target.load(this);
     Cat.load(this);
+    Joystick.load(this);
   }
 
   init() {
@@ -95,13 +98,15 @@ export default class MazeScene extends Scene {
     this.maze.solve(start, target);
 
     this.target = new Target(this, endCoords.x.mid, endCoords.y.mid);
+    this.joystick = new Joystick(this);
 
     this.rat = new Rat(
       this,
       startCoords.x.mid,
       startCoords.y.mid,
       this.target,
-      this.maze
+      this.maze,
+      this.joystick
     );
 
     this.physics.add.collider(map.layer, this.rat);
@@ -116,6 +121,9 @@ export default class MazeScene extends Scene {
       }
 
       if (isCat(obj1) && isRat(obj2)) {
+        if (obj1.isDazed) {
+          return;
+        }
         this.scene.start("level", { text: "Caught!", buttonText: "TRY AGAIN" });
       }
     });

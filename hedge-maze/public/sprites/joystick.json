@@ -1,0 +1,188 @@
+{
+	"textures": [
+		{
+			"image": "joystick.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 980,
+				"h": 1160
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "JoystickPack.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1080,
+						"h": 1080
+					},
+					"spriteSourceSize": {
+						"x": 51,
+						"y": 37,
+						"w": 978,
+						"h": 846
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 978,
+						"h": 846
+					}
+				},
+				{
+					"filename": "JoystickSplitted.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 356,
+						"h": 356
+					},
+					"spriteSourceSize": {
+						"x": 27,
+						"y": 27,
+						"w": 302,
+						"h": 302
+					},
+					"frame": {
+						"x": 1,
+						"y": 849,
+						"w": 302,
+						"h": 302
+					}
+				},
+				{
+					"filename": "Joystick.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 300
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 300
+					},
+					"frame": {
+						"x": 305,
+						"y": 849,
+						"w": 300,
+						"h": 300
+					}
+				},
+				{
+					"filename": "LargeHandleFilled.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 208,
+						"h": 208
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 208,
+						"h": 208
+					},
+					"frame": {
+						"x": 607,
+						"y": 849,
+						"w": 208,
+						"h": 208
+					}
+				},
+				{
+					"filename": "SmallHandle.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 607,
+						"y": 1059,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "SmallHandleFilled.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 709,
+						"y": 1059,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "SmallHandleFilledGrey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 811,
+						"y": 1059,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "LargeHandleFilledGrey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 140,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 140
+					},
+					"frame": {
+						"x": 817,
+						"y": 849,
+						"w": 140,
+						"h": 140
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:78033734f617526db6ba701751e1a5eb:a8e458dbf445a6a4a327060f11216e8d:df00f8f6c69ce523d11736da1befeed7$"
+	}
+}

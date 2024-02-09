@@ -50,7 +50,7 @@
         <key>dxtCompressionMode</key>
         <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -74,7 +74,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png</enum>
+        <enum type="SettingsBase::TextureFormat">png8</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -124,7 +124,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../public/sprites/cat.json</filename>
+                <filename>../public/sprites/black-cat.json</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
@@ -169,10 +169,110 @@
             <key>defaultPivotPoint</key>
             <point_f>0.5,0.5</point_f>
             <key>writePivotPoints</key>
-            <false/>
+            <true/>
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">black_cat/dazed/__black_cat_whacked_000.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,30,71,59</rect>
+                <key>scale9Paddings</key>
+                <rect>36,30,71,59</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_001.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_004.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,29,70,57</rect>
+                <key>scale9Paddings</key>
+                <rect>35,29,70,57</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_002.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_003.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_009.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_010.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_011.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_013.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_014.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_015.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,29,69,57</rect>
+                <key>scale9Paddings</key>
+                <rect>35,29,69,57</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_005.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_007.png</key>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_008.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,29,71,57</rect>
+                <key>scale9Paddings</key>
+                <rect>36,29,71,57</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_006.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>37,30,73,59</rect>
+                <key>scale9Paddings</key>
+                <rect>37,30,73,59</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">black_cat/dazed/__black_cat_whacked_012.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,30,69,59</rect>
+                <key>scale9Paddings</key>
+                <rect>35,30,69,59</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">black_cat/idle/__black_cat_idle_000.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_001.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_002.png</key>
@@ -187,7 +287,6 @@
             <key type="filename">black_cat/idle/__black_cat_idle_011.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_012.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_013.png</key>
-            <key type="filename">black_cat/idle/__black_cat_idle_014.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_015.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_016.png</key>
             <key type="filename">black_cat/idle/__black_cat_idle_017.png</key>
@@ -270,6 +369,21 @@
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>104,102,208,205</rect>
+                <key>scale9Paddings</key>
+                <rect>104,102,208,205</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">black_cat/idle/__black_cat_idle_014.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.514423,0.44878</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>

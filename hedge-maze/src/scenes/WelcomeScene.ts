@@ -1,10 +1,10 @@
-import Phaser from "phaser";
+import { Scene } from "phaser";
 import { HEIGHT, WIDTH } from "../lib/constants";
 import { FONTS, button } from "../lib/typography";
 import { COLOR_USE_CASES, colorFor } from "../lib/palette";
 import * as state from "../state";
 
-export default class WelcomeScene extends Phaser.Scene {
+export default class WelcomeScene extends Scene {
   constructor() {
     super("welcome");
   }
