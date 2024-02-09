@@ -383,6 +383,7 @@ export class Cat extends Physics.Arcade.Sprite {
       this.scene.physics?.moveToObject(this, this.scene.rat, RUNNING_SPEED);
       this.rotation = this.getBody()?.angle;
     }
+
     this.updateCurrentView();
     if (this.target) {
       const distance = Math.Distance.BetweenPoints(this, this.target);

@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import Phaser, { Scale } from "phaser";
 import { loadFonts } from "./lib/typography";
 
 import WelcomeScene from "./scenes/WelcomeScene";
@@ -15,6 +15,9 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: "app",
   width: WIDTH,
   height: HEIGHT,
+  scale: {
+    mode: Scale.FIT,
+  },
   physics: {
     default: "arcade",
     arcade: {

@@ -66,6 +66,9 @@ export default class MazeScene extends Scene {
     maxTiles: number
   ): MazeTile[] {
     const tiles = this.maze.getVisibleTiles(start, dir, maxTiles);
+    if (this.rat.isDead) {
+      return tiles;
+    }
     const ratTile = this.rat.currentTile;
     return tiles.map((t) => {
       t.hasRat = ratTile?.id === t.id;
@@ -113,6 +116,7 @@ export default class MazeScene extends Scene {
     this.physics.add.overlap(this.rat, this.target);
     this.physics.world.on("overlap", (obj1: Rat | Cat, obj2: Target | Rat) => {
       this.debug.physics("OVERLAP", { obj1, obj2 });
+
       if (isRat(obj1) && isTarget(obj2)) {
         obj1.hasReachedTarget();
         obj2.reached();
@@ -124,7 +128,15 @@ export default class MazeScene extends Scene {
         if (obj1.isDazed) {
           return;
         }
-        this.scene.start("level", { text: "Caught!", buttonText: "TRY AGAIN" });
+        obj1.isChasing = false;
+        obj2.die();
+
+        new Promise((r) => setTimeout(r, 3000)).then(() => {
+          this.scene.start("level", {
+            text: "Caught!",
+            buttonText: "TRY AGAIN",
+          });
+        });
       }
     });
     this.physics.world.on("tilecollide", (obj: Physics.Arcade.Sprite) => {
@@ -154,9 +166,11 @@ export default class MazeScene extends Scene {
     if (this.M?.isDown) {
       this.cameras.main.zoom = this.level.mapZoomLevel;
       this.target.setScale(this.level.id + 1 * 2);
+      this.joystick.hide();
     } else {
       this.cameras.main.zoom = INITIAL_ZOOM;
       this.target.setScale(1);
+      this.joystick.show();
     }
     if (this.rat.x < 0) {
       if (this.rat.hasTarget) {

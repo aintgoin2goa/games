@@ -1,0 +1,713 @@
+{
+	"textures": [
+		{
+			"image": "rat.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1258,
+				"h": 114
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "move/__grey_rat_move_back_002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 79,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 79,
+						"h": 55
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 79,
+						"h": 55
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 79,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 79,
+						"h": 55
+					},
+					"frame": {
+						"x": 1,
+						"y": 58,
+						"w": 79,
+						"h": 55
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 79,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 79,
+						"h": 55
+					},
+					"frame": {
+						"x": 82,
+						"y": 1,
+						"w": 79,
+						"h": 55
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 79,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 79,
+						"h": 55
+					},
+					"frame": {
+						"x": 82,
+						"y": 58,
+						"w": 79,
+						"h": 55
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 54
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 54
+					},
+					"frame": {
+						"x": 163,
+						"y": 1,
+						"w": 80,
+						"h": 54
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 81,
+						"h": 52
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 81,
+						"h": 52
+					},
+					"frame": {
+						"x": 245,
+						"y": 1,
+						"w": 81,
+						"h": 52
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 79,
+						"h": 54
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 79,
+						"h": 54
+					},
+					"frame": {
+						"x": 163,
+						"y": 57,
+						"w": 79,
+						"h": 54
+					}
+				},
+				{
+					"filename": "move/__grey_rat_move_back_004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 79,
+						"h": 54
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 79,
+						"h": 54
+					},
+					"frame": {
+						"x": 328,
+						"y": 1,
+						"w": 79,
+						"h": 54
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 55
+					},
+					"frame": {
+						"x": 409,
+						"y": 1,
+						"w": 75,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 55
+					},
+					"frame": {
+						"x": 486,
+						"y": 1,
+						"w": 75,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_008.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 55
+					},
+					"frame": {
+						"x": 563,
+						"y": 1,
+						"w": 75,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_015.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 55
+					},
+					"frame": {
+						"x": 640,
+						"y": 1,
+						"w": 75,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_016.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 55
+					},
+					"frame": {
+						"x": 717,
+						"y": 1,
+						"w": 75,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_017.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 55
+					},
+					"frame": {
+						"x": 794,
+						"y": 1,
+						"w": 75,
+						"h": 55
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 871,
+						"y": 1,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 947,
+						"y": 1,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_009.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 1023,
+						"y": 1,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_010.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 1099,
+						"y": 1,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_011.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 1175,
+						"y": 1,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_012.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 244,
+						"y": 58,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_013.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 320,
+						"y": 58,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_014.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 55
+					},
+					"frame": {
+						"x": 396,
+						"y": 58,
+						"w": 74,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 73,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 73,
+						"h": 55
+					},
+					"frame": {
+						"x": 472,
+						"y": 58,
+						"w": 73,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 73,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 73,
+						"h": 55
+					},
+					"frame": {
+						"x": 547,
+						"y": 58,
+						"w": 73,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 73,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 73,
+						"h": 55
+					},
+					"frame": {
+						"x": 622,
+						"y": 58,
+						"w": 73,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 72,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 72,
+						"h": 55
+					},
+					"frame": {
+						"x": 697,
+						"y": 58,
+						"w": 72,
+						"h": 55
+					}
+				},
+				{
+					"filename": "idle/__grey_rat_idle_back_005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 72,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 72,
+						"h": 55
+					},
+					"frame": {
+						"x": 771,
+						"y": 58,
+						"w": 72,
+						"h": 55
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 67,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 67,
+						"h": 53
+					},
+					"frame": {
+						"x": 845,
+						"y": 58,
+						"w": 67,
+						"h": 53
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 67,
+						"h": 52
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 67,
+						"h": 52
+					},
+					"frame": {
+						"x": 914,
+						"y": 58,
+						"w": 67,
+						"h": 52
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 67,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 67,
+						"h": 50
+					},
+					"frame": {
+						"x": 983,
+						"y": 58,
+						"w": 67,
+						"h": 50
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 67,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 67,
+						"h": 48
+					},
+					"frame": {
+						"x": 1052,
+						"y": 58,
+						"w": 67,
+						"h": 48
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 67,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 67,
+						"h": 46
+					},
+					"frame": {
+						"x": 1121,
+						"y": 58,
+						"w": 67,
+						"h": 46
+					}
+				},
+				{
+					"filename": "die/__grey_rat_die_back_002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 67,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 67,
+						"h": 46
+					},
+					"frame": {
+						"x": 1190,
+						"y": 58,
+						"w": 67,
+						"h": 46
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:01d236bb080159ab1a70cba61e609323:47cc6f2c2ca34b78ba1058c5226321a4:897eb3d5a631cb8958a6b43d97451b25$"
+	}
+}

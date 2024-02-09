@@ -27,7 +27,7 @@ export const Levels: Level[] = [
       column: 4,
     },
     cats: 1,
-    mapZoomLevel: 0.1,
+    mapZoomLevel: 0.3,
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ export const Levels: Level[] = [
       column: 4,
     },
     cats: 2,
-    mapZoomLevel: 0.1,
+    mapZoomLevel: 0.3,
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ export const Levels: Level[] = [
       column: 6,
     },
     cats: 4,
-    mapZoomLevel: 0.1,
+    mapZoomLevel: 0.2,
   },
   {
     id: 4,

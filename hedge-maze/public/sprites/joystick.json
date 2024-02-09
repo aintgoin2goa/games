@@ -4,51 +4,30 @@
 			"image": "joystick.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 980,
-				"h": 1160
+				"w": 464,
+				"h": 178
 			},
 			"scale": 1,
 			"frames": [
-				{
-					"filename": "JoystickPack.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1080,
-						"h": 1080
-					},
-					"spriteSourceSize": {
-						"x": 51,
-						"y": 37,
-						"w": 978,
-						"h": 846
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 978,
-						"h": 846
-					}
-				},
 				{
 					"filename": "JoystickSplitted.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 356,
-						"h": 356
+						"w": 178,
+						"h": 178
 					},
 					"spriteSourceSize": {
-						"x": 27,
-						"y": 27,
-						"w": 302,
-						"h": 302
+						"x": 13,
+						"y": 13,
+						"w": 152,
+						"h": 152
 					},
 					"frame": {
 						"x": 1,
-						"y": 849,
-						"w": 302,
-						"h": 302
+						"y": 1,
+						"w": 152,
+						"h": 152
 					}
 				},
 				{
@@ -56,20 +35,20 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 300
+						"w": 150,
+						"h": 150
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 300
+						"w": 150,
+						"h": 150
 					},
 					"frame": {
-						"x": 305,
-						"y": 849,
-						"w": 300,
-						"h": 300
+						"x": 155,
+						"y": 1,
+						"w": 150,
+						"h": 150
 					}
 				},
 				{
@@ -77,83 +56,20 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 208,
-						"h": 208
+						"w": 104,
+						"h": 104
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 208,
-						"h": 208
+						"w": 104,
+						"h": 104
 					},
 					"frame": {
-						"x": 607,
-						"y": 849,
-						"w": 208,
-						"h": 208
-					}
-				},
-				{
-					"filename": "SmallHandle.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 100,
-						"h": 100
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 100,
-						"h": 100
-					},
-					"frame": {
-						"x": 607,
-						"y": 1059,
-						"w": 100,
-						"h": 100
-					}
-				},
-				{
-					"filename": "SmallHandleFilled.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 100,
-						"h": 100
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 100,
-						"h": 100
-					},
-					"frame": {
-						"x": 709,
-						"y": 1059,
-						"w": 100,
-						"h": 100
-					}
-				},
-				{
-					"filename": "SmallHandleFilledGrey.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 100,
-						"h": 100
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 100,
-						"h": 100
-					},
-					"frame": {
-						"x": 811,
-						"y": 1059,
-						"w": 100,
-						"h": 100
+						"x": 307,
+						"y": 1,
+						"w": 104,
+						"h": 104
 					}
 				},
 				{
@@ -161,20 +77,83 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 140,
-						"h": 140
+						"w": 70,
+						"h": 70
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 140,
-						"h": 140
+						"w": 70,
+						"h": 70
 					},
 					"frame": {
-						"x": 817,
-						"y": 849,
-						"w": 140,
-						"h": 140
+						"x": 307,
+						"y": 107,
+						"w": 70,
+						"h": 70
+					}
+				},
+				{
+					"filename": "SmallHandle.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 50
+					},
+					"frame": {
+						"x": 379,
+						"y": 107,
+						"w": 50,
+						"h": 50
+					}
+				},
+				{
+					"filename": "SmallHandleFilled.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 50
+					},
+					"frame": {
+						"x": 413,
+						"y": 1,
+						"w": 50,
+						"h": 50
+					}
+				},
+				{
+					"filename": "SmallHandleFilledGrey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 50
+					},
+					"frame": {
+						"x": 413,
+						"y": 53,
+						"w": 50,
+						"h": 50
 					}
 				}
 			]
@@ -183,6 +162,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:78033734f617526db6ba701751e1a5eb:a8e458dbf445a6a4a327060f11216e8d:df00f8f6c69ce523d11736da1befeed7$"
+		"smartupdate": "$TexturePacker:SmartUpdate:18e035a6244029e795242c8a4ac615c6:ea7abb5bac2c5e273b1d70b5704898d8:df00f8f6c69ce523d11736da1befeed7$"
 	}
 }

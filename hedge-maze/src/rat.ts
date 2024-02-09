@@ -4,20 +4,49 @@ import { MazeTile } from "./types";
 import { Maze } from "./maze";
 import debug from "debug";
 import { Joystick } from "./joystick";
+import { Animation, createAnimations } from "./lib/animations";
 
 const TEXTURE = "hero";
-const FILE = "sprites/rat.png";
-const FRAME_SIZE = 100;
-const SPRITE_SIZE = {
-  x: 100,
-  y: 60,
-};
+const ATLAS_FILE = "sprites/rat.png";
+const ATLAS_JSON = "sprites/rat.json";
+
 const SPEED = 800;
 
 enum Animations {
-  WALK = "hero_walk",
-  JUMP = "hero_jump",
+  IDLE = "rat_idle",
+  WALK = "rat_walk",
+  DIE = "rat_die",
 }
+
+const AnimationDefinitions: Record<Animations, Animation> = {
+  [Animations.IDLE]: {
+    texture: TEXTURE,
+    key: Animations.IDLE,
+    prefix: "idle/__grey_rat_idle_back_",
+    start: 0,
+    end: 17,
+    frameRate: 8,
+    repeat: -1,
+  },
+  [Animations.WALK]: {
+    texture: TEXTURE,
+    key: Animations.WALK,
+    prefix: "move/__grey_rat_move_back_",
+    start: 0,
+    end: 7,
+    frameRate: 8,
+    repeat: -1,
+  },
+  [Animations.DIE]: {
+    texture: TEXTURE,
+    key: Animations.DIE,
+    prefix: "die/__grey_rat_die_back_",
+    start: 0,
+    end: 6,
+    frameRate: 8,
+    repeat: 0,
+  },
+};
 
 export class Rat extends Physics.Arcade.Sprite {
   scene: Scene;
@@ -25,6 +54,7 @@ export class Rat extends Physics.Arcade.Sprite {
   joystickKeys: Types.Input.Keyboard.CursorKeys;
   target: Target;
   hasTarget: boolean;
+  isDead: boolean;
   currentTile: MazeTile;
   maze: Maze;
   joystick: Joystick;
@@ -47,16 +77,13 @@ export class Rat extends Physics.Arcade.Sprite {
     this.name = "rat";
     scene.add.existing(this);
     scene.physics.add.existing(this);
-    this.getBody().setSize(SPRITE_SIZE.x, SPRITE_SIZE.y);
     this.setupKeys();
     this.setupAnimations();
+    this.play(Animations.IDLE);
   }
 
   static load(scene: Scene) {
-    scene.load.spritesheet(TEXTURE, FILE, {
-      frameWidth: FRAME_SIZE,
-      frameHeight: FRAME_SIZE,
-    });
+    scene.load.atlas(TEXTURE, ATLAS_FILE, ATLAS_JSON);
   }
 
   setupKeys() {
@@ -66,17 +93,8 @@ export class Rat extends Physics.Arcade.Sprite {
   }
 
   setupAnimations() {
-    if (!this.scene.anims.exists(Animations.WALK)) {
-      this.scene.anims.create({
-        key: Animations.WALK,
-        frameRate: 8,
-        frames: this.scene.anims.generateFrameNumbers(TEXTURE, {
-          start: 0,
-          end: 3,
-        }),
-        repeat: -1,
-      });
-    }
+    const anims = Array.from(Object.values(AnimationDefinitions));
+    createAnimations(this.scene, anims);
   }
 
   updateRotation() {
@@ -84,6 +102,10 @@ export class Rat extends Physics.Arcade.Sprite {
   }
 
   update() {
+    if (this.isDead) {
+      return;
+    }
+
     const currentTile = this.maze.getTileForCoords(this.x, this.y);
     if (currentTile.id !== this.currentTile?.id) {
       this.currentTile = currentTile;
@@ -116,12 +138,18 @@ export class Rat extends Physics.Arcade.Sprite {
     if (isWalking) {
       this.play(Animations.WALK, true);
     } else {
-      this.stop();
+      this.play(Animations.IDLE, true);
     }
   }
 
   hasReachedTarget() {
     this.hasTarget = true;
+  }
+
+  die() {
+    this.getBody().setVelocity(0);
+    this.play(Animations.DIE);
+    this.isDead = true;
   }
 
   protected getBody(): Physics.Arcade.Body {

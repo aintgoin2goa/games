@@ -2,8 +2,8 @@ import { Scene } from "phaser";
 import VirtualJoyStick from "phaser3-rex-plugins/plugins/virtualjoystick";
 import { HEIGHT, WIDTH } from "./lib/constants";
 
-const RADIUS = 150;
-const KNOB_RADIUS = 50;
+const RADIUS = 75;
+const KNOB_RADIUS = 25;
 
 const ATLAS_KEY = "joystick";
 const ATLAS_IMG = "sprites/joystick.png";
@@ -22,6 +22,7 @@ enum Frames {
 export class Joystick {
   joystick: VirtualJoyStick;
   scene: Scene;
+  disabled: boolean;
 
   static load(scene: Scene) {
     scene.load.atlas(ATLAS_KEY, ATLAS_IMG, ATLAS_JSON);
@@ -48,9 +49,37 @@ export class Joystick {
       base: scene.make.sprite({ key: Textures.OUTER }),
       thumb: scene.make.sprite({ key: Textures.INNER }),
     });
+    this.disable();
+    window.addEventListener("touchstart", () => {
+      this.enable();
+    });
   }
 
   cursorKeys() {
     return this.joystick.createCursorKeys();
+  }
+
+  disable() {
+    this.disabled = true;
+    this.hide();
+  }
+
+  enable() {
+    this.disabled = false;
+    this.show();
+  }
+
+  hide() {
+    this.joystick.setVisible(false);
+    this.joystick.setEnable(false);
+  }
+
+  show() {
+    if (this.disabled) {
+      return;
+    }
+
+    this.joystick.setVisible(true);
+    this.joystick.setEnable(true);
   }
 }
