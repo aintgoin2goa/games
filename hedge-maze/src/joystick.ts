@@ -29,19 +29,8 @@ export class Joystick {
   }
 
   constructor(scene: Scene) {
-    scene.textures.addSpriteSheetFromAtlas(Textures.OUTER, {
-      atlas: ATLAS_KEY,
-      frame: Frames.OUTER,
-      frameWidth: RADIUS * 2,
-      frameHeight: RADIUS * 2,
-    });
-    scene.textures.addSpriteSheetFromAtlas(Textures.INNER, {
-      atlas: ATLAS_KEY,
-      frame: Frames.INNER,
-      frameWidth: KNOB_RADIUS * 2,
-      frameHeight: KNOB_RADIUS * 2,
-    });
-
+    this.scene = scene;
+    this.setupTextures();
     this.joystick = new VirtualJoyStick(scene, {
       radius: RADIUS,
       x: WIDTH - RADIUS,
@@ -53,6 +42,26 @@ export class Joystick {
     window.addEventListener("touchstart", () => {
       this.enable();
     });
+  }
+
+  setupTextures() {
+    if (!this.scene.textures.exists(Textures.OUTER)) {
+      this.scene.textures.addSpriteSheetFromAtlas(Textures.OUTER, {
+        atlas: ATLAS_KEY,
+        frame: Frames.OUTER,
+        frameWidth: RADIUS * 2,
+        frameHeight: RADIUS * 2,
+      });
+    }
+
+    if (!this.scene.textures.exists(Textures.INNER)) {
+      this.scene.textures.addSpriteSheetFromAtlas(Textures.INNER, {
+        atlas: ATLAS_KEY,
+        frame: Frames.INNER,
+        frameWidth: KNOB_RADIUS * 2,
+        frameHeight: KNOB_RADIUS * 2,
+      });
+    }
   }
 
   cursorKeys() {

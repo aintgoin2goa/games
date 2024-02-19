@@ -5,6 +5,7 @@ import { Maze } from "./maze";
 import debug from "debug";
 import { Joystick } from "./joystick";
 import { Animation, createAnimations } from "./lib/animations";
+import { EventNames, subscribe } from "./lib/events";
 
 const TEXTURE = "hero";
 const ATLAS_FILE = "sprites/rat.png";
@@ -80,6 +81,8 @@ export class Rat extends Physics.Arcade.Sprite {
     this.setupKeys();
     this.setupAnimations();
     this.play(Animations.IDLE);
+    subscribe(EventNames.TARGET_REACHED, () => this.hasReachedTarget());
+    subscribe(EventNames.CAUGHT, () => this.die());
   }
 
   static load(scene: Scene) {
@@ -147,9 +150,10 @@ export class Rat extends Physics.Arcade.Sprite {
   }
 
   die() {
-    this.getBody().setVelocity(0);
-    this.play(Animations.DIE);
     this.isDead = true;
+    this.stop();
+    this.getBody().setVelocity(0);
+    this.scene.time.delayedCall(500, this.play, [Animations.DIE], this);
   }
 
   protected getBody(): Physics.Arcade.Body {

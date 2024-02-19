@@ -6,6 +6,7 @@ import debug from "debug";
 import { Rat } from "./rat";
 import MazeScene from "./scenes/MazeScene";
 import { Animation, createAnimations } from "./lib/animations";
+import { EventNames, subscribe } from "./lib/events";
 
 const TEXTURE = "cat";
 const FILE = ["sprites/black-cat-0.png"];
@@ -26,6 +27,7 @@ enum Animations {
   LOOK_RIGHT = "cat_look_right",
   RUN = "cat_run",
   DAZED = "cat_dazed",
+  SCRATCH = "cat_scratched",
 }
 
 const AnimationDefinitions: Record<Animations, Animation> = {
@@ -92,6 +94,15 @@ const AnimationDefinitions: Record<Animations, Animation> = {
     frameRate: 16,
     repeat: -1,
   },
+  [Animations.SCRATCH]: {
+    key: Animations.SCRATCH,
+    texture: TEXTURE,
+    prefix: "scratch/__black_cat_scratch_",
+    start: 0,
+    end: 7,
+    frameRate: 8,
+    repeat: 0,
+  },
 };
 
 const Angles: Record<Directions, number> = {
@@ -144,6 +155,7 @@ export class Cat extends Physics.Arcade.Sprite {
     this.isChasing = false;
     this.setStartingPosition(tile.cell);
     this.sit(5000).then(() => this.decideWhatToDo());
+    subscribe(EventNames.CAUGHT, () => this.swipe());
   }
 
   protected getBody(): Physics.Arcade.Body {
@@ -288,6 +300,14 @@ export class Cat extends Physics.Arcade.Sprite {
 
   turnAround() {
     this.turnToFace(turn180Degrees(this.currentlyFacing));
+  }
+
+  swipe() {
+    this.isChasing = false;
+    this.getBody().setVelocity(0);
+    this.stop();
+    this.play(Animations.SCRATCH);
+    this.once("animationcomplete", () => this.sit(1000));
   }
 
   async decideWhatToDo() {

@@ -2,6 +2,7 @@ import { Scene } from "phaser";
 import { Maze } from "./maze";
 import { MAP_TILES_IN_MAZE_TILE, TILEMAP_SIZE } from "./lib/constants";
 import { MazeCell } from "./types";
+import { EventNames, subscribe } from "./lib/events";
 
 export type TileCoord = {
   xStart: number;
@@ -49,6 +50,7 @@ export class TileMap {
     this.tiles = this.map.addTilesetImage(KEY)!;
     this.layer = this.map.createLayer(0, this.tiles, 0, 0)!;
     this.map.setCollision(Tiles.HEDGE);
+    subscribe(EventNames.TARGET_REACHED, () => this.revealExit());
   }
 
   static load(scene: Scene) {

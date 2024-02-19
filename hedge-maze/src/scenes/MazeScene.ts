@@ -17,6 +17,7 @@ import debug from "debug";
 import { isCat, isRat, isTarget } from "../utils";
 import { INITIAL_ZOOM } from "../lib/constants";
 import { Joystick } from "../joystick";
+import { EventNames, publishOnce } from "../lib/events";
 
 export type SceneData = {
   level: number;
@@ -118,9 +119,7 @@ export default class MazeScene extends Scene {
       this.debug.physics("OVERLAP", { obj1, obj2 });
 
       if (isRat(obj1) && isTarget(obj2)) {
-        obj1.hasReachedTarget();
-        obj2.reached();
-        map.revealExit();
+        publishOnce(EventNames.TARGET_REACHED);
         return;
       }
 
@@ -128,10 +127,10 @@ export default class MazeScene extends Scene {
         if (obj1.isDazed) {
           return;
         }
-        obj1.isChasing = false;
-        obj2.die();
 
-        new Promise((r) => setTimeout(r, 3000)).then(() => {
+        publishOnce(EventNames.CAUGHT);
+
+        new Promise((r) => setTimeout(r, 5000)).then(() => {
           this.scene.start("level", {
             text: "Caught!",
             buttonText: "TRY AGAIN",

@@ -1,4 +1,5 @@
 import { Physics, Scene } from "phaser";
+import { EventNames, subscribe } from "./lib/events";
 
 const TEXTURE = "target";
 const FILE = "img/cheese.png";
@@ -15,6 +16,7 @@ export class Target extends Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this, true);
     this.getBody().onOverlap = true;
+    subscribe(EventNames.TARGET_REACHED, () => this.reached());
   }
 
   static load(scene: Scene) {
