@@ -12,7 +12,7 @@ export const Levels: Level[] = [
       row: 2,
       column: 2,
     },
-    cats: 0,
+    cats: [],
     mapZoomLevel: 0.6,
   },
   {
@@ -26,7 +26,14 @@ export const Levels: Level[] = [
       row: 4,
       column: 4,
     },
-    cats: 1,
+    cats: [
+      {
+        start: {
+          row: 1,
+          column: 1,
+        },
+      },
+    ],
     mapZoomLevel: 0.3,
   },
   {
@@ -40,7 +47,14 @@ export const Levels: Level[] = [
       row: 4,
       column: 4,
     },
-    cats: 2,
+    cats: [
+      {
+        start: { row: 2, column: 2 },
+      },
+      {
+        start: { row: 4, column: 4 },
+      },
+    ],
     mapZoomLevel: 0.3,
   },
   {
@@ -54,7 +68,20 @@ export const Levels: Level[] = [
       row: 6,
       column: 6,
     },
-    cats: 4,
+    cats: [
+      {
+        start: { row: 4, column: 4 },
+      },
+      {
+        start: { row: 6, column: 6 },
+      },
+      {
+        start: { row: 8, column: 8 },
+      },
+      {
+        start: { row: 4, column: 8 },
+      },
+    ],
     mapZoomLevel: 0.2,
   },
   {
@@ -68,7 +95,14 @@ export const Levels: Level[] = [
       row: 8,
       column: 8,
     },
-    cats: 8,
+    cats: [
+      { start: { row: 2, column: 2 } },
+      { start: { row: 4, column: 4 } },
+      { start: { row: 8, column: 8 } },
+      { start: { row: 6, column: 2 } },
+      { start: { row: 8, column: 2 } },
+      { start: { row: 2, column: 8 } },
+    ],
     mapZoomLevel: 0.1,
   },
 ];

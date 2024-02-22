@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { Levels } from "../lib/levels";
 import { HEIGHT, WIDTH } from "../lib/constants";
-import { FONTS } from "../lib/typography";
+import { FONTS, button } from "../lib/typography";
 import { COLOR_USE_CASES, colorFor } from "../lib/palette";
 import * as state from "../state";
 
@@ -36,19 +36,12 @@ export default class LevelIntroScene extends Phaser.Scene {
       strokeThickness: 1,
       align: "centre",
     });
-    this.add
-      .text(WIDTH / 2, HEIGHT - 100, ` ${this.buttonText} `, {
-        fontFamily: FONTS.Underline,
-        fontSize: 48,
-        color: colorFor(COLOR_USE_CASES.BUTTON_TEXT).toString(),
-        backgroundColor: colorFor(COLOR_USE_CASES.BUTTON_BG).toString(),
-      })
-      .setPadding({ x: 24, y: 16 })
-      .setOrigin(0.5)
-      .setInteractive()
-      .on("pointerdown", () => {
+    button(this, { x: WIDTH / 2, y: HEIGHT - 100, text: this.buttonText }).on(
+      "pointerdown",
+      () => {
         this.scene.start("maze");
-      });
+      }
+    );
 
     const enter = this.input.keyboard?.addKey("ENTER");
     enter!.on("up", () => {

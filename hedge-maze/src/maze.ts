@@ -99,6 +99,12 @@ export class Maze {
     return { id: this.tileId(row, column), point: { row, column }, cell };
   }
 
+  getTile(point: Point): MazeTile {
+    const { row, column } = point;
+    const cell = this.mazeData.rows[row][column];
+    return { id: this.tileId(row, column), point: { row, column }, cell };
+  }
+
   getNeighbouringTile(tile: MazeTile, dir: Directions): MazeTile | null {
     // cell in this direction not connected
     if (tile.cell[dir] === true) {

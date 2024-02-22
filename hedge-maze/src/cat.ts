@@ -1,12 +1,17 @@
 import { Math, Physics, Scene } from "phaser";
 import { Maze } from "./maze";
-import { DebuggerCollection, Directions, MazeCell, MazeTile } from "./types";
+import {
+  DebuggerCollection,
+  Directions,
+  MazeCell,
+  MazeTile,
+  Point,
+} from "./types";
 import { turn180Degrees, turn90DegreesLeft, turn90DegreesRight } from "./utils";
 import debug from "debug";
 import { Rat } from "./rat";
 import MazeScene from "./scenes/MazeScene";
 import { Animation, createAnimations } from "./lib/animations";
-import { EventNames, subscribe } from "./lib/events";
 
 const TEXTURE = "cat";
 const FILE = ["sprites/black-cat-0.png"];
@@ -132,8 +137,8 @@ export class Cat extends Physics.Arcade.Sprite {
   timer: Phaser.Time.TimerEvent;
   debug: DebuggerCollection<"vision" | "decisions" | "movement" | "fov">;
 
-  constructor(scene: MazeScene, maze: Maze, rat: Rat) {
-    const tile = maze.getRandomTile();
+  constructor(scene: MazeScene, maze: Maze, rat: Rat, start?: Point) {
+    const tile = start ? maze.getTile(start) : maze.getRandomTile();
     const coords = maze.getTileCoords(tile.point.column, tile.point.row);
     super(scene, coords.x.mid, coords.y.mid, TEXTURE, 0);
     this.name = "cat";
@@ -155,7 +160,6 @@ export class Cat extends Physics.Arcade.Sprite {
     this.isChasing = false;
     this.setStartingPosition(tile.cell);
     this.sit(5000).then(() => this.decideWhatToDo());
-    subscribe(EventNames.CAUGHT, () => this.swipe());
   }
 
   protected getBody(): Physics.Arcade.Body {
@@ -307,7 +311,12 @@ export class Cat extends Physics.Arcade.Sprite {
     this.getBody().setVelocity(0);
     this.stop();
     this.play(Animations.SCRATCH);
-    this.once("animationcomplete", () => this.sit(1000));
+    this.once("animationcomplete", () =>
+      this.sit(1000).then(() => {
+        this.setStartingPosition(this.currentTile.cell);
+        this.decideWhatToDo();
+      })
+    );
   }
 
   async decideWhatToDo() {

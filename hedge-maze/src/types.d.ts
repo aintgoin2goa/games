@@ -1,5 +1,10 @@
 import debug from "debug";
 
+export type TargetPoint = {
+  x: number;
+  y: number;
+};
+
 export type Point = {
   row: number;
   column: number;
@@ -10,12 +15,16 @@ export type Size = {
   h: number;
 };
 
+export type Cat = {
+  start: Point;
+};
+
 export type Level = {
   id: number;
   name: string;
   size: Size;
   target: Point;
-  cats: number;
+  cats: Cat[];
   mapZoomLevel: number;
 };
 

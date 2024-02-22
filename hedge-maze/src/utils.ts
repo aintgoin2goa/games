@@ -57,17 +57,27 @@ export const turn180Degrees = (dir: Directions): Directions => {
   }
 };
 
-export const isRat = (obj: Physics.Arcade.Sprite): obj is Rat =>
-  obj.name === "rat";
-export const isCat = (obj: Physics.Arcade.Sprite): obj is Cat =>
-  obj.name === "cat";
-export const isTarget = (obj: Physics.Arcade.Sprite): obj is Target =>
-  obj.name === "target";
+export const isSprite = (obj: unknown): obj is Physics.Arcade.Sprite => {
+  return typeof obj === "object" && "name" in obj;
+};
 
-//   export const animation = (obj: Physics.Arcade.Sprite, {name: string, textureprefix) => {
-//   if(obj.scene.anims.exists(name)){
-//     return;
-//   }
+export const isRat = (obj: unknown): obj is Rat => {
+  return isSprite(obj) && obj.name === "rat";
+};
+export const isCat = (obj: unknown): obj is Cat =>
+  isSprite(obj) && obj.name === "cat";
 
-//   const frames = obj.anims.generateFrameNames({})
-// }
+export const isTarget = (obj: unknown): obj is Target =>
+  isSprite(obj) && obj.name === "target";
+
+export const singleUseFunction = (
+  func: (...args: any[]) => void,
+  context: any
+) => {
+  let called = false;
+  return function (...args: any[]) {
+    if (called) return;
+    func(...args);
+    called = true;
+  }.bind(context);
+};
